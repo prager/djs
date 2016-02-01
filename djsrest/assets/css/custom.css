@@ -50,3 +50,21 @@ padding:        5px 20px;
 body {
    background:#d9d9d9 !important;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  background-color:  #1a1a1a;
+  color: #d9d9d9;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+.form-horizontal .form-control {
+    text-align: left;
+}

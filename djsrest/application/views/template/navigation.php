@@ -17,11 +17,11 @@
 	      <ul class="nav navbar-nav">
 	      <li><a href="#">DJ's Bistro</a></li>
 	      <li class="navbar divider-vertical"></li>
-	      <li><a href="#">Home<span class="sr-only">(current)</span></a></li>
+	      <li><a href="<?php echo site_url(''); ?>">Home<span class="sr-only">(current)</span></a></li>
 	      <li class="navbar divider-vertical"></li>
 	      <li><a href="#">Menu</a></li>
 	      <li class="navbar divider-vertical"></li>
-	      <li><a href="#">Reservations</a></li>
+	      <li><a href="<?php echo site_url('/reservations'); ?>">Reservations</a></li>
 	      <li class="navbar divider-vertical"></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
