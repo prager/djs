@@ -1,34 +1,57 @@
-<div class="container">
-	<nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
-	    <!-- Brand and toggle get grouped for better mobile display -->
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="#"><img src="/assets/img/DJs_Logo.jpg" alt="Logo" width="44" height="52"></a>
-	    </div>
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+		<div class="container">
+		<div class="navbar-header">
+		  <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a href="/" class="navbar-brand">DJ's Bistro</a>
+		</div>
+		<nav class="collapse navbar-collapse" role="navigation">
+		  <ul class="nav navbar-nav">
+			<li>
+			  <a href="#">Home</a>
+			</li>
+			<li>
+			  <a href="#">Reservations</a>
+			</li>
+			<li>
+			  <a href="#">Menu</a>
+			</li>
+			<li>
+			  <a href="#">Contact Us</a>
+			</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+			  		<a href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
+				</li>
+		  	</ul>
 
-	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	      <li><a href="#">DJ's Bistro</a></li>
-	      <li class="navbar divider-vertical"></li>
-	      <li><a href="<?php echo site_url(''); ?>">Home<span class="sr-only">(current)</span></a></li>
-	      <li class="navbar divider-vertical"></li>
-	      <li><a href="#">Menu</a></li>
-	      <li class="navbar divider-vertical"></li>
-	      <li><a href="<?php echo site_url('/reservations'); ?>">Reservations</a></li>
-	      <li class="navbar divider-vertical"></li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	        <li class="navbar divider-vertical"></li>
-	        <li><a href="#">Sign In   <span class="glyphicon glyphicon-log-in"></span></a></li>
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
-</div>
+		</nav>
+	  </div>
+	</header>
+
+<div id="masthead">  
+	  <div class="container">
+		<div class="row">
+			<div class="col-md-7">
+				<img id="brand" class="img-responsive" src="/assets/img/Brand.png" alt="Logo">
+			</div>
+		</div> 
+	  </div><!-- /cont -->
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<!-- left side navigation bar -->
+			<div class="col-md-3" id="leftCol">              
+				<ul class="nav nav-stacked" id="sidebar">
+				  <li><a href="#sec0">Home</a></li>
+				  <li><a href="#sec1">Reservations</a></li>
+				  <li><a href="#sec2">Menu</a></li>
+				  <li><a href="#sec3">Contact Us</a></li>
+				</ul>              
+			</div>	
