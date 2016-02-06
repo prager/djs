@@ -38,7 +38,7 @@
 	  <div class="container">
 		<div class="row">
 			<div class="col-md-7">
-				<img id="brand" class="img-responsive" src="/assets/img/Brand.png" alt="Logo">
+				<img id="brand" class="img-responsive" src="assets/img/Brand.png" alt="Logo">
 			</div>
 		</div> 
 	  </div><!-- /cont -->
