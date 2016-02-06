@@ -8,7 +8,7 @@ class Reservations extends CI_Controller {
 		$data['title'] = 'Reservations';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('reservations');
+		$this->load->view('reservations_view');
 		$this->load->view('template/footer');
 	}
 }

@@ -9,32 +9,32 @@
 					<div id="slideshow" class="owl-carousel">
 						<div class="item darkCyan" style="width: 400px height: 300px;">
 							<div>
-                                <img class="img-responsive" src="assets/img/outside.jpg" alt="">
+                                <img class="img-responsive" src="<?php echo base_url() ;?>/assets/img/outside.jpg" alt="">
                             </div>
 						</div>
 						<div class="item darkCyan" style="width: 400px height: 300px">
 							<div>
-                                <img class="img-responsive" src="assets/img/barslide.jpg" alt="">
+                                <img class="img-responsive" src="<?php echo base_url() ;?>/assets/img/barslide.jpg" alt="">
                             </div>
 						</div>
 						<div class="item darkCyan" style="width: 400px height: 300px">
 							<div>
-                                <img class="img-responsive" src="assets/img/dinnerslide.jpg" alt="">
+                                <img class="img-responsive" src="<?php echo base_url() ;?>/assets/img/dinnerslide.jpg" alt="">
                             </div>
 						</div>
 						<div class="item darkCyan" style="width: 400px height: 300px">
 							<div>
-                                <img class="img-responsive" src="assets/img/food1.jpg" alt="">
+                                <img class="img-responsive" src="<?php echo base_url() ;?>/assets/img/food1.jpg" alt="">
                             </div>
 						</div>
 						<div class="item darkCyan" style="width: 400px height: 300px">
 							<div>
-                                <img class="img-responsive" src="assets/img/food2.jpg" alt="">
+                                <img class="img-responsive" src="<?php echo base_url() ;?>/assets/img/food2.jpg" alt="">
                             </div>
 						</div>
 						<div class="item darkCyan" style="width: 400px height: 300px">
 							<div>
-                                <img class="img-responsive" src="assets/img/food3.jpg" alt="">
+                                <img class="img-responsive" src="<?php echo base_url() ;?>/assets/img/food3.jpg" alt="">
                             </div>
 						</div>
 					</div>
@@ -129,10 +129,10 @@
 			</div>
 		</div>
 	</div>
-    <script src="assets/js/custom.js"></script>
+    <script src="<?php echo base_url() ;?>/assets/js/custom.js"></script>
 	
 	<!-- javascript for carousel plugin -->
-	<script src="assets/js/owl.carousel.min.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/js/owl.carousel.min.js"></script>
 
 	<!-- calling the carousel plugin -->
 	<script>	

@@ -2,11 +2,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   
     <!-- Include all compiled plugins (below), or include individual files as needed -->    
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="<?php echo base_url() ;?>/assets/js/bootstrap.js"></script>
+    <script src="<?php echo base_url() ;?>/assets/js/custom.js"></script>
   
   <!-- javascript for carousel plugin -->
-  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="<?php echo base_url() ;?>/assets/js/owl.carousel.min.js"></script>
   
   <!-- footer starts here -->
   <footer id="footer-bottom">

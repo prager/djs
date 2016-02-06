@@ -12,10 +12,10 @@
 		<nav class="collapse navbar-collapse" role="navigation">
 		  <ul class="nav navbar-nav">
 			<li>
-			  <a href="#">Home</a>
+			  <?php echo anchor('home', 'Home');?>
 			</li>
 			<li>
-			  <a href="#">Reservations</a>
+			  <?php echo anchor('reservations', 'Reservations');?>
 			</li>
 			<li>
 			  <a href="#">Menu</a>
@@ -38,7 +38,7 @@
 	  <div class="container">
 		<div class="row">
 			<div class="col-md-7">
-				<img id="brand" class="img-responsive" src="assets/img/Brand.png" alt="Logo">
+				<img id="brand" class="img-responsive" src="<?php echo base_url() ;?>/assets/img/Brand.png" alt="Logo">
 			</div>
 		</div> 
 	  </div><!-- /cont -->
