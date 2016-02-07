@@ -4,18 +4,28 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title><?php echo $title; ?></title>
+    
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ;?>/assets/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--  jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	
+	<!-- Bootstrap Date-Picker Plugin -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
     <!-- custom css -->
     <link href="<?php echo base_url() ;?>/assets/css/custom.css" type="text/css" rel="stylesheet">
 
+    
     <!-- Owl Carousel Assets -->
     <link href="<?php echo base_url() ;?>/assets/css/owl.carousel.css" rel="stylesheet">
     <link href="<?php echo base_url() ;?>/assets/css/owl.theme.css" rel="stylesheet">
-
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
