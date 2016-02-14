@@ -3,7 +3,7 @@
 	<br>
 	<h2 id="sec0">Registration</h2>
 	<hr class="col-md-12" style="margin-top:0px;">
-	<?php echo form_open('registration/registration_validation'); ?>
+	<?php echo form_open('login/registration_validation'); ?>
 		<div class="row">
 			<!-- left side of the registration form -->
 			<div id="reg_form_left" class="col-lg-6 col-md-6">
@@ -38,9 +38,9 @@
 			  	<div class="form-group">
 			    	<label for="zip">Zip</label>
 			    	<span style="color: red;"><?php echo form_error('zip'); ?></span>
-			    	<input type="text" value="" class="form-control input_short" id="zip" name="zip" placeholder="zip">
+			    	<input type="text" value="<?php echo set_value('zip'); ?>" class="form-control input_short" id="zip" name="zip" placeholder="zip">
 			  	</div>
-			</div>
+			</div><br>
 			<!-- left side ends -->
 
 			<!-- right side of the registration form -->
@@ -54,22 +54,22 @@
 				<div class="form-group">
 			    	<label for="email">Email</label>
 			    	<span style="color: red;"><?php echo form_error('email'); ?></span>
-			    	<input type="email" value="" class="form-control input_long" id="email" name="email" placeholder="Email">
+			    	<input type="email" value="<?php echo set_value('email'); ?>" class="form-control input_long" id="email" name="email" placeholder="Email">
 			  	</div>
 			  	<div class="form-group">
 			    	<label for="emailConf">Re-enter Email</label>
 			    	<span style="color: red;"><?php echo form_error('emailConf'); ?></span>
-			    	<input type="email" value="" class="form-control input_long" id="emailConf" name="emailConf" placeholder="Re-enter Email">
+			    	<input type="email" value="<?php echo set_value('emailConf'); ?>" class="form-control input_long" id="emailConf" name="emailConf" placeholder="Re-enter Email">
 			  	</div>
 			  	<div class="form-group">
 			    	<label for="exampleInputPassword1">Password</label>
 			    	<span style="color: red;"><?php echo form_error('password'); ?></span>
-			    	<input type="password" value="" class="form-control input_long" id="exampleInputPassword1" name="password" placeholder="Password">
+			    	<input type="password" value="<?php echo set_value('password'); ?>" class="form-control input_long" id="exampleInputPassword1" name="password" placeholder="Password">
 			  	</div>
 			  	<div class="form-group">
 			    	<label for="passwordConf">Re-enter Password</label>
 			    	<span style="color: red;"><?php echo form_error('passwordConf'); ?></span>
-			    	<input type="password" value="" class="form-control input_long" id="passwordConf" name="passwordConf" placeholder="Re-enter Password">
+			    	<input type="password" value="<?php echo set_value('passwordConf'); ?>" class="form-control input_long" id="passwordConf" name="passwordConf" placeholder="Re-enter Password">
 			  	</div>
 			</div>
 			<!-- right side ends -->
