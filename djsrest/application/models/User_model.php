@@ -19,7 +19,7 @@ class User_model extends CI_Model {
     
     //--- added by sajith---
     
-    public function add_user_account($user_type) {
+    public function create_user($user_type) {
     	$data = array(
     			'username' => $this->input->post('username'),
     			'first_nm' => md5($this->input->post('firstName')),
@@ -34,6 +34,5 @@ class User_model extends CI_Model {
     
     	return $this->db->insert('user_tbl', $data);
     }
-
 }
 ?>
