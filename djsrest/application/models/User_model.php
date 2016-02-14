@@ -17,8 +17,6 @@ class User_model extends CI_Model {
     	
     }
     
-    //--- added by sajith---
-    
     public function create_user($user_type) {
     	$data = array(
     			'username' => $this->input->post('username'),
@@ -29,7 +27,7 @@ class User_model extends CI_Model {
     			'addr_line2' => $this->input->post('address2'),
     			'state_cd' => $this->input->post('state'),
     			'zip_cd' => $this->input->post('zip'),
-    			'user_type' => $user_type
+    			'user_type_cd' => $user_type
     	);
     
     	return $this->db->insert('user_tbl', $data);
