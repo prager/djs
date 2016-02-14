@@ -38,22 +38,22 @@ class Login extends CI_Controller {
 		
 	}	
 	
-	//------added by Sajith
+	//---added by Sajith---
 	
 	public function load_registration() {
 		$data['title'] = 'Registration Page';
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/navigation');
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
 		$this->load->view('registration_view');
-		$this->load->view('templates/footer');
+		$this->load->view('template/footer');
 	}
 	
 	public function load_registration_success() {
 		$data['title'] = 'Success Page';
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/navigation');
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
 		$this->load->view('success_view');
-		$this->load->view('templates/footer');
+		$this->load->view('template/footer');
 	}
 	
 	public function registration_validation() {
@@ -66,14 +66,15 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('city', 'City', 'trim|required');
 		$this->form_validation->set_rules('state', 'State', 'trim|required');
 		$this->form_validation->set_rules('zip', 'Zip', 'trim|required');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[32]|xss_clean|is_unique[user_tbl.username]');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|matches[emailConf]|is_unique[user_tbl.email_addr]');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[passconf]|md5');
-		$this->form_validation->set_rules('passConf', 'Password Confirmation', 'trim|required');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[32]|is_unique[user_tbl.username]');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user_tbl.email_addr]');
+		$this->form_validation->set_rules('emailConf', 'Email Conformation', 'trim|required|matches[email]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
+		$this->form_validation->set_rules('passwordConf', 'Password Conformation', 'trim|required|matches[passwordConf]|md5');
 	
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->view_registration_page();
+			$this->load_registration();
 		}
 		else
 		{
