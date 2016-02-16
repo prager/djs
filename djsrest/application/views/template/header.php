@@ -25,6 +25,9 @@
     <!-- Owl Carousel Assets -->
     <link href="<?php echo base_url() ;?>/assets/css/owl.carousel.css" rel="stylesheet">
     <link href="<?php echo base_url() ;?>/assets/css/owl.theme.css" rel="stylesheet">
+
+    <!-- Login style sheet -->
+    <link href="<?php echo base_url() ;?>/assets/css/login.css" rel="stylesheet">
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
