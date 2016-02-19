@@ -41,6 +41,7 @@ class Login extends CI_Controller {
 	//---added by Sajith---
 	
 	public function load_registration() {
+		$this->load->helper('form');
 		$data['title'] = 'Registration Page';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');

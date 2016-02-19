@@ -31,11 +31,16 @@ class Load_reservation extends CI_Controller {
 		
 	}
 	
-	function load_success() {		
+	function load_success() {
+		//$this->load->library('email');
 		$data['title'] = 'Done';
+		$this->load->helper('email');
+		$this->load->model('Table_reservation_model');
+		$this->table_reservation_model->set_data($data);		
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('success_view');
+		$data['message'] = 'Thank you for your table reservation!';
+		$this->load->view('success_view', $data);
 		$this->load->view('template/footer');
 	}
 	
@@ -44,7 +49,6 @@ class Load_reservation extends CI_Controller {
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('reservations_view', $data);
-		//$this->load->view('err_view');
 		$this->load->view('template/footer');
 	}
 	
@@ -52,12 +56,11 @@ class Load_reservation extends CI_Controller {
 	 * Validate the form
 	 */	
 	function validate_form() {
-		//$this->form_validation->set_rules('date', 'Date', 'trim|required|date');
 		$this->form_validation->set_rules('date', 'Date', 'callback_date_check');
 		$this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
 		$this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-/******** To-do: validate the rest of the form ***************/
+		$this->form_validation->set_rules('phnum', 'Phone Number', 'trim|required|');
 		
 		$this->form_validation->run();
 	}

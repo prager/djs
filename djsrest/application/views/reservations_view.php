@@ -41,7 +41,8 @@
 	  </div>
 	  <div class="form-group">
 	    <label class="control-label col-sm-2" for="PNumber">Phone Number:</label>
-	    <div class="col-sm-10"> 
+	    <div class="col-sm-10">
+	    <span style="color: red;"><?php echo form_error('phnum'); ?></span> 
 	      <input type="tel" class="form-control" id="PNumber" placeholder="Enter Phone Number" id="phnum" name="phnum">
 	    </div>
 	  </div>
@@ -68,7 +69,8 @@
 		    </div>
 		    <div class="form-group">
 	    <label class="control-label col-sm-2" for="date">Enter Date:</label>
-	    <div class="col-sm-10"> 
+	    <div class="col-sm-10">
+	    <span style="color: red;"><?php echo form_error('date'); ?></span> 
 	      <input type="tel" class="form-control" id="date" name="date" placeholder="MM/DD/YYY">
 	    </div>
 	  </div>
