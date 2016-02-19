@@ -1,9 +1,22 @@
-<!--Registration form begins here -->
-<div class="col-md-9" id="mainCol">
-	<br>
-	<h2 id="sec0">Registration</h2>
-	<hr class="col-md-12" style="margin-top:0px;">
-	<?php echo form_open('login/registration_validation'); ?>
+<div class="container">
+			<div class="row">
+			<!-- left side navigation bar -->
+			<div class="col-md-3" id="leftCol">              
+				<ul class="nav nav-stacked" id="sidebar">
+				  <li><?php echo anchor('home', 'Home');?></li>
+				  <li><?php echo anchor('reservations', 'Reservations');?></li>
+				  <li><a href="#sec2">Menu</a></li>
+				  <li><a href="#sec3">Contact Us</a></li>
+				</ul>              
+			</div>
+
+<!-- content of the body -->
+			<div class="col-md-9" id="mainCol">
+				<br>
+				<h2 id="sec0">User Registration</h2>
+				<hr class="col-md-12">
+				
+				<?php echo form_open('login/registration_validation'); ?>
 		<div class="row">
 			<!-- left side of the registration form -->
 			<div id="reg_form_left" class="col-lg-6 col-md-6">
@@ -73,9 +86,24 @@
 			  	</div>
 			</div>
 			<!-- right side ends -->
-			
-		</div>	
-	  	<button type="submit" class="btn btn-default">Sign up</button>	  	
-	<?php echo form_close(); ?><br>
-</div>
-<!--Registration form ends here-->
+			</div>
+		</div>
+	</div>
+
+    <script src="<?php echo base_url() ;?>/assets/js/custom.js"></script>
+	
+	<!-- javascript for carousel plugin -->
+	<script src="<?php echo base_url() ;?>/assets/js/owl.carousel.min.js"></script>
+
+	<!-- calling the carousel plugin -->
+	<script>	
+	$(document).ready(function($) {
+      $("#slideshow").owlCarousel({
+		autoPlay: 3000, //Set AutoPlay to 3 seconds
+ 
+		items : 4,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [979,3]
+	  });
+    });
+	</script>

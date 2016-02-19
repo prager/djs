@@ -51,6 +51,14 @@
 						</div>
 					</div>
 				</div>
+				<p></p>				
+				<p>DJ's Bistro is a very unique. As soon as you came in the door, you are in a different place, different country and even a different
+				continent. Europe, to be precise. However, what country? That really doesn't matter. You like German food? We got it. Austrian? 
+				Yes, sure. Maybe even Czech? Of course! BTW, did you know that Czech Republic is the home of Pilsner and Budweiser?
+				No? Now you know. We serve the true original Pilsner too, that is the Pilsner Urquel on tap. And what about the food? 
+				Just come in to find out! 				
+				</p>				
+				<p>&nbsp;</p>
 			</div>
 		</div>
 	</div>
