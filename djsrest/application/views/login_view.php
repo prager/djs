@@ -1,6 +1,7 @@
 <div class="container">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
+			<p>&nbsp;</p>
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
@@ -8,7 +9,8 @@
 								<a href="#" class="active" id="login-form-link">Login</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" id="register-form-link">Register</a>
+								<!--  <a href="#" id="register-form-link">Register</a>-->
+								<?php echo anchor('login/load_registration', 'Register');?>
 							</div>
 						</div>
 						<hr>

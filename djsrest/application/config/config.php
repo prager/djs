@@ -24,7 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'];
-$config['base_url'] = 'http://localhost/comp495_proj/djs/djsrest/';
+//$config['base_url'] = 'http://localhost/comp495_proj/djs/djsrest/';
+$config['base_url'] = 'http://localhost/djs3/djsrest/djsrest';
 //$config['base_url'] = '';
 /*
 |--------------------------------------------------------------------------

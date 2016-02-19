@@ -43,7 +43,8 @@ class Load_reservation extends CI_Controller {
 		$data['title'] = 'Error';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('err_view');
+		$this->load->view('reservations_view', $data);
+		//$this->load->view('err_view');
 		$this->load->view('template/footer');
 	}
 	
@@ -51,7 +52,11 @@ class Load_reservation extends CI_Controller {
 	 * Validate the form
 	 */	
 	function validate_form() {
+		//$this->form_validation->set_rules('date', 'Date', 'trim|required|date');
 		$this->form_validation->set_rules('date', 'Date', 'callback_date_check');
+		$this->form_validation->set_rules('firstName', 'First Name', 'trim|required|alpha');
+		$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|alpha');
+
 /******** To-do: validate the rest of the form ***************/
 		
 		$this->form_validation->run();
@@ -70,7 +75,7 @@ class Load_reservation extends CI_Controller {
 		$str = $this->security->xss_clean($str);
 		if ($str == NULL)
 		{
-			$this->form_validation->set_message('date_check', '<font color="red"><b>Please, enter correct date. </b></font>');
+			$this->form_validation->set_message('date_check', '<font color="red">Please, enter correct date. </font>');
 			$this->date = "";
 			$this->err_flag = TRUE;
 			return FALSE;
