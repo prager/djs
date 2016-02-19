@@ -54,9 +54,9 @@ class Load_reservation extends CI_Controller {
 	function validate_form() {
 		//$this->form_validation->set_rules('date', 'Date', 'trim|required|date');
 		$this->form_validation->set_rules('date', 'Date', 'callback_date_check');
-		$this->form_validation->set_rules('firstName', 'First Name', 'trim|required|alpha');
-		$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|alpha');
-
+		$this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
+		$this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 /******** To-do: validate the rest of the form ***************/
 		
 		$this->form_validation->run();

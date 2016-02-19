@@ -86,6 +86,15 @@
 			  	</div>
 			</div>
 			<!-- right side ends -->
+			
+		</div>	
+	  	<button type="submit" class="btn btn-default">Sign up</button>
+	  	
+	<?php echo form_close(); ?><br>
+</div>  	
+		
+</div>
+<!--Registration form ends here-->
 			</div>
 		</div>
 	</div>

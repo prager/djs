@@ -17,22 +17,25 @@
 				<h2 id="sec0">Table Reservations</h2>
 				<hr class="col-md-12">
 				<form class="form-horizontal" role="form" id="tblRes" method="post" action="load_reservation">
-				<?php echo validation_errors(); ?>
+				<?php //echo validation_errors(); ?>
 	<div class="form-group">
 	    <label class="control-label col-sm-2" for="fname" >First Name:</label>
 	    <div class="col-sm-10">
+	    <span style="color: red;"><?php echo form_error('fname'); ?></span>
 	      <input type="text" class="form-control" id="FName" placeholder="Enter First Name" id="fname" name="fname">
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label class="control-label col-sm-2" for="LName">Last Name:</label>
 	    <div class="col-sm-10">
+	    <span style="color: red;"><?php echo form_error('lname'); ?></span>
 	      <input type="text" class="form-control" id="LName" placeholder="Enter Last Name" id="lname" name="lname">
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label class="control-label col-sm-2" for="email">Email Address:</label>
 	    <div class="col-sm-10">
+	    <span style="color: red;"><?php echo form_error('email'); ?></span>
 	      <input type="email" class="form-control" id="email" placeholder="Enter Email Address" id="email" name="email">
 	    </div>
 	  </div>
