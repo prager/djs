@@ -28,9 +28,20 @@ class User_model extends CI_Model {
     			'state_cd' => $this->input->post('state'),
     			'zip_cd' => $this->input->post('zip'),
     			'user_type_cd' => $user_type
-    	);
-    
+    	);    
     	return $this->db->insert('user_tbl', $data);
+    }
+    
+    public function getAllCustomers() {
+    	
+    }
+    
+    public function getAllEmployees() {
+    	
+    }
+    
+    public function getAllUsers() {
+    	
     }
 }
 ?>
