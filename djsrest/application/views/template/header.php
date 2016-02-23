@@ -29,6 +29,21 @@
     <!-- Login style sheet -->
     <link href="<?php echo base_url() ;?>/assets/css/login.css" rel="stylesheet">
     
+    <!-- grocery CRUD files -->
+    <?php 
+	    if (isset($css_files) || isset($js_files))
+	    {
+	    	foreach($css_files as $file)
+	    	{
+				echo '<link type="text/css" rel="stylesheet" href=' . $file . '/>';
+	    	}
+			foreach($js_files as $file)
+			{
+				echo '<script src=' . $file . '></script>';
+			}
+		}
+	?>
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
