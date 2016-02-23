@@ -29,20 +29,23 @@
     <!-- Login style sheet -->
     <link href="<?php echo base_url() ;?>/assets/css/login.css" rel="stylesheet">
     
-    <!-- grocery CRUD files -->
-    <?php 
-	    if (isset($css_files) || isset($js_files))
-	    {
-	    	foreach($css_files as $file)
-	    	{
-				echo '<link type="text/css" rel="stylesheet" href=' . $file . '/>';
-	    	}
-			foreach($js_files as $file)
-			{
-				echo '<script src=' . $file . '></script>';
-			}
-		}
-	?>
+	<link type="text/css" rel="stylesheet" href="<?php echo base_url() ;?>/assets/grocery_crud/themes/flexigrid/css/flexigrid.css" />
+	<link type="text/css" rel="stylesheet" href="<?php echo base_url() ;?>/assets/grocery_crud/css/jquery_plugins/fancybox/jquery.fancybox.css" />
+	<link type="text/css" rel="stylesheet" href="<?php echo base_url() ;?>/assets/grocery_crud/css/ui/simple/jquery-ui-1.10.1.custom.min.css" />
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/jquery-1.11.1.min.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/jquery_plugins/jquery.noty.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/jquery_plugins/config/jquery.noty.config.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/common/lazyload-min.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/common/list.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/themes/flexigrid/js/cookies.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/themes/flexigrid/js/flexigrid.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/jquery_plugins/jquery.form.min.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/jquery_plugins/jquery.numeric.min.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/themes/flexigrid/js/jquery.printElement.min.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/jquery_plugins/jquery.fancybox-1.3.4.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/jquery_plugins/jquery.easing-1.3.pack.js"></script>
+	<script src="<?php echo base_url() ;?>/assets/grocery_crud/js/jquery_plugins/ui/jquery-ui-1.10.3.custom.min.js"></script>
+
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
