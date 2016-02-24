@@ -185,4 +185,21 @@ class Admin extends CI_Controller {
 		$output = $crud->render();
 		$this->render_output('Reservation Management', 'admin/reservation_management', $output);
 	}
+	
+	public function user_group_management() {
+		$crud = new grocery_CRUD();
+		$crud->set_theme('bootstrap');
+		
+		$crud->set_table('user_type_ref');
+		
+		$crud->required_fields('USER_TYPE_CD', 'USER_TYPE_DESC');
+		$crud->columns('USER_TYPE_CD', 'USER_TYPE_DESC');
+		
+		$crud
+		->display_as('USER_TYPE_CD','Group Code')
+		->display_as('USER_TYPE_DESC', 'Description');
+		
+		$output = $crud->render();
+		$this->render_output('User Group Management', 'admin/user_group_management', $output);
+	}
 }
