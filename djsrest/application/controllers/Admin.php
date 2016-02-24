@@ -202,4 +202,29 @@ class Admin extends CI_Controller {
 		$output = $crud->render();
 		$this->render_output('User Group Management', 'admin/user_group_management', $output);
 	}
+	
+	public function login_management() {
+		$crud = new grocery_CRUD();
+		$crud->set_theme('bootstrap');
+		
+		$crud->set_table('login');
+		
+		$crud->required_fields('USERNAME', 'PWD');
+		$crud->columns('USERNAME', 'USER_ID', 'PWD', 'LOGIN_TS');
+		
+		$crud
+		->display_as('USERNAME','Username')
+		->display_as('USER_ID','Name')
+		->display_as('PWD','Password')
+		->display_as('LOGIN_TS','Login Timestamp');
+		
+		$crud->set_relation('USER_ID', 'user_tbl', '{FIRST_NM} {LAST_NM}');
+		
+		$crud->field_type('PWD', 'password');
+		$crud->add_fields('USER_ID', 'USERNAME', 'PWD');
+		$crud->edit_fields('USERNAME', 'PWD');
+		
+		$output = $crud->render();
+		$this->render_output('Login Management', 'admin/login_management', $output);
+	}
 }
