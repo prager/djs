@@ -69,7 +69,7 @@ class Admin extends CI_Controller {
 		$crud->where('user_tbl.USER_TYPE_CD', '3');	
 		$crud->or_where('user_tbl.USER_TYPE_CD', '2');
 		
-		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
+		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		
 		$crud->columns('USER_ID', 'FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM','ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		
@@ -87,10 +87,42 @@ class Admin extends CI_Controller {
 		->display_as('USER_TYPE_CD', 'User Type');		
 		
 		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');
-		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
+		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		
 		$output = $crud->render();
 		$this->render_output('Employee Management', 'admin/employee_management', $output);
+	}
+	
+	public function customer_management() {
+		$crud = new grocery_CRUD();
+		$crud->set_theme('bootstrap');
+	
+		$crud->set_table('user_tbl');
+		$crud->where('user_tbl.USER_TYPE_CD', '4');
+		$crud->or_where('user_tbl.USER_TYPE_CD', '5');
+	
+		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
+	
+		$crud->columns('USER_ID', 'FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM','ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
+	
+		$crud->field_type('STATE_CD','dropdown',get_states_array());
+			
+		$crud
+		->display_as('USER_ID','Id')
+		->display_as('FIRST_NM','First Name')
+		->display_as('LAST_NM','Last Name')
+		->display_as('STREET_NUM','Address Line 1')
+		->display_as('STREET_NM','Address Line 2')
+		->display_as('STATE_CD','State')
+		->display_as('ZIP_CD','Zip Code')
+		->display_as('EMAIL_ADDR','Email')
+		->display_as('USER_TYPE_CD', 'User Type');
+	
+		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');
+		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
+	
+		$output = $crud->render();
+		$this->render_output('Customer Management', 'admin/customer_management', $output);
 	}
 	
 	public function credit_card_management() {
