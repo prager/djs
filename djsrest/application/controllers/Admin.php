@@ -33,7 +33,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 
-		$crud->set_table('user_tbl');				
+		$crud->set_table('user_tbl');
+		$crud->set_subject('User');
 		
 		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');			
 		
@@ -68,6 +69,7 @@ class Admin extends CI_Controller {
 		$crud->set_table('user_tbl');
 		$crud->where('user_tbl.USER_TYPE_CD', '3');	
 		$crud->or_where('user_tbl.USER_TYPE_CD', '2');
+		$crud->set_subject('Employee');
 		
 		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		
@@ -100,6 +102,7 @@ class Admin extends CI_Controller {
 		$crud->set_table('user_tbl');
 		$crud->where('user_tbl.USER_TYPE_CD', '4');
 		$crud->or_where('user_tbl.USER_TYPE_CD', '5');
+		$crud->set_subject('Customer');
 	
 		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 	
@@ -130,6 +133,7 @@ class Admin extends CI_Controller {
 		$crud->set_theme('bootstrap');
 		
 		$crud->set_table('cc_tbl');
+		$crud->set_subject('Credit Card');
 		
 		$crud->required_fields('USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'ZIP_CD');
 		
@@ -163,6 +167,7 @@ class Admin extends CI_Controller {
 		$crud->set_theme('bootstrap');
 		
 		$crud->set_table('reservation_tbl');
+		$crud->set_subject('Reservation');
 		
 		$crud->required_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
 		$crud->columns('RESERVATION_ID', 'USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE', 'ENTRY_TS');
@@ -191,6 +196,7 @@ class Admin extends CI_Controller {
 		$crud->set_theme('bootstrap');
 		
 		$crud->set_table('user_type_ref');
+		$crud->set_subject('User-group');
 		
 		$crud->required_fields('USER_TYPE_CD', 'USER_TYPE_DESC');
 		$crud->columns('USER_TYPE_CD', 'USER_TYPE_DESC');
@@ -208,6 +214,7 @@ class Admin extends CI_Controller {
 		$crud->set_theme('bootstrap');
 		
 		$crud->set_table('login');
+		$crud->set_subject('Login Info');
 		
 		$crud->required_fields('USERNAME', 'PWD');
 		$crud->columns('USERNAME', 'USER_ID', 'PWD', 'LOGIN_TS');
@@ -220,10 +227,11 @@ class Admin extends CI_Controller {
 		
 		$crud->set_relation('USER_ID', 'user_tbl', '{FIRST_NM} {LAST_NM}');
 		
+		$crud->unique_fields('USERNAME', 'USER_ID');
 		$crud->field_type('PWD', 'password');
 		$crud->add_fields('USER_ID', 'USERNAME', 'PWD');
 		$crud->edit_fields('USERNAME', 'PWD');
-		
+				
 		$output = $crud->render();
 		$this->render_output('Login Management', 'admin/login_management', $output);
 	}
