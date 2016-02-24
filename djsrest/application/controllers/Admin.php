@@ -131,6 +131,25 @@ class Admin extends CI_Controller {
 		$crud->set_theme('bootstrap');
 		
 		$crud->set_table('reservation_tbl');
+		
+		$crud->required_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
+		$crud->columns('RESERVATION_ID', 'USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE', 'ENTRY_TS');
+		
+		$crud->field_type('RESERVATION_DT', 'date');
+		
+		$crud
+		->display_as('RESERVATION_ID','Reservation Id')
+		->display_as('USER_ID', 'Name')
+		->display_as('RESERVATION_DT', 'Reservation Date')
+		->display_as('RESERVATION_TM', 'Reservation Time')
+		->display_as('PARTY_SIZE', 'Party Size')
+		->display_as('ENTRY_TS', 'Entry Timestamp');
+		
+		$crud->set_relation('USER_ID', 'user_tbl', '{FIRST_NM} {LAST_NM}');
+		
+		$crud->add_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
+		$crud->edit_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
+		
 		$output = $crud->render();
 		$this->render_output('Reservation Management', 'admin/reservation_management', $output);
 	}
