@@ -17,7 +17,7 @@ class Admin extends CI_Controller {
 	{
 		//$data['title'] = $page_title;
 		//$this->load->view('template/header', $data);
-	//	$this->load->view('template/navigation');
+		//$this->load->view('template/navigation');
 		//$this->load->view('template/leftNavigation');
 		$this->load->view($view_path,$output);
 		//$this->load->view('template/footer');
@@ -124,5 +124,14 @@ class Admin extends CI_Controller {
 		
 		$output = $crud->render();
 		$this->render_output('Credit Card Management', 'admin/credit_card_management', $output);
-	}	
+	}
+	
+	public function reservation_management() {
+		$crud = new grocery_CRUD();
+		$crud->set_theme('bootstrap');
+		
+		$crud->set_table('reservation_tbl');
+		$output = $crud->render();
+		$this->render_output('Reservation Management', 'admin/reservation_management', $output);
+	}
 }
