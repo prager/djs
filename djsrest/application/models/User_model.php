@@ -19,15 +19,15 @@ class User_model extends CI_Model {
     
     public function create_user($user_type) {
     	$data = array(
-    			'username' => $this->input->post('username'),
-    			'first_nm' => md5($this->input->post('firstName')),
-    			'last_nm' => $this->input->post('lastName'),
-    			'email_addr' => $this->input->post('email'),
-    			'addr_line1' => $this->input->post('address1'),
-    			'addr_line2' => $this->input->post('address2'),
-    			'state_cd' => $this->input->post('state'),
-    			'zip_cd' => $this->input->post('zip'),
-    			'user_type_cd' => $user_type
+    			'USERNAME' => $this->input->post('username'),
+    			'FIRST_NM' => md5($this->input->post('firstName')),
+    			'LAST_NM' => $this->input->post('lastName'),
+    			'EMAIL_ADDR' => $this->input->post('email'),
+    			'STREET_NUM' => $this->input->post('address1'),
+    			'STREET_NM' => $this->input->post('address2'),
+    			'STATE_CD' => $this->input->post('state'),
+    			'ZIP_CD' => $this->input->post('zip'),
+    			'USER_TYPE_CD' => $user_type
     	);    
     	return $this->db->insert('user_tbl', $data);
     }

@@ -62,25 +62,24 @@ function states_dropdown($elementId, $defaultVal) {
 			"Puerto Rico" => "PR",
 			"Virgin Islands" => "VI"
 	);
-	// prints the label
-	echo'<label for="' . $elementId . '">State</label>';
-	
 	// prints the error message
-	echo '<span style="color: red;">';
-	echo form_error('state');
-	echo '</span>';
+	$output ='';
+	$output .= '<span style="color: red;">';
+	$output .= form_error('state');
+	$output .= '</span>';
 	
 	// prints the dropdown
-	echo '<select id="' . $elementId . '" class="form-control" name="state">';
-	echo '<option value="" disabled selected>Select State</option>';
+	$output .= '<select id="' . $elementId . '" class="form-control" name="state">';
+	$output .= '<option value="" disabled selected>Select State</option>';
 	
 	foreach($states as $name => $abbr){
 		if ($defaultVal == $abbr) {
-			echo '<option selected="selected" value="' . $abbr . '">' . $name . '</option>';
+			$output .= '<option selected="selected" value="' . $abbr . '">' . $name . '</option>';
 		} else {
-			echo '<option value="' . $abbr . '">' . $name . '</option>';
+			$output .= '<option value="' . $abbr . '">' . $name . '</option>';
 		}
 	}
 	
-	echo '</select>';
+	$output .= '</select>';
+	return $output;
 }

@@ -46,6 +46,7 @@
 			    	<input type="text" value="<?php echo set_value('city'); ?>" class="form-control input_medium" id="city" name="city" placeholder="City">
 			  	</div>
 			  	<div class="form-group">
+			  		<label for="state_dropdown">State</label>
 				  	<?php states_dropdown('state', set_value('state')); ?>
 			    </div>
 			  	<div class="form-group">
