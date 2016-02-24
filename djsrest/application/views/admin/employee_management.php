@@ -7,7 +7,7 @@ foreach($css_files as $file): ?>
 <!-- page content -->
 	<div class=""row">
 		<div class="col-md-12">
-			<h2>Credit card Management</h2>
+			<h2>Employee Management</h2>
 			<hr class="col-md-6">
 		</div>		
 	</div>
