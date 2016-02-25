@@ -58,6 +58,11 @@ class Admin extends CI_Controller {
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		
+		$crud->set_rules('FIRST_NM', 'First Name', 'trim|required|alpha');
+		$crud->set_rules('LAST_NM', 'First Name', 'trim|required|alpha');
+		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[user_tbl.EMAIL_ADDR]');
+		
+		
 		$crud->callback_before_delete(array($this,'callback_delete'));
 			
 		$output = $crud->render();
@@ -94,6 +99,10 @@ class Admin extends CI_Controller {
 		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		
+		$crud->set_rules('FIRST_NM', 'First Name', 'trim|required|alpha');
+		$crud->set_rules('LAST_NM', 'First Name', 'trim|required|alpha');
+		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[user_tbl.EMAIL_ADDR]');
+		
 		$crud->callback_before_delete(array($this,'callback_delete'));
 		
 		$output = $crud->render();
@@ -128,6 +137,10 @@ class Admin extends CI_Controller {
 	
 		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
+		
+		$crud->set_rules('FIRST_NM', 'First Name', 'trim|required|alpha');
+		$crud->set_rules('LAST_NM', 'First Name', 'trim|required|alpha');
+		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[user_tbl.EMAIL_ADDR]');
 		
 		$crud->callback_before_delete(array($this,'callback_delete'));
 	
