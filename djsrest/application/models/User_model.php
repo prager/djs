@@ -28,17 +28,14 @@ class User_model extends CI_Model {
     			'ZIP_CD' => $this->input->post('zip'),
     			'USER_TYPE_CD' => $user_type
     	);    
-    	$this->db->insert('USER_TBL', $userData);
-    	
-    	$userId = $this->db->query("SELECT USER_ID FROM USER_TBL WHERE EMAIL_ADDR='" . $this->input->post('email') . "';");
-    	
+    	$this->db->insert('USER_TBL', $userData);    	
+	       	
     	$loginData = array(
     			'USERNAME' => $this->input->post('username'),
-    			'USER_ID' => $userId,
+    			'USER_ID' => $this->db->insert_id(),
     			'PWD' => md5($this->input->post('password'))    			
     	);    	
-    	$this->db->insert('LOGIN', $loginData);
-    	
+    	$this->db->insert('LOGIN', $loginData);    	
     }
 }
 ?>
