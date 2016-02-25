@@ -47,7 +47,7 @@
 			  	</div>
 			  	<div class="form-group">
 			  		<label for="state_dropdown">State</label>
-				  	<?php states_dropdown('state', set_value('state')); ?>
+				  	<?php echo states_dropdown('state_dropdown', set_value('state')); ?>
 			    </div>
 			  	<div class="form-group">
 			    	<label for="zip">Zip</label>

@@ -18,9 +18,8 @@ class User_model extends CI_Model {
     }
     
     public function create_user($user_type) {
-    	$data = array(
-    			'USERNAME' => $this->input->post('username'),
-    			'FIRST_NM' => md5($this->input->post('firstName')),
+    	$userData = array(
+    			'FIRST_NM' => $this->input->post('firstName'),
     			'LAST_NM' => $this->input->post('lastName'),
     			'EMAIL_ADDR' => $this->input->post('email'),
     			'STREET_NUM' => $this->input->post('address1'),
@@ -29,18 +28,16 @@ class User_model extends CI_Model {
     			'ZIP_CD' => $this->input->post('zip'),
     			'USER_TYPE_CD' => $user_type
     	);    
-    	return $this->db->insert('user_tbl', $data);
-    }
-    
-    public function getAllCustomers() {
+    	$this->db->insert('USER_TBL', $userData);
     	
-    }
-    
-    public function getAllEmployees() {
+    	$userId = $this->db->query("SELECT USER_ID FROM USER_TBL WHERE EMAIL_ADDR='" . $this->input->post('email') . "';");
     	
-    }
-    
-    public function getAllUsers() {
+    	$loginData = array(
+    			'USERNAME' => $this->input->post('username'),
+    			'USER_ID' => $userId,
+    			'PWD' => md5($this->input->post('password'))    			
+    	);    	
+    	$this->db->insert('LOGIN', $loginData);
     	
     }
 }
