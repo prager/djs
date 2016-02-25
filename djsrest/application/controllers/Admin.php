@@ -57,6 +57,8 @@ class Admin extends CI_Controller {
 		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
+		
+		$crud->callback_before_delete(array($this,'callback_delete'));
 			
 		$output = $crud->render();
 
@@ -92,6 +94,8 @@ class Admin extends CI_Controller {
 		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		
+		$crud->callback_before_delete(array($this,'callback_delete'));
+		
 		$output = $crud->render();
 		$this->render_output('Employee Management', 'admin/employee_management', $output);
 	}
@@ -124,6 +128,8 @@ class Admin extends CI_Controller {
 	
 		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
+		
+		$crud->callback_before_delete(array($this,'callback_delete'));
 	
 		$output = $crud->render();
 		$this->render_output('Customer Management', 'admin/customer_management', $output);
@@ -235,5 +241,14 @@ class Admin extends CI_Controller {
 				
 		$output = $crud->render();
 		$this->render_output('Login Management', 'admin/login_management', $output);
+	}
+	
+	public function callback_delete($foreign_key) {
+		$this->db->where('USER_ID', $foreign_key);
+		$this->db->delete('login');
+		$this->db->where('USER_ID', $foreign_key);
+		$this->db->delete('cc_tbl');
+		$this->db->where('USER_ID', $foreign_key);
+		$this->db->delete('reservation_tbl');
 	}
 }
