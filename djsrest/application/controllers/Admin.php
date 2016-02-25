@@ -214,8 +214,9 @@ class Admin extends CI_Controller {
 		$crud->unique_fields('USERNAME', 'USER_ID');
 		$crud->field_type('PWD', 'password');
 		$crud->required_fields('USERNAME', 'PWD');
-		$crud->set_rules('PWD', 'Password', 'md5');
 		$crud->edit_fields('USERNAME', 'PWD');
+		$crud->callback_before_insert(array($this,'callback_encrypt'));
+		$crud->callback_before_update(array($this,'callback_encrypt'));
 		
 		$crud->columns('USERNAME', 'USER_ID', 'PWD', 'LOGIN_TS');	
 		$crud->set_relation('USER_ID', 'user_tbl', '{FIRST_NM} {LAST_NM}');
@@ -236,5 +237,11 @@ class Admin extends CI_Controller {
 		$this->db->delete('cc_tbl');
 		$this->db->where('USER_ID', $foreign_key);
 		$this->db->delete('reservation_tbl');
+	}
+	
+	function callback_encrypt($post_array, $primary_key = null)
+	{
+		$post_array['PWD'] = md5($post_array['password_field']);
+		return $post_array;
 	}
 }
