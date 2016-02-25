@@ -51,9 +51,10 @@ class Login extends CI_Controller {
 	
 	public function load_registration_success() {
 		$data['title'] = 'Success Page';
+		$data['message'] = 'Your account has been created';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('success_view');
+		$this->load->view('success_view',$data);
 		$this->load->view('template/footer');
 	}
 	

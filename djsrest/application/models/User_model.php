@@ -35,7 +35,7 @@ class User_model extends CI_Model {
     			'USER_ID' => $this->db->insert_id(),
     			'PWD' => md5($this->input->post('password'))    			
     	);    	
-    	$this->db->insert('LOGIN', $loginData);    	
+    	return $this->db->insert('LOGIN', $loginData);    	
     }
 }
 ?>
