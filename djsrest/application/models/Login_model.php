@@ -4,6 +4,8 @@ class Login_model extends CI_Model {
     function __construct()
     {
         parent::__construct();
+        $this->load->database();
+        
     }
 
 /**
@@ -25,25 +27,49 @@ class Login_model extends CI_Model {
     	}
     	return TRUE;
     }
-
- /**
-  * Validates user login
-  */
-    function validate_login($data) {
- 	   	
-    	$this->db_connect(TRUE);
+    
+  /**
+   * This routine checks password. Refer to:
+   * https://www.youtube.com/watch?v=GHTAyLIjn70
+   * http://php.net/manual/en/function.password-hash.php
+   * https://crackstation.net/hashing-security.htm
+   * password hash for this password: password_hash('a', PASSWORD_BCRYPT, array('cost' => 12));
+   * 
+   */
+    function pass_check($data) {
+    	$retval = TRUE;
+    	$user = $data['user'];
+    	$sql = "SELECT pwd FROM login WHERE username=\"$user\"";
+    	$query = $this->db->query($sql);
+    	if($query->num_rows() > 0) {
+    		$row = $query->row();
+    		//echo "hashed pass: " . $row->password;
+    		if(!password_verify($data['pass'], $row->pwd)) {
+    			$retval = FALSE;
+    		}
+    	}
+    	else {
+    		$retval = FALSE;
+    	}    	
     	
-    	
-    	$this->db_close();
+    	return $retval;
     }
-
+    
 /**
- * Closes db connection
+ * Checks for the valid user ID
+ * @param string $user
+ * @return boolean
  */
-	function db_close() {
-		$this->load->model('db_connection_model');
-		$this->db_connection_model->db_close();
-	}
+    function user_check($user) {
+    	$retval = TRUE;
+    	$sql = "SELECT username FROM login WHERE username=\"$user\"";
+    	$query = $this->db->query($sql);
+    	if ($query->num_rows() == 0) {
+    		$retval = FALSE;
+    	}
+    	
+    	return $retval;
+    }
 
 }
 ?>

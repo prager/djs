@@ -2,7 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
-
+	
+var $user;
+	
 	public function index()
 	{
 		$this->view_login_page();
@@ -29,14 +31,18 @@ class Login extends CI_Controller {
 public function login_validation() {
 		
 //$param will contain data for validation passed from form
-		$this->validate_credentials();
-		redirect('admin');
-		/*$data['title'] = 'Login Success';
-		$data['message'] = "Login Success";
-		$this->load->view('template/header', $data);
-		$this->load->view('template/navigation');
-		$this->load->view('success_view', $data);
-		$this->load->view('template/footer');*/
+		
+		if($this->validate_credentials()) {
+			redirect('admin');
+		}
+		else {
+			$data['title'] = 'Login Error';
+			$data['message'] = "Login Error, try again!";
+			$this->load->view('template/header', $data);
+			$this->load->view('template/navigation');
+			$this->load->view('err_view', $data);
+			$this->load->view('template/footer');
+		}
 	}
 	
 	/**
@@ -44,9 +50,13 @@ public function login_validation() {
 	 * credentials against the database. 
 	 */
 	public function validate_credentials() {
-		$param['arr1'] = 'arr1';
-		$this->load->model('login_model');
-		$this->login_model->validate_login($param);
+		
+		$this->load->library('form_validation');
+		$this->load->model('login_model');		
+		$this->form_validation->set_rules('user', 'User', 'callback_user_check');
+		$this->form_validation->set_rules('pass', 'Pass', 'callback_pass_check');
+		
+		return $this->form_validation->run();
 		
 	}	
 	
@@ -100,5 +110,43 @@ public function login_validation() {
 	public function create_customer_account() {
 		$this->load->model('User_model', '', TRUE);
 		$this->User_model->create_user('4');		
+	}
+	
+	function user_check($str) {
+		$retval = TRUE;
+		$str = $this->security->xss_clean($str);
+		$this->user = $str;
+		if ($str == NULL)
+		{
+			$this->form_validation->set_message('subject_check', '<font color="red"><b>Please, enter your username. </b></font>');
+			$this->user = "";
+			$retval = FALSE;
+		}
+		else
+		{						
+			if(!$this->login_model->user_check($str)) {
+				$retval = FALSE;
+			}
+		}
+		return $retval;
+	}
+
+	function pass_check($str) {
+		$retval = TRUE;
+		$str = $this->security->xss_clean($str);
+		if ($str == NULL) {
+			$this->form_validation->set_message('subject_check', '<font color="red"><b>Please, enter correct password. </b></font>');
+			$this->pass = "";
+			return FALSE;
+		}
+		else
+		{					
+			$data['user'] = $this->user;
+			$data['pass'] = $str;
+			if(!$this->login_model->pass_check($data)) {
+				$retval = FALSE;
+			}
+		}
+		return $retval;
 	}
 }
