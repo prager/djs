@@ -26,8 +26,17 @@ class Login extends CI_Controller {
 	 * use md5 for the password field
 	 * use xss_clean in order to prevent cross-site scripting 
 	 */
-	public function login_validation() {
+public function login_validation() {
 		
+//$param will contain data for validation passed from form
+		$this->validate_credentials();
+		redirect('admin');
+		/*$data['title'] = 'Login Success';
+		$data['message'] = "Login Success";
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
+		$this->load->view('success_view', $data);
+		$this->load->view('template/footer');*/
 	}
 	
 	/**
@@ -35,6 +44,9 @@ class Login extends CI_Controller {
 	 * credentials against the database. 
 	 */
 	public function validate_credentials() {
+		$param['arr1'] = 'arr1';
+		$this->load->model('login_model');
+		$this->login_model->validate_login($param);
 		
 	}	
 	
