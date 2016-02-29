@@ -6,7 +6,7 @@ class Load_reservation extends CI_Controller {
 	var $email;
 	var $party;
 	var $resdate;
-	var $restime;
+	var $time;
 	var $phone;
 	var $fname;
 	var $lname;
@@ -20,9 +20,7 @@ class Load_reservation extends CI_Controller {
 		
 		$this->err_flag = FALSE;
 	
-		$this->validate_form();		
-		if(!$this->err_flag) {
-			$this->load->model('table_reservation_model');
+		if(!$this->validate_form()) {
 			$this->load_success();
 		}
 		else {
@@ -34,11 +32,23 @@ class Load_reservation extends CI_Controller {
 	function load_success() {
 		//$this->load->library('email');
 		$data['title'] = 'Done';
-		$this->load->helper('email');
-		$this->load->model('Table_reservation_model');
-		$this->table_reservation_model->set_data($data);		
+		$this->load->helper('email');	
+		//$this->load->model('table_reservation_model');
+		//$this->table_reservation_model->set_data($data);
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
+
+		$data['phone'] = $this->phone;
+		$data['email'] = $this->email;
+		$data['fname'] = $this->fname;
+		$data['lname'] = $this->lname;
+		$data['party'] = $this->party;
+		$data['time'] = $this->time;
+		$data['date'] = $this->date;
+		
+		$this->load->model('table_reservation_model');
+		$this->table_reservation_model->set_data($data);
+		
 		$data['message'] = 'Thank you for your table reservation!';
 		$this->load->view('success_view', $data);
 		$this->load->view('template/footer');
@@ -46,9 +56,10 @@ class Load_reservation extends CI_Controller {
 	
 	function load_err() {		
 		$data['title'] = 'Error';
+		$data['message'] = 'Reservations error';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('reservations_view', $data);
+		$this->load->view('err_view', $data);
 		$this->load->view('template/footer');
 	}
 	
@@ -57,12 +68,14 @@ class Load_reservation extends CI_Controller {
 	 */	
 	function validate_form() {
 		$this->form_validation->set_rules('date', 'Date', 'callback_date_check');
-		$this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha');
-		$this->form_validation->set_rules('lname', 'Last Name', 'trim|required|alpha');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-		$this->form_validation->set_rules('phnum', 'Phone Number', 'trim|required|');
+		$this->form_validation->set_rules('fname', 'First Name', 'callback_fname_check');
+		$this->form_validation->set_rules('lname', 'Last Name', 'callback_lname_check');
+		$this->form_validation->set_rules('email', 'Email', 'callback_email_check');
+		$this->form_validation->set_rules('party', 'Party', 'callback_party_check');
+		$this->form_validation->set_rules('phone', 'Phone', 'callback_phone_check');
+		$this->form_validation->set_rules('Time', 'Time', 'callback_time_check');
 		
-		$this->form_validation->run();
+		return $this->form_validation->run();
 	}
 	
 	/**
@@ -88,5 +101,89 @@ class Load_reservation extends CI_Controller {
 			$this->date = $str;
 			return TRUE;
 		}
+	}
+	
+	function fname_check($str) {
+		$str = $this->security->xss_clean($str);
+		if ($str == NULL)
+		{
+			$this->form_validation->set_message('fname_check', '<font color="red">Please, enter your first name. </font>');
+			$this->fname = "";
+			$this->err_flag = TRUE;
+			return FALSE;
+		}
+		else
+		{
+			$this->fname = $str;
+			return TRUE;
+		}
+	}
+	
+	function lname_check($str) {
+		$str = $this->security->xss_clean($str);
+		if ($str == NULL)
+		{
+			$this->form_validation->set_message('lname_check', '<font color="red">Please, enter your last name. </font>');
+			$this->lname = "";
+			$this->err_flag = TRUE;
+			return FALSE;
+		}
+		else
+		{
+			$this->lname = $str;
+			return TRUE;
+		}
+	}
+	
+	function email_check($str) {
+		$str = $this->security->xss_clean($str);
+		if ($str == NULL)
+		{
+			$this->form_validation->set_message('email_check', '<font color="red">Please, enter your valid email. </font>');
+			$this->email = "";
+			$this->err_flag = TRUE;
+			return FALSE;
+		}
+		else
+		{
+			$this->email = $str;
+			return TRUE;
+		}
+	}
+	
+	function phone_check($str) {
+		$str = $this->security->xss_clean($str);
+		if ($str == NULL)
+		{
+			$this->form_validation->set_message('phone_check', '<font color="red">Please, enter your phone number. </font>');
+			$this->phone = "";
+			$this->err_flag = TRUE;
+			return FALSE;
+		}
+		else
+		{
+			$this->phone = $str;
+			return TRUE;
+		}
+	}
+	
+/**
+ * No need to check value since it is always selected
+ * @param the party size is str type
+ */	
+	function party_check($str) {
+			$this->party = $str;
+			return TRUE;
+		
+	}
+	
+/**
+ * No need to check value since it is always selected
+ * @param the time is str type
+ */	
+	function time_check($str) {			
+			$this->time = $str;
+			return TRUE;
+		
 	}
 }

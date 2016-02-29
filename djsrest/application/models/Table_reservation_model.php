@@ -22,19 +22,21 @@ class Table_reservation_model extends CI_Model {
     }
     
     function set_data($data) {
-    	/*$_SESSION['resdata'] = $data;
+    	$_SESSION['resdata'] = $data;
     	
     	$recipient = 'jkulisek.us@gmail.com';
     	$subject = 'DJs Table Reservation';
-    	$message = "This is the confirmation of your table reservation:\n date: " . $data['date'] . "\n" . 
-      				"time: " . $data['time'];
+    	$message = "This is the confirmation of your table reservation:\ndate: " . $data['date'] . "\n" . 
+      				"Time" . $data['time'] . "\n" .
+      				"First Name: " . $data['fname'] . "\n" .
+      				"Last Name: " . $data['lname'] . "\n" .
+      				"Party Size: " . $data['party'] . "\n" .
+      				"Phone Number: " . $data['phone'] . "\n";
     	
       	//echo "Result: " . $recipient . "\n" . "subject: " . $subject;
-    	//$this->load->helper('email');
-    	//mail($recipient, $subject, $message);*/
-    	send_email('jkulisek.us@gmail.com','djs message', 'test subject', 'message test text');
-    	
- //will add db manipulation routines
+      	//echo "party: " . substr($data['party'], 0, 2);
+    	$this->load->helper('email');
+    	mail($recipient, $subject, $message);
 
     }
 }

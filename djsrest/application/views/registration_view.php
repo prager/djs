@@ -106,14 +106,15 @@
 	<script src="<?php echo base_url() ;?>/assets/js/owl.carousel.min.js"></script>
 
 	<!-- calling the carousel plugin -->
-	<script>	
-	$(document).ready(function($) {
-      $("#slideshow").owlCarousel({
-		autoPlay: 3000, //Set AutoPlay to 3 seconds
- 
-		items : 4,
-		itemsDesktop : [1199,3],
-		itemsDesktopSmall : [979,3]
-	  });
-    });
+	<script>
+    var date_input=$('input[name="date"]'); //our date input has the name "date"
+    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    };
+    date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
 	</script>
+	
