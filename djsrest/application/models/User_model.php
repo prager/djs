@@ -29,11 +29,11 @@ class User_model extends CI_Model {
     			'USER_TYPE_CD' => $user_type
     	);    
     	$this->db->insert('USER_TBL', $userData);    	
-	       	
+	    $password = md5($this->input->post('password'));  	
     	$loginData = array(
     			'USERNAME' => $this->input->post('username'),
     			'USER_ID' => $this->db->insert_id(),
-    			'PWD' => md5($this->input->post('password'))    			
+    			'PWD' => $password    			
     	);    	
     	return $this->db->insert('LOGIN', $loginData);    	
     }

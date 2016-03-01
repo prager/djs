@@ -28,7 +28,7 @@ var $user;
 	 * use md5 for the password field
 	 * use xss_clean in order to prevent cross-site scripting 
 	 */
-public function login_validation() {
+	public function login_validation() {
 		
 //$param will contain data for validation passed from form
 		
