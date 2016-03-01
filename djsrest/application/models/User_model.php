@@ -7,16 +7,10 @@ class User_model extends CI_Model {
     }
     
     /**
-     * check if the user exist in the database and passsword entered 
-     * matches with the password in database.
-     * 
-     * return true if credentials are valid
-     * 
-     */
-    public function can_login() {
-    	
-    }
-    
+     * Creates a new user
+     * @param string $userType
+     * @return boolean
+     */    
     public function create_user($user_type) {
     	$userData = array(
     			'FIRST_NM' => $this->input->post('firstName'),
@@ -27,15 +21,14 @@ class User_model extends CI_Model {
     			'STATE_CD' => $this->input->post('state'),
     			'ZIP_CD' => $this->input->post('zip'),
     			'USER_TYPE_CD' => $user_type
-    	);    
-    	$this->db->insert('USER_TBL', $userData);    	
-	    $password = md5($this->input->post('password'));  	
-    	$loginData = array(
-    			'USERNAME' => $this->input->post('username'),
-    			'USER_ID' => $this->db->insert_id(),
-    			'PWD' => $password    			
-    	);    	
-    	return $this->db->insert('LOGIN', $loginData);    	
+    	);  
+    	
+    	$userAdded = $this->db->insert('USER_TBL', $userData);    	
+	   
+		$this->load->model('login_model');
+    	$loginAdded = $this->login_model->create_login($this->db->insert_id());
+    	
+    	return $userAdded && $loginAdded;
     }
 }
 ?>

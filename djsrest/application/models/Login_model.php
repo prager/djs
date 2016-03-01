@@ -55,11 +55,11 @@ class Login_model extends CI_Model {
     	return $retval;
     }
     
-/**
- * Checks for the valid user ID
- * @param string $user
- * @return boolean
- */
+	/**
+	 * Checks for the valid user ID
+	 * @param string $user
+	 * @return boolean
+	 */
     function user_check($user) {
     	$retval = TRUE;
     	$sql = "SELECT username FROM login WHERE username=\"$user\"";
@@ -69,6 +69,20 @@ class Login_model extends CI_Model {
     	}
     	
     	return $retval;
+    }
+    
+	/**
+	 * Creates a login for a given user Id
+	 * @param string $userId
+	 * @return boolean
+	 */    
+    function create_login($userId) {
+    	$loginData = array(
+    			'USERNAME' => strtolower($this->input->post('username')),
+    			'USER_ID' => $userId,
+    			'PWD' => md5($this->input->post('password'))
+    	);
+    	return $this->db->insert('LOGIN', $loginData);
     }
 
 }
