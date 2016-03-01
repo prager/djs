@@ -30,7 +30,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();		
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_tbl');
+		$crud->set_table('USER_TBL');
 		$crud->set_subject('User');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM',  'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
@@ -38,10 +38,10 @@ class Admin extends CI_Controller {
 		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');			
 		$crud->set_rules('FIRST_NM', 'First Name', 'trim|required|alpha');
 		$crud->set_rules('LAST_NM', 'First Name', 'trim|required|alpha');
-		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[user_tbl.EMAIL_ADDR]');
+		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.EMAIL_ADDR]');
 		
 		$crud->columns('USER_ID', 'FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM','ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
-		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');
+		$crud->set_relation('USER_TYPE_CD', 'USER_TYPE_REF', 'USER_TYPE_DESC');
 		$crud
 			->display_as('USER_ID','Id')
 			->display_as('FIRST_NM','First Name')
@@ -63,9 +63,9 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_tbl');
-		$crud->where('user_tbl.USER_TYPE_CD', '3');	
-		$crud->or_where('user_tbl.USER_TYPE_CD', '2');
+		$crud->set_table('USER_TBL');
+		$crud->where('USER_TBL.USER_TYPE_CD', '3');	
+		$crud->or_where('USER_TBL.USER_TYPE_CD', '2');
 		$crud->set_subject('Employee');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
@@ -73,10 +73,10 @@ class Admin extends CI_Controller {
 		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		$crud->set_rules('FIRST_NM', 'First Name', 'trim|required|alpha');
 		$crud->set_rules('LAST_NM', 'First Name', 'trim|required|alpha');
-		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[user_tbl.EMAIL_ADDR]');
+		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.EMAIL_ADDR]');
 		
 		$crud->columns('USER_ID', 'FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM','ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
-		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');	
+		$crud->set_relation('USER_TYPE_CD', 'USER_TYPE_REF', 'USER_TYPE_DESC');	
 		$crud
 		->display_as('USER_ID','Id')
 		->display_as('FIRST_NM','First Name')
@@ -98,9 +98,9 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 	
-		$crud->set_table('user_tbl');
-		$crud->where('user_tbl.USER_TYPE_CD', '4');
-		$crud->or_where('user_tbl.USER_TYPE_CD', '5');
+		$crud->set_table('USER_TBL');
+		$crud->where('USER_TBL.USER_TYPE_CD', '4');
+		$crud->or_where('USER_TBL.USER_TYPE_CD', '5');
 		$crud->set_subject('Customer');
 	
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
@@ -108,10 +108,10 @@ class Admin extends CI_Controller {
 		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		$crud->set_rules('FIRST_NM', 'First Name', 'trim|required|alpha');
 		$crud->set_rules('LAST_NM', 'First Name', 'trim|required|alpha');
-		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[user_tbl.EMAIL_ADDR]');
+		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.EMAIL_ADDR]');
 		
 		$crud->columns('USER_ID', 'FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM','ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
-		$crud->set_relation('USER_TYPE_CD', 'user_type_ref', 'USER_TYPE_DESC');	
+		$crud->set_relation('USER_TYPE_CD', 'USER_TYPE_REF', 'USER_TYPE_DESC');	
 		$crud
 		->display_as('USER_ID','Id')
 		->display_as('FIRST_NM','First Name')
@@ -133,7 +133,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('cc_tbl');
+		$crud->set_table('CC_TBL');
 		$crud->set_subject('Credit Card');
 		
 		$crud->add_fields('USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD');
@@ -142,7 +142,7 @@ class Admin extends CI_Controller {
 		$crud->required_fields('USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'ZIP_CD');
 		
 		$crud->columns('CC_ID','USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD');
-		$crud->set_relation('USER_ID', 'user_tbl', '{FIRST_NM} {LAST_NM}');		
+		$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');		
 		$crud
 		->display_as('CC_ID', 'Id')
 		->display_as('USER_ID', 'Name')
@@ -163,7 +163,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('reservation_tbl');
+		$crud->set_table('RESERVATION_TBL');
 		$crud->set_subject('Reservation');
 		
 		$crud->add_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
@@ -172,7 +172,7 @@ class Admin extends CI_Controller {
 		$crud->edit_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
 		
 		$crud->columns('RESERVATION_ID', 'USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE', 'ENTRY_TS');
-		$crud->set_relation('USER_ID', 'user_tbl', '{FIRST_NM} {LAST_NM}');		
+		$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');		
 		$crud
 		->display_as('RESERVATION_ID','Reservation Id')
 		->display_as('USER_ID', 'Name')
@@ -189,7 +189,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_type_ref');
+		$crud->set_table('USER_TYPE_REF');
 		$crud->set_subject('User-group');
 		
 		$crud->required_fields('USER_TYPE_CD', 'USER_TYPE_DESC');
@@ -207,7 +207,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('login');
+		$crud->set_table('LOGIN');
 		$crud->set_subject('Login Info');
 		
 		$crud->add_fields('USER_ID', 'USERNAME', 'PWD');
@@ -219,7 +219,7 @@ class Admin extends CI_Controller {
 		$crud->callback_before_update(array($this,'callback_encrypt'));
 		
 		$crud->columns('USERNAME', 'USER_ID', 'PWD', 'LOGIN_TS');	
-		$crud->set_relation('USER_ID', 'user_tbl', '{FIRST_NM} {LAST_NM}');
+		$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');
 		$crud
 		->display_as('USERNAME','Username')
 		->display_as('USER_ID','Name')
@@ -232,17 +232,17 @@ class Admin extends CI_Controller {
 	
 	public function callback_delete($foreign_key) {
 		$this->db->where('USER_ID', $foreign_key);
-		$this->db->delete('login');
+		$this->db->delete('LOGIN');
 		$this->db->where('USER_ID', $foreign_key);
-		$this->db->delete('cc_tbl');
+		$this->db->delete('CC_TBL');
 		$this->db->where('USER_ID', $foreign_key);
-		$this->db->delete('reservation_tbl');
+		$this->db->delete('RESERVATION_TBL');
 	}
 	
 	function callback_encrypt($post_array, $primary_key = null)
 	{
 		$password = md5($this->input->post('PWD'));
-		$post_array['PWD'] = md5($password);
+		$post_array['PWD'] = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 		return $post_array;
 	}
 }

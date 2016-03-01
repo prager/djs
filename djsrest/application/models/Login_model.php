@@ -80,7 +80,7 @@ class Login_model extends CI_Model {
     	$loginData = array(
     			'USERNAME' => strtolower($this->input->post('username')),
     			'USER_ID' => $userId,
-    			'PWD' => md5($this->input->post('password'))
+    			'PWD' => password_hash($this->input->post('password'), PASSWORD_BCRYPT, array('cost' => 12))
     	);
     	return $this->db->insert('LOGIN', $loginData);
     }
