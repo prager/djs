@@ -62,12 +62,12 @@ class Login_model extends CI_Model {
 	 */
     function user_check($user) {
     	$retval = TRUE;
-    	$sql = "SELECT username FROM login WHERE username=\"$user\"";
+    	$username = strtolower($user);
+    	$sql = "SELECT username FROM login WHERE username=\"$username\"";
     	$query = $this->db->query($sql);
     	if ($query->num_rows() == 0) {
     		$retval = FALSE;
-    	}
-    	
+    	}    	
     	return $retval;
     }
     
