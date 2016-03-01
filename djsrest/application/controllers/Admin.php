@@ -241,7 +241,8 @@ class Admin extends CI_Controller {
 	
 	function callback_encrypt($post_array, $primary_key = null)
 	{
-		$post_array['PWD'] = md5($post_array['password_field']);
+		$password = md5($this->input->post('PWD'));
+		$post_array['PWD'] = md5($password);
 		return $post_array;
 	}
 }
