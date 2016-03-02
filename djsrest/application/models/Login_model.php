@@ -83,6 +83,18 @@ class Login_model extends CI_Model {
     	);
     	return $this->db->insert('LOGIN', $loginData);
     }
+    
+    function get_user_Id($username) {
+    	$this->db->where('username', $username);
+    	$query = $this->db->get('LOGIN');
+    	if ($query->num_rows() == 1) {
+    		$row = $query->row();
+    		return $row->USER_ID;
+    	} else {
+    		return null;
+    	}
+    	
+    }
 
 }
 ?>

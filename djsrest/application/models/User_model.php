@@ -30,5 +30,18 @@ class User_model extends CI_Model {
     	
     	return $userAdded && $loginAdded;
     }
+    
+    public function get_user_type($username) {
+    	$this->load->model('login_model');
+    	$userId = $this->login_model->get_user_id($username);
+    	
+    	$this->db->where('USER_ID', $userId);
+    	$query = $this->db->get('USER_TBL');
+    	if ($query->num_rows() == 1) {
+    		return $query->row()->USER_TYPE_CD;
+    	} else {
+    		return null;
+    	}
+    }
 }
 ?>

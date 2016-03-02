@@ -67,10 +67,22 @@ var $user;
 		$this->form_validation->set_rules('pass', 'Password', 'required|trim');
 	
 		if($this->form_validation->run()) {
-			redirect('admin');
+			$this->load->model('User_model', '', TRUE);
+			$type = $this->User_model->get_user_type(strtolower($this->input->post('user')));
+			$this->redirect_view($type);
 		}
 		else {
 			$this->load_login();
+		}
+	}
+	
+	public function redirect_view($userType) {
+		switch ($userType) {
+		    case "1":
+		        redirect('admin');
+		        break;
+		    default:
+		        redirect('login');
 		}
 	}
 	
