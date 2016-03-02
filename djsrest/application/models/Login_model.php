@@ -39,14 +39,13 @@ class Login_model extends CI_Model {
     function pass_check($data) {
     	$retval = TRUE;
     	$user = $data['user'];
-    	$sql = "SELECT pwd FROM login WHERE username=\"$user\"";
-    	$query = $this->db->query($sql);
+    	$pass = $data['pass'];
+    	$this->db->where('USERNAME', $user);
+    	$query = $this->db->get('LOGIN');
     	if($query->num_rows() > 0) {
     		$row = $query->row();
     		//echo "hashed pass: " . $row->password;
-    		if(!password_verify($data['pass'], $row->pwd)) {
-    			$retval = FALSE;
-    		}
+    		return password_verify($pass, $row->PWD);
     	}
     	else {
     		$retval = FALSE;
@@ -63,8 +62,8 @@ class Login_model extends CI_Model {
     function user_check($user) {
     	$retval = TRUE;
     	$username = strtolower($user);
-    	$sql = "SELECT username FROM login WHERE username=\"$username\"";
-    	$query = $this->db->query($sql);
+    	$this->db->where('username', $user);
+    	$query = $this->db->get('LOGIN');
     	if ($query->num_rows() == 0) {
     		$retval = FALSE;
     	}    	
@@ -80,7 +79,7 @@ class Login_model extends CI_Model {
     	$loginData = array(
     			'USERNAME' => strtolower($this->input->post('username')),
     			'USER_ID' => $userId,
-    			'PWD' => password_hash($this->input->post('password'), PASSWORD_BCRYPT, array('cost' => 12))
+    			'PWD' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
     	);
     	return $this->db->insert('LOGIN', $loginData);
     }

@@ -14,12 +14,12 @@ class Admin extends CI_Controller {
 
 	public function render_output($page_title, $view_path, $output = null) {
 		// i have disabled template stuff just to simplify the page
-		//$data['title'] = $page_title;
-		//$this->load->view('template/header', $data);
-		//$this->load->view('template/navigation');
-		//$this->load->view('template/leftNavigation');
+		$data['title'] = $page_title;
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
+		$this->load->view('template/leftNavigation');
 		$this->load->view($view_path,$output);
-		//$this->load->view('template/footer');
+		$this->load->view('template/footer');
 	}
 
 	public function index() {
@@ -53,7 +53,7 @@ class Admin extends CI_Controller {
 			->display_as('EMAIL_ADDR','Email')
 			->display_as('USER_TYPE_CD', 'User Type');
 		
-		$crud->callback_before_delete(array($this,'callback_delete'));
+		$crud->callback_before_delete(array($this,'delete_records'));
 			
 		$output = $crud->render();
 		$this->render_output('User Management', 'admin/user_management', $output);
@@ -88,7 +88,7 @@ class Admin extends CI_Controller {
 		->display_as('EMAIL_ADDR','Email')
 		->display_as('USER_TYPE_CD', 'User Type');		
 		
-		$crud->callback_before_delete(array($this,'callback_delete'));
+		$crud->callback_before_delete(array($this,'delete_records'));
 		
 		$output = $crud->render();
 		$this->render_output('Employee Management', 'admin/employee_management', $output);
@@ -123,7 +123,7 @@ class Admin extends CI_Controller {
 		->display_as('EMAIL_ADDR','Email')
 		->display_as('USER_TYPE_CD', 'User Type');
 	
-		$crud->callback_before_delete(array($this,'callback_delete'));
+		$crud->callback_before_delete(array($this,'delete_records'));
 	
 		$output = $crud->render();
 		$this->render_output('Customer Management', 'admin/customer_management', $output);
@@ -215,8 +215,8 @@ class Admin extends CI_Controller {
 		$crud->field_type('PWD', 'password');
 		$crud->required_fields('USERNAME', 'PWD');
 		$crud->edit_fields('USERNAME', 'PWD');
-		$crud->callback_before_insert(array($this,'callback_encrypt'));
-		$crud->callback_before_update(array($this,'callback_encrypt'));
+		$crud->callback_before_insert(array($this,'password_encrypt'));
+		$crud->callback_before_update(array($this,'password_encrypt'));
 		
 		$crud->columns('USERNAME', 'USER_ID', 'PWD', 'LOGIN_TS');	
 		$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');
@@ -230,7 +230,7 @@ class Admin extends CI_Controller {
 		$this->render_output('Login Management', 'admin/login_management', $output);
 	}
 	
-	public function callback_delete($foreign_key) {
+	public function delete_records($foreign_key) {
 		$this->db->where('USER_ID', $foreign_key);
 		$this->db->delete('LOGIN');
 		$this->db->where('USER_ID', $foreign_key);
@@ -239,10 +239,9 @@ class Admin extends CI_Controller {
 		$this->db->delete('RESERVATION_TBL');
 	}
 	
-	function callback_encrypt($post_array, $primary_key = null)
+	function password_encrypt($post_array, $primary_key = null)
 	{
-		$password = md5($this->input->post('PWD'));
-		$post_array['PWD'] = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+		$post_array['PWD'] = password_hash($this->input->post('PWD'), PASSWORD_BCRYPT);
 		return $post_array;
 	}
 }

@@ -7,65 +7,39 @@ var $user;
 	
 	public function index()
 	{
-		$this->view_login_page();
+		$this->load_login();
 	}
 	
 	/**
 	 * loads the login page
 	 */
-	public function view_login_page() {
+	public function load_login() {
 		$data['title'] = 'Login';
+		$data['collapsed_form'] = 'login_form_tab';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
+		$this->load->view('template/leftNavigation');
 		$this->load->view('login_view');
 		$this->load->view('template/footer');
-	}
-	
-	/**
-	 * this function validates the login data.
-	 *  
-	 * make sure to trim the data
-	 * use md5 for the password field
-	 * use xss_clean in order to prevent cross-site scripting 
-	 */
-	public function login_validation() {
-		
-//$param will contain data for validation passed from form
-		
-		if($this->validate_credentials()) {
-			redirect('admin');
-		}
-		else {
-			$data['title'] = 'Login Error';
-			$data['message'] = "Login Error, try again!";
-			$this->load->view('template/header', $data);
-			$this->load->view('template/navigation');
-			$this->load->view('err_view', $data);
-			$this->load->view('template/footer');
-		}
-	}
-	
-	/**
-	 * this function creates a user model and use it to verify the 
-	 * credentials against the database. 
-	 */
-	public function validate_credentials() {
-		
-		$this->load->library('form_validation');
-		$this->load->model('login_model');		
-		$this->form_validation->set_rules('user', 'User', 'callback_user_check');
-		$this->form_validation->set_rules('pass', 'Pass', 'callback_pass_check');
-		
-		return $this->form_validation->run();
-		
 	}	
 	
 	public function load_registration() {
 		$this->load->helper('form');
 		$data['title'] = 'Registration Page';
+		$data['collapsed_form'] = 'registration_form_tab';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('registration_view');
+		$this->load->view('template/leftNavigation');
+		$this->load->view('login_view');
+		$this->load->view('template/footer');
+	}
+	
+	public function load_admin() {
+		$data['title'] = 'Administrator Page';
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
+		$this->load->view('template/leftNavigation');
+		$this->load->view('Admin_view');
 		$this->load->view('template/footer');
 	}
 	
@@ -77,6 +51,46 @@ var $user;
 		$this->load->view('success_view',$data);
 		$this->load->view('template/footer');
 	}
+	
+	public function load_login_error() {
+		$data['title'] = 'Login Error';
+		$data['message'] = "Login Error, try again!";
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
+		$this->load->view('err_view', $data);
+		$this->load->view('template/footer');
+	}
+	
+	public function login_validation() {	
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('user', 'Username', 'required|trim|callback_validate_credentials');
+		$this->form_validation->set_rules('pass', 'Password', 'required|trim');
+	
+		if($this->form_validation->run()) {
+			redirect('admin');
+		}
+		else {
+			$this->load_login();
+		}
+	}
+	
+	public function validate_credentials() {
+		$this->load->model('Login_model', '', TRUE);
+		
+		$username = strtolower($this->input->post('user'));
+		$password = $this->input->post('pass');
+		
+		$data['user'] = $username;
+		$data['pass'] = $password;
+				
+		if ($this->Login_model->pass_check($data)) {
+			return TRUE;
+		} else {
+			$this->form_validation->set_message('validate_credentials', 'Incorrect username/ password');
+			return FALSE;
+		}
+	
+	}	
 	
 	public function registration_validation() {
 		$this->load->helper(array('form', 'url'));
@@ -91,8 +105,8 @@ var $user;
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[32]|is_unique[LOGIN.username]');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.email_addr]');
 		$this->form_validation->set_rules('emailConf', 'Email Conformation', 'trim|required|matches[email]');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
-		$this->form_validation->set_rules('passwordConf', 'Password Conformation', 'trim|required|matches[passwordConf]|md5');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('passwordConf', 'Password Conformation', 'trim|required|matches[passwordConf]');
 	
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -108,43 +122,5 @@ var $user;
 	public function create_customer_account() {
 		$this->load->model('User_model', '', TRUE);
 		$this->User_model->create_user('4');		
-	}
-	
-	function user_check($str) {
-		$retval = TRUE;
-		$str = $this->security->xss_clean($str);
-		$this->user = $str;
-		if ($str == NULL)
-		{
-			$this->form_validation->set_message('subject_check', '<font color="red"><b>Please, enter your username. </b></font>');
-			$this->user = "";
-			$retval = FALSE;
-		}
-		else
-		{						
-			if(!$this->login_model->user_check($str)) {
-				$retval = FALSE;
-			}
-		}
-		return $retval;
-	}
-
-	function pass_check($str) {
-		$retval = TRUE;
-		$str = $this->security->xss_clean($str);
-		if ($str == NULL) {
-			$this->form_validation->set_message('subject_check', '<font color="red"><b>Please, enter correct password. </b></font>');
-			$this->pass = "";
-			return FALSE;
-		}
-		else
-		{					
-			$data['user'] = $this->user;
-			$data['pass'] = $str;
-			if(!$this->login_model->pass_check($data)) {
-				$retval = FALSE;
-			}
-		}
-		return $retval;
 	}
 }
