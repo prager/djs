@@ -34,15 +34,6 @@ var $user;
 		$this->load->view('template/footer');
 	}
 	
-	public function load_admin() {
-		$data['title'] = 'Administrator Page';
-		$this->load->view('template/header', $data);
-		$this->load->view('template/navigation');
-		$this->load->view('template/leftNavigation');
-		$this->load->view('Admin_view');
-		$this->load->view('template/footer');
-	}
-	
 	public function load_registration_success() {
 		$data['title'] = 'Success Page';
 		$data['message'] = 'Your account has been created';
@@ -69,6 +60,11 @@ var $user;
 		if($this->form_validation->run()) {
 			$this->load->model('User_model', '', TRUE);
 			$type = $this->User_model->get_user_type(strtolower($this->input->post('user')));
+			
+			session_start();
+			$_SESSION['usename'] = strtolower($this->input->post('user'));
+			$_SESSION['userType'] = $type;
+			
 			$this->redirect_view($type);
 		}
 		else {
