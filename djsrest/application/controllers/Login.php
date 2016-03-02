@@ -83,7 +83,7 @@ var $user;
 		$data['user'] = $username;
 		$data['pass'] = $password;
 				
-		if ($this->Login_model->pass_check($data)) {
+		if ($this->Login_model->user_check($username) && $this->Login_model->pass_check($data)) {
 			return TRUE;
 		} else {
 			$this->form_validation->set_message('validate_credentials', 'Incorrect username/ password');
