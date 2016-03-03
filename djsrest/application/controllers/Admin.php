@@ -134,6 +134,7 @@ class Admin extends CI_Controller {
 		$crud->set_theme('bootstrap');
 		
 		$crud->set_table('MENU_TBL');
+		$crud->set_subject('');
 		
 		$crud->field_type('PRICE','integer');
 		
