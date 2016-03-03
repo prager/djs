@@ -86,13 +86,14 @@
                 <div class="table-label">
                     <div class="floatL l5">
                         <?php echo $subject_plural; ?>
-                    </div>                  
-                    <div class="floatR r5 minimize-maximize-container minimize-maximize">
-                        <i class="fa fa-caret-up"></i>
-                    </div>
-                    <div class="floatR r5 gc-full-width">
-                        <i class="fa fa-expand"></i>                        
-                    </div>                      
+                    </div>  
+<!-- Disabled minimise/ maximise feature: edited by Sajith  -->                                    
+<!--                     <div class="floatR r5 minimize-maximize-container minimize-maximize"> -->
+<!--                         <i class="fa fa-caret-up"></i> -->
+<!--                     </div> -->
+<!--                     <div class="floatR r5 gc-full-width"> -->
+<!--                         <i class="fa fa-expand"></i>                         -->
+<!--                     </div>                       -->
                     <div class="clear"></div>
                 </div>
                 <div class="table-container">
