@@ -129,6 +129,23 @@ class Admin extends CI_Controller {
 		$this->render_output('Customer Management', 'admin/customer_management', $output);
 	}
 	
+	public function food_menu_management() {
+		$crud = new grocery_CRUD();
+		$crud->set_theme('bootstrap');
+		
+		$crud->set_table('MENU_TBL');
+		
+		$crud->field_type('PRICE','integer');
+		
+		$crud
+		->display_as('ITEM_NAME','Food Item')
+		->display_as('PRICE','Price')
+		->display_as('DESCRIPTION','Description');
+		
+		$output = $crud->render();
+		$this->render_output('Food Menu Management', 'admin/food_menu_management', $output);
+	}
+	
 	public function credit_card_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
