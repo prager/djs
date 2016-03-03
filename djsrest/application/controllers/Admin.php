@@ -14,12 +14,12 @@ class Admin extends CI_Controller {
 
 	public function render_output($page_title, $view_path, $output = null) {
 		// i have disabled template stuff just to simplify the page
-		$data['title'] = $page_title;
-		$this->load->view('template/header', $data);
-		$this->load->view('template/navigation');
-		$this->load->view('template/leftNavigation');
+ 		$data['title'] = $page_title;
+// 		$this->load->view('template/header', $data);
+// 		$this->load->view('template/navigation');
+// 		$this->load->view('template/leftNavigation');
 		$this->load->view($view_path,$output);
-		$this->load->view('template/footer');
+// 		$this->load->view('template/footer');
 	}
 
 	public function index() {
@@ -54,7 +54,7 @@ class Admin extends CI_Controller {
 			->display_as('USER_TYPE_CD', 'User Type');
 		
 		$crud->callback_before_delete(array($this,'delete_records'));
-			
+		
 		$output = $crud->render();
 		$this->render_output('User Management', 'admin/user_management', $output);
 	}
