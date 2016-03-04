@@ -6,6 +6,6 @@
 			  <li><?php echo anchor('home', 'Home');?></li>
 			  <li><?php echo anchor('reservations', 'Reservations');?></li>
 			  <li><?php echo anchor('menu', 'Menu');?></li>
-			  <li><a href="#sec3">Contact Us</a></li>
+			  <li><?php echo anchor('contact', 'Contact us');?></li>
 			</ul>              
 		</div>

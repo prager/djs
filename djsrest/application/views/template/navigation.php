@@ -21,7 +21,7 @@
 			  <?php echo anchor('menu', 'Menu');?>
 			</li>
 			<li>
-			  <a href="#">Contact Us</a>
+			  <?php echo anchor('contact', 'Contact us');?>
 			</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
