@@ -78,7 +78,7 @@ var $user;
 		        redirect('admin');
 		        break;
 		    default:
-		        redirect('login');
+		        redirect('home');
 		}
 	}
 	
