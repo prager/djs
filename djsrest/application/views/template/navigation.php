@@ -18,7 +18,7 @@
 			  <?php echo anchor('reservations', 'Reservations');?>
 			</li>
 			<li>
-			  <a href="#">Menu</a>
+			  <?php echo anchor('menu', 'Menu');?>
 			</li>
 			<li>
 			  <a href="#">Contact Us</a>
