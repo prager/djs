@@ -16,7 +16,7 @@ class Contact extends CI_Controller {
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
-		$this->load->view('contact/contact_view');
+		$this->load->view('feedback/feedback_view');
 		$this->load->view('template/footer');
 	}
 	
@@ -28,7 +28,7 @@ class Contact extends CI_Controller {
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
-		$this->load->view('contact/success_view');
+		$this->load->view('feedback/success_view');
 		$this->load->view('template/footer');
 	}
 	
@@ -38,7 +38,7 @@ class Contact extends CI_Controller {
 		
 		$this->form_validation->set_rules('name', 'Name', 'trim|required|alpha');		
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-		$this->form_validation->set_rules('message', 'Feedback', 'required');
+		$this->form_validation->set_rules('feedback', 'Feedback', 'required');
 		
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -46,19 +46,19 @@ class Contact extends CI_Controller {
 		}
 		else
 		{
-			$this->save_message();
+			$this->save_feedback();
 			$this->load_success();
 		}
 	}
 	
-	public function save_message() {
+	public function save_feedback() {
 		$message = array(
 			'name' => $this->input->post('name'),
 			'email' => $this->input->post('email'),
-			'message' => $this->input->post('message')				
+			'feedback' => $this->input->post('feedback')				
 		);
 		
-		$this->load->model('Contact_model');
-		$this->Contact_model->save_message($message);
+		$this->load->model('Feedback_model');
+		$this->Feedback_model->save_feedback($feedback);
 	}
 }

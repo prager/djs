@@ -9,4 +9,5 @@
 	<a href='<?php echo site_url('admin/user_group_management')?>'>User Group Management</a><br>
 	<a href='<?php echo site_url('admin/login_management')?>'>Login Management</a><br>
 	<a href='<?php echo site_url('admin/food_menu_management')?>'>Food Menu Management</a><br>
+	<a href='<?php echo site_url('admin/feedback_management')?>'>Feedback Management</a><br>
 </div>
