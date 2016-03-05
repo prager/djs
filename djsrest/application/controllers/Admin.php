@@ -163,8 +163,6 @@ class Admin extends CI_Controller {
 		->display_as('PUBLISH','Publish');
 		
  		$crud->field_type('PUBLISH', 'enum', array('Yes', 'No'));
- 		$crud->callback_add_field('FEEDBACK', function () {return get_text_box('FEEDBACK');});
- 		
  		$crud->field_type('FEEDBACK', 'textbox');
  			
 		$output = $crud->render();
