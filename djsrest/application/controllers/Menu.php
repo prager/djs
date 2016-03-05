@@ -5,10 +5,12 @@ class Menu extends CI_Controller {
 	
 	public function index()
 	{	
-		$this->load->model('Menu_model');
-		$data['menu'] = $this->Menu_model->get_menu();
 		$this->load->helper('url');
+		$this->load->model('Menu_model');
+		
+		$data['menu'] = $this->Menu_model->get_menu();		
 		$data['title'] = 'Menu';
+		
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
