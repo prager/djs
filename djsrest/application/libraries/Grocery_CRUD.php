@@ -235,6 +235,7 @@ class grocery_CRUD_Field_Types
 					'password',
 					'readonly',
 					'dropdown',
+					'textbox',
 					'multiselect'
 			);
 
@@ -357,6 +358,10 @@ class grocery_CRUD_Field_Types
 					$value = $file_url_anchor;
 				}
 			break;
+			
+			case 'textbox':
+				$value = $this->character_limiter($value,$this->character_limiter,"...");
+				break;
 
 			default:
 				$value = $this->character_limiter($value,$this->character_limiter,"...");
@@ -2384,6 +2389,16 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 		}
 
 		$input .= "</select>";
+		return $input;
+	}
+	
+	protected function get_textbox_input($field_info,$value)
+	{
+		$this->load_js_chosen();
+		$this->set_js_config($this->default_javascript_path.'/jquery_plugins/config/jquery.chosen.config.js');
+	
+		$input = '<textarea id="field-{$field_info->name}" class="form-control" name="field-{$field_info->name}" rows="4">' . $value . '</textarea>';
+		
 		return $input;
 	}
 

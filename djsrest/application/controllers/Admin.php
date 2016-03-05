@@ -147,6 +147,30 @@ class Admin extends CI_Controller {
 		$this->render_output('Food Menu Management', 'admin/food_menu_management', $output);
 	}
 	
+	public function feedback_management() {
+		$crud = new grocery_CRUD();
+		$crud->set_theme('bootstrap');
+	
+		$crud->set_table('FEEDBACK_TBL');
+		$crud->set_subject('Feedback');
+		
+		$crud->required_fields('NAME', 'EMAIL', 'FEEDBACK', 'PUBLISH');
+		
+		$crud
+		->display_as('NAME','Sender')
+		->display_as('EMAIL_ADDR','Email')
+		->display_as('FEEDBACK','Feedback')
+		->display_as('PUBLISH','Publish');
+		
+ 		$crud->field_type('PUBLISH', 'enum', array('Yes', 'No'));
+ 		$crud->callback_add_field('FEEDBACK', function () {return get_text_box('FEEDBACK');});
+ 		
+ 		$crud->field_type('FEEDBACK', 'textbox');
+ 			
+		$output = $crud->render();
+		$this->render_output('Feedback Management', 'admin/feedback_management', $output);
+	}
+	
 	public function credit_card_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
@@ -248,7 +272,7 @@ class Admin extends CI_Controller {
 		$this->render_output('Login Management', 'admin/login_management', $output);
 	}
 	
-	public function delete_records($foreign_key) {
+	function delete_records($foreign_key) {
 		$this->db->where('USER_ID', $foreign_key);
 		$this->db->delete('LOGIN');
 		$this->db->where('USER_ID', $foreign_key);
