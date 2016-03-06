@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <?php echo anchor('home', 'DJs Bistro', 'class="navbar-brand"');?>
+		  <?php echo anchor(base_url(), 'DJs Bistro', 'class="navbar-brand"');?>
 		  <!-- <a href="/" class="navbar-brand">DJ's Bistro</a> -->
 		</div>
 		<nav class="collapse navbar-collapse" role="navigation">

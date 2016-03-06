@@ -12,7 +12,7 @@ class Feedback_model extends CI_Model {
     			'EMAIL_ADDR' => $data['email'],
     			'FEEDBACK' => $data['feedback']
     	);  
-    	return $this->db->insert('FEEDBACK_TBL', $feedback);
+    	return $this->db->insert('FEEDBACK_TBL', $message);
     }
     
     function publish_feedback($primary_key) {

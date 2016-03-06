@@ -38,7 +38,8 @@ class Admin extends CI_Controller {
 		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');			
 		$crud->set_rules('FIRST_NM', 'First Name', 'trim|required|alpha');
 		$crud->set_rules('LAST_NM', 'First Name', 'trim|required|alpha');
-		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.EMAIL_ADDR]');
+		//$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.EMAIL_ADDR]');
+		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email');
 		
 		$crud->columns('USER_ID', 'FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM','ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
 		$crud->set_relation('USER_TYPE_CD', 'USER_TYPE_REF', 'USER_TYPE_DESC');
