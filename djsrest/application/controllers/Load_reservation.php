@@ -19,22 +19,21 @@ class Load_reservation extends CI_Controller {
 		$this->loadcomps();
 		
 		$this->err_flag = FALSE;
-	
-		if(!$this->validate_form()) {
-			$this->load_success();
+		
+		$this->validate_form();
+		
+		if($this->err_flag) {
+			$this->load_err();
 		}
 		else {
-			$this->load_err();
+			$this->load_success();
 		}
 		
 	}
 	
 	function load_success() {
-		//$this->load->library('email');
 		$data['title'] = 'Done';
-		$this->load->helper('email');	
-		//$this->load->model('table_reservation_model');
-		//$this->table_reservation_model->set_data($data);
+		$this->load->helper('email');
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 
@@ -56,10 +55,10 @@ class Load_reservation extends CI_Controller {
 	
 	function load_err() {		
 		$data['title'] = 'Error';
-		$data['message'] = 'Reservations error';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('err_view', $data);
+		$this->load->view('template/leftNavigation');
+		$this->load->view('reservations_view', $data);
 		$this->load->view('template/footer');
 	}
 	
@@ -73,7 +72,7 @@ class Load_reservation extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'callback_email_check');
 		$this->form_validation->set_rules('party', 'Party', 'callback_party_check');
 		$this->form_validation->set_rules('phone', 'Phone', 'callback_phone_check');
-		$this->form_validation->set_rules('Time', 'Time', 'callback_time_check');
+		$this->form_validation->set_rules('time', 'Time', 'callback_time_check');
 		
 		return $this->form_validation->run();
 	}
@@ -181,7 +180,7 @@ class Load_reservation extends CI_Controller {
  * No need to check value since it is always selected
  * @param the time is str type
  */	
-	function time_check($str) {			
+	function time_check($str) {		
 			$this->time = $str;
 			return TRUE;
 		
