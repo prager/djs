@@ -2397,8 +2397,7 @@ class grocery_CRUD_Layout extends grocery_CRUD_Model_Driver
 		$this->load_js_chosen();
 		$this->set_js_config($this->default_javascript_path.'/jquery_plugins/config/jquery.chosen.config.js');
 	
-		$input = '<textarea id="field-{$field_info->name}" class="form-control" name="field-{$field_info->name}" rows="4">' . $value . '</textarea>';
-		
+		$input = "<textarea id='field-{$field_info->name}' class='form-control' rows='4' name='{$field_info->name}'>$value</textarea>";
 		return $input;
 	}
 

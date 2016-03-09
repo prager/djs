@@ -283,5 +283,5 @@ class Admin extends CI_Controller {
 	{
 		$post_array['PWD'] = password_hash($this->input->post('PWD'), PASSWORD_BCRYPT);
 		return $post_array;
-	}
+	}	
 }

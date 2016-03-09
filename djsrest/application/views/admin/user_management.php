@@ -12,14 +12,9 @@
     <link href="<?php echo base_url() ;?>/assets/css/bootstrap.min.css" rel="stylesheet">
     
     <!--  jQuery -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	
 	<!-- custom css -->
     <link href="<?php echo base_url() ;?>/assets/css/custom.css" type="text/css" rel="stylesheet">
-
-    
-  	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   
     <!-- Include all compiled plugins (below), or include individual files as needed -->    
     <script src="<?php echo base_url() ;?>/assets/js/bootstrap.js"></script>
