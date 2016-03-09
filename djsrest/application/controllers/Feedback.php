@@ -32,7 +32,7 @@ class Feedback extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	public function message_validation() {
+	public function feedback_validation() {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		
@@ -59,6 +59,6 @@ class Feedback extends CI_Controller {
 		);
 		
 		$this->load->model('Feedback_model');
-		$this->Feedback_model->save_feedback($feedback);
+		$this->Feedback_model->save_feedback($message);
 	}
 }

@@ -89,3 +89,117 @@ function get_states_array() {
 	
 	return $states;
 }
+
+function get_times_array() {
+
+	$times = array(
+			"11:00 AM" => "11:00 AM",
+			"11:15 AM" => "11:15 AM",
+			"11:45 AM" => "11:45 AM",
+			"12:00 PM" => "12:00 PM",
+			"12:15 PM" => "12:15 PM",
+			"12:30 PM" => "12:30 PM",
+			"12:45 PM" => "12:45 PM",
+			"01:00 PM" => "01:00 PM",
+			"01:15 PM" => "01:15 PM",
+			"01:30 PM" => "01:30 PM",
+			"01:45 PM" => "01:45 PM",
+			"02:00 PM" => "02:00 PM",
+			"02:15 PM" => "02:15 PM",
+			"02:30 PM" => "02:30 PM",
+			"02:45 PM" => "02:45 PM",
+			"03:00 PM" => "03:00 PM",
+			"03:15 PM" => "03:15 PM",
+			"03:30 PM" => "03:30 PM",
+			"03:45 PM" => "03:45 PM",
+			"04:00 PM" => "04:00 PM",
+			"04:15 PM" => "04:15 PM",
+			"04:30 PM" => "04:30 PM",
+			"04:45 PM" => "04:45 PM",
+			"05:00 PM" => "05:00 PM",
+			"05:15 PM" => "05:15 PM",
+			"05:30 PM" => "05:30 PM",
+			"05:45 PM" => "05:45 PM",
+			"06:00 PM" => "06:00 PM",
+			"06:15 PM" => "06:15 PM",
+			"06:30 PM" => "06:30 PM",
+			"06:45 PM" => "06:45 PM",
+			"07:00 PM" => "07:00 PM",
+			"07:15 PM" => "07:15 PM",
+			"07:30 PM" => "07:30 PM",
+			"07:45 PM" => "07:45 PM",
+			"08:00 PM" => "08:00 PM",
+			"08:15 PM" => "08:15 PM",
+			"08:30 PM" => "08:30 PM",
+			"08:45 PM" => "08:45 PM");
+
+	return $times;
+
+}
+
+function times_dropdown($elementId, $defaultVal) {
+	$times = get_times_array();
+
+	// prints the dropdown
+	$output ='';
+	$output .= '<select id="' . $elementId . '" class="form-control" name="time">';
+	$output .= '<option value="11:00 AM" selected>11:00 AM</option>';
+
+	foreach($times as $abbr => $time){
+		if ($defaultVal == $abbr) {
+			$output .= '<option selected="selected" value="' . $abbr . '">' . $time . '</option>';
+		} else {
+			$output .= '<option value="' . $abbr . '">' . $time . '</option>';
+		}
+	}
+
+	$output .= '</select>';
+	return $output;
+}
+
+function get_party_array() {
+	
+	$party = array (
+			"1" => 1,
+			"2" => 2,
+			"3" => 3,
+			"4" => 4,
+			"5" => 5,
+			"6" => 6,
+			"7" => 7,
+			"8" => 8,
+			"9" => 9,
+			"10" => 10,
+			"11" => 11,
+			"12" => 12,
+			"13" => 13,
+			"14" => 14,
+			"15" => 15,
+			"16" => 16,
+			"17" => 17,
+			"18" => 18,
+			"19" => 19,
+			"20" => 20);
+	
+	return $party;
+}
+
+function party_dropdown($elementId, $defaultVal) {
+	$party = get_party_array();
+	
+	// prints the dropdown
+	$output ='';
+	$output .= '<select id="' . ($elementId + 1) . '" class="form-control" name="party">';
+	$output .= '<option value="1" selected>1</option>';
+	
+	foreach($party as $abbr => $num){
+		if ($defaultVal == $abbr) {
+			$output .= '<option selected="selected" value="' . $abbr . '">' . $num  . '</option>';
+		} else {
+			$output .= '<option value="' . $abbr . '">' . $num  . '</option>';
+		}
+	}
+	
+	$output .= '</select>';
+	return $output;
+}

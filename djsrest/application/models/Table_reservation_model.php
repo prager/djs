@@ -4,6 +4,7 @@ class Table_reservation_model extends CI_Model {
     function __construct()
     {
         parent::__construct();
+        $this->load->database();
     }
     
     function get_data() {
@@ -27,16 +28,22 @@ class Table_reservation_model extends CI_Model {
     	$recipient = 'jkulisek.us@gmail.com';
     	$subject = 'DJs Table Reservation';
     	$message = "This is the confirmation of your table reservation:\ndate: " . $data['date'] . "\n" . 
-      				"Time" . $data['time'] . "\n" .
+      				"Time " . $data['time'] . "\n" .
       				"First Name: " . $data['fname'] . "\n" .
       				"Last Name: " . $data['lname'] . "\n" .
       				"Party Size: " . $data['party'] . "\n" .
       				"Phone Number: " . $data['phone'] . "\n";
     	
-      	//echo "Result: " . $recipient . "\n" . "subject: " . $subject;
-      	//echo "party: " . substr($data['party'], 0, 2);
+      	
     	$this->load->helper('email');
     	mail($recipient, $subject, $message);
+  		
+  		//$reserv = array(
+  			//'reservation_tm' => $data['time'], 			
+  			
+  		//);
+    	
+    	//$this->db->insert('messages', $ins);
 
     }
 }
