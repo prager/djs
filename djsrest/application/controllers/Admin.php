@@ -209,16 +209,17 @@ class Admin extends CI_Controller {
 		$crud->set_table('RESERVATION_TBL');
 		$crud->set_subject('Reservation');
 		
-		$crud->add_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
-		$crud->field_type('RESERVATION_DT', 'date');
-		$crud->required_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
-		$crud->edit_fields('USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
+		$crud->add_fields('FIRST_NM', 'LAST_NM, RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
+		$crud->field_type('RESERVATION_DT', 'string');
+		$crud->required_fields('FIRST_NM', 'LAST_NM', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
+		$crud->edit_fields('FIRST_NM', 'LAST_NM',  'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
 		
-		$crud->columns('RESERVATION_ID', 'USER_ID', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE', 'ENTRY_TS');
-		$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');		
+		$crud->columns('RESERVATION_ID', 'FIRST_NM', 'LAST_NM', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE', 'ENTRY_TS');
+		//$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');		
 		$crud
 		->display_as('RESERVATION_ID','Reservation Id')
-		->display_as('USER_ID', 'Name')
+		->display_as('FIRST_NM', 'First Name')
+		->display_as('LAST_NM', 'Last Name')
 		->display_as('RESERVATION_DT', 'Reservation Date')
 		->display_as('RESERVATION_TM', 'Reservation Time')
 		->display_as('PARTY_SIZE', 'Party Size')

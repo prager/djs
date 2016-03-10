@@ -31,19 +31,27 @@ class Table_reservation_model extends CI_Model {
       				"Time " . $data['time'] . "\n" .
       				"First Name: " . $data['fname'] . "\n" .
       				"Last Name: " . $data['lname'] . "\n" .
+      				"Your email: " . $data['email'] . "\n" .
       				"Party Size: " . $data['party'] . "\n" .
       				"Phone Number: " . $data['phone'] . "\n";
     	
+    	$unixtime = (intval(substr($data['time'], 0, 2) + 12) * 60 * 60) + (intval(substr($data['time'], 3, 2)) * 60) + strtotime($data['date']);
+    	
+    	//echo "res time: " . date("m/d/Y - h:i a", $unixtime);
       	
     	$this->load->helper('email');
     	mail($recipient, $subject, $message);
   		
-  		//$reserv = array(
-  			//'reservation_tm' => $data['time'], 			
-  			
-  		//);
+  		$reserv = array(
+  			'reservation_tm' => $data['time'],
+  			'reservation_dt' => $data['date'], 			
+  			'reservation_unix' => $unixtime,
+  			'first_nm' => $data['fname'],
+  			'last_nm' => $data['lname'],
+  			'email' => $data['email'],
+  			'party_size' =>$data['party']);
     	
-    	//$this->db->insert('messages', $ins);
+    	$this->db->insert('reservation_tbl', $reserv);
 
     }
 }
