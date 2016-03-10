@@ -11,7 +11,14 @@ class Reservations extends CI_Controller {
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
-		$this->load->view('reservations_view');
+		$data['fname'] = "";
+		$data['lname'] = "";
+		$data['email'] = "";
+		$data['date'] = "";
+		$data['party'] = "";
+		$data['phone'] = "";
+		$data['time'] ="";
+		$this->load->view('reservations_view', $data);
 		$this->load->view('template/footer');
 	}
 }

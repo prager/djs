@@ -210,7 +210,7 @@ class Admin extends CI_Controller {
 		$crud->set_subject('Reservation');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM, RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
-		$crud->field_type('RESERVATION_DT', 'string');
+		//$crud->field_type('RESERVATION_DT', 'string');
 		$crud->required_fields('FIRST_NM', 'LAST_NM', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
 		$crud->edit_fields('FIRST_NM', 'LAST_NM',  'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
 		
