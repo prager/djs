@@ -203,3 +203,7 @@ function party_dropdown($elementId, $defaultVal) {
 	$output .= '</select>';
 	return $output;
 }
+
+function money_format($val) {
+	return '$' . number_format($val, 2, '.', '');
+}

@@ -7,5 +7,6 @@
 			  <li><?php echo anchor('reservations', 'Reservations');?></li>
 			  <li><?php echo anchor('menu', 'Menu');?></li>
 			  <li><?php echo anchor('feedback', 'Contact us');?></li>
+			  <li><?php echo anchor('orders', 'Take-out');?></li>			  
 			</ul>              
 		</div>
