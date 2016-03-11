@@ -67,6 +67,7 @@ class Admin extends CI_Controller {
 		$crud->set_table('USER_TBL');
 		$crud->where('USER_TBL.USER_TYPE_CD', '3');	
 		$crud->or_where('USER_TBL.USER_TYPE_CD', '2');
+		$crud->or_where('USER_TBL.USER_TYPE_CD', '1');
 		$crud->set_subject('Employee');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
