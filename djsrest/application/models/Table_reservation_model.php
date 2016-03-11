@@ -27,11 +27,11 @@ class Table_reservation_model extends CI_Model {
     	
     	$recipient = 'jkulisek.us@gmail.com';
     	$subject = 'DJs Table Reservation';
-    	$message = "The following table reservation was made:\ndate: " . $data['date'] . "\n" . 
+    	$message = "The following table reservation was made:\nDate: " . $data['date'] . "\n" . 
       				"Time " . $data['time'] . "\n" .
       				"First Name: " . $data['fname'] . "\n" .
       				"Last Name: " . $data['lname'] . "\n" .
-      				"Your email: " . $data['email'] . "\n" .
+      				"Email: " . $data['email'] . "\n" .
       				"Party Size: " . $data['party'] . "\n" .
       				"Phone Number: " . $data['phone'] . "\n";
     	

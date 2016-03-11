@@ -186,7 +186,6 @@ function party_dropdown($elementId, $defaultVal) {
 	// prints the dropdown
 	$output ='';
 	$output .= '<select id="' . ($elementId + 1) . '" class="form-control" name="party">';
-	$output .= '<option value="1" selected>1</option>';
 	
 	foreach($party as $abbr => $num){
 		if ($defaultVal == $abbr) {
