@@ -38,17 +38,39 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	public function insert_item($id) {
+	public function insert_item() {
 		$this->load->model('Menu_model');
-		$item = $this->Menu_model->get_menu_item($id);
+		$item = $this->Menu_model->get_menu_item($this->input->post('item_id'));
 		$data = array(
                'id'      => $item['MENU_ID'],
                'qty'     => 1,
                'price'   => $item['PRICE'],
                'name'    => $item['ITEM_NAME']
 		);
-
 		$this->cart->insert($data);
 		$this->load_cart();
+	}
+	
+	public function remove_item() {
+		$data = array(
+				'rowid' => $this->input->post('row_id'),
+				'qty'   => 0
+		);		
+		$this->cart->update($data);
+		$this->load_cart();
+	}
+	
+	public function update_item() {
+		$data = array(
+				'rowid' => $this->input->post('row_id'),
+				'qty'   => $this->input->post('qty')
+		);
+		$this->cart->update($data);
+		$this->load_cart();
+	}
+	
+	public function distroy_cart() {
+		$this->cart->destroy();
+		$this->load_menu();
 	}
 }
