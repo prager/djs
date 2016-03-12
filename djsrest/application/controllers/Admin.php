@@ -67,6 +67,7 @@ class Admin extends CI_Controller {
 		$crud->set_table('USER_TBL');
 		$crud->where('USER_TBL.USER_TYPE_CD', '3');	
 		$crud->or_where('USER_TBL.USER_TYPE_CD', '2');
+		$crud->or_where('USER_TBL.USER_TYPE_CD', '1');
 		$crud->set_subject('Employee');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
@@ -164,8 +165,6 @@ class Admin extends CI_Controller {
 		->display_as('PUBLISH','Publish');
 		
  		$crud->field_type('PUBLISH', 'enum', array('Yes', 'No'));
- 		$crud->callback_add_field('FEEDBACK', function () {return get_text_box('FEEDBACK');});
- 		
  		$crud->field_type('FEEDBACK', 'textbox');
  			
 		$output = $crud->render();
@@ -287,5 +286,5 @@ class Admin extends CI_Controller {
 	{
 		$post_array['PWD'] = password_hash($this->input->post('PWD'), PASSWORD_BCRYPT);
 		return $post_array;
-	}
+	}	
 }

@@ -24,6 +24,9 @@
 			<li>
 			  <?php echo anchor('feedback', 'Contact us');?>
 			</li>
+			<li>
+			  <?php echo anchor('orders', 'Take-out');?>
+			</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
