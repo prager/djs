@@ -1,10 +1,10 @@
-<div class="col-lg-9"><br>
+<div id="page-container" class="col-md-9"><br>
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Shopping Cart</div>
 	  <div class="panel-body">
 	    <a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Continue Shopping</a>		
-		<a style="float:right;" class="btn btn-success btn-sm" href="#" value="">Check-out</a>		
+		<a style="float:right;" class="btn btn-success btn-sm" href="<?php echo site_url('orders/load_checkout')?>" value="">Check-out</a>		
 	  </div>
 	
 	  <!-- Table -->
@@ -54,7 +54,7 @@
 		<!-- Default panel contents -->
 		<div class="panel-heading">Order Summary</div>
 		<div class="panel-body">
-    		<table class="table-responsive" style="width:60%; margin:auto; border-style:none;">
+    		<table class="table-responsive" style="width:60%; margin:auto; border-style:none;".>
     		<thead>
     			<tr></tr>
     			<tr></tr>
@@ -96,7 +96,7 @@
 		</div>
 		<div class="panel-footer" style="height:50px;">
 			<a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Continue Shopping</a>		
-			<a style="float:right;" class="btn btn-success btn-sm" href="#" value="">Check-out</a>	
+			<a style="float:right;" class="btn btn-success btn-sm" href="<?php echo site_url('orders/load_checkout')?>" value="">Check-out</a>	
 			<span style="float:right; padding-right:15px;"><a class="btn btn-danger btn-sm" href="<?php echo site_url('orders/distroy_cart');?>" value="">Start-over</a></span>	
 		</div>
   	</div>

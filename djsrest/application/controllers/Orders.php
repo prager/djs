@@ -38,6 +38,18 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	public function load_checkout() {
+		$this->load->helper('url');
+		
+		$data['cart'] = $this->cart->contents();
+		$data['title'] = 'Cart';
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
+		$this->load->view('template/leftNavigation');
+		$this->load->view('orders/checkout_view', $data);
+		$this->load->view('template/footer');
+	}
+	
 	public function insert_item() {
 		$this->load->model('Menu_model');
 		$item = $this->Menu_model->get_menu_item($this->input->post('item_id'));

@@ -1,4 +1,4 @@
-<div class="col-lg-9">
+<div class="col-md-9">
 	<h1>Place Your Order</h1>
 	<hr>
 	<?php 
