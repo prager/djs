@@ -1,4 +1,4 @@
-<div id="page-container" class="col-md-9"><br>
+<div id="cart_view" style="display: none;" class="col-md-9"><br>
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Shopping Cart</div>
@@ -101,3 +101,9 @@
 		</div>
   	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	$("#cart_view").fadeIn(900);    
+});
+</script>
