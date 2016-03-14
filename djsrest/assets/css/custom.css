@@ -55,6 +55,10 @@ body {
 	padding-top:50px;
 }
 
+#page-container {
+	min-height: 470px;
+}
+
 #masthead {
 	background: url(../img/header.jpg) no-repeat top center;
 	min-height:270px;

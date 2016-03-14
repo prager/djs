@@ -25,9 +25,6 @@
     <!-- Owl Carousel Assets -->
     <link href="<?php echo base_url() ;?>/assets/css/owl.carousel.css" rel="stylesheet">
     <link href="<?php echo base_url() ;?>/assets/css/owl.theme.css" rel="stylesheet">
-
-    <!-- Login style sheet -->
-    <link href="<?php echo base_url() ;?>/assets/css/login.css" rel="stylesheet">
     
      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

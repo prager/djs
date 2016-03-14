@@ -95,6 +95,49 @@ class Login_model extends CI_Model {
     	}
     	
     }
+    
+    function login() {
+    	$username = $this->input->post('user');
+    	$this->load->model('User_model', '', TRUE);
+    	$user = $this->User_model->get_user($username);
+    		
+    	$data = array(
+    			'user_id' => $user_id,
+				'username'  => $username,
+				'email'     => $user['email'],
+    			'first_name' => $user['first_name'],
+    			'last_name' => $user['last_name'],
+    			'user_type' => $user['user_type'],
+				'logged_in' => TRUE
+		);
+
+		$this->session->set_userdata($data);
+    }
+    
+    function is_logged_in() {
+    	$sess_id = $this->session->userdata('username');
+    	
+    	if(empty($sess_id))
+    	{
+    		return false;
+    	
+    	}else{
+	    	return true;
+    	}
+    }
+    
+    function logout() {
+    	$this->session->sess_destroy();
+    }
+    
+    function can_access($accessLevel) {
+    	$userType = $this->session->userdata('user_type');
+    	if ($userType == $accessLevel) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
 
 }
 ?>

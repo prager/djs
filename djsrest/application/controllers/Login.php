@@ -58,21 +58,17 @@ var $user;
 		$this->form_validation->set_rules('pass', 'Password', 'required|trim');
 	
 		if($this->form_validation->run()) {
-			$this->load->model('User_model', '', TRUE);
-			$type = $this->User_model->get_user_type(strtolower($this->input->post('user')));
-			
-			session_start();
-			$_SESSION['usename'] = strtolower($this->input->post('user'));
-			$_SESSION['userType'] = $type;
-			
-			$this->redirect_view($type);
+			$this->load->model('Login_model');
+			$this->Login_model->login();
+			$this->redirect_view();
 		}
 		else {
 			$this->load_login();
 		}
 	}
 	
-	public function redirect_view($userType) {
+	public function redirect_view() {
+		$userType = $this->session->userdata('user_type');
 		switch ($userType) {
 		    case "1":
 		        redirect('admin');

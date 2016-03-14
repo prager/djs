@@ -4,11 +4,25 @@ class Admin extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		$logged_in = $this->Login_model->is_logged_in();
+		$allowed = $this->Login_model->can_access('1');
+		
+		if (!$logged_in) {
+ 			redirect('login');
+		}
+		
+		if (!$allowed) {
+			$data['title'] = 'Access Denied!';
+			$this->load->view('template/header', $data);
+			$this->load->view('template/navigation');
+			$this->load->view('template/leftNavigation');
+			$this->load->view('admin/access_denied_view');
+			$this->load->view('template/footer');
+		}		
 
 		$this->load->database();
 		$this->load->helper('url');
 		$this->load->helper('site_helper');
-
 		$this->load->library('grocery_CRUD');
 	}
 

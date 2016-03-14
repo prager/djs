@@ -22,10 +22,10 @@
 			  <?php echo anchor('menu', 'Menu');?>
 			</li>
 			<li>
-			  <?php echo anchor('feedback', 'Contact us');?>
+			  <?php echo anchor('orders', 'Take-out');?>
 			</li>
 			<li>
-			  <?php echo anchor('orders', 'Take-out');?>
+			  <?php echo anchor('feedback', 'Contact us');?>
 			</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
