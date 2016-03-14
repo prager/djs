@@ -1,4 +1,4 @@
-<div class="col-lg-9">
+<div class="col-md-9">
 	<h1>Place Your Order</h1>
 	<hr>
 	<?php 
@@ -14,11 +14,15 @@
 			echo '<p>' . $item['DESCRIPTION'] . '</p>';
 			echo '</div>';
 			echo '<div class="col-md-3 col-sm-3 col-xs-3">';
-			echo '<a name="item_id" style="float:right; width:50px;" ';
-			echo 'href="' . $url . '" class="btn btn-primary btn-sm glyphicon glyphicon-shopping-cart" value=' . $item['MENU_ID'] . '></a>';			
+			echo form_open('orders/insert_item');
+			echo '<button type=submit style="float:right; width:50px;" name="item_id" 
+					class="btn btn-primary btn-sm glyphicon glyphicon-shopping-cart"
+					value="' . $item['MENU_ID'] . '"></button>';
+			echo form_close();
 			echo '</div>';			
 			echo '</div>';
 			echo '</div>';		
 		}
 	?>
 </div>
+<script src="<?php echo base_url() ;?>/assets/js/cart.js"></script>

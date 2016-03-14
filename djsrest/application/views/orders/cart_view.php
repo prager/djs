@@ -1,10 +1,10 @@
-<div class="col-lg-9"><br>
+<div id="cart_view" style="display: none;" class="col-md-9"><br>
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Shopping Cart</div>
 	  <div class="panel-body">
 	    <a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Continue Shopping</a>		
-		<a style="float:right;" class="btn btn-success btn-sm" href="#" value="">Check-out</a>		
+		<a style="float:right;" class="btn btn-success btn-sm" href="<?php echo site_url('orders/load_checkout')?>" value="">Check-out</a>		
 	  </div>
 	
 	  <!-- Table -->
@@ -17,6 +17,7 @@
 		         <th></th>
 		         <th>Quantity</th>
 		         <th></th>
+		         <th></th>
 		      </tr>
 		   </thead>
 		   <tbody>
@@ -28,28 +29,39 @@
 				echo '<td>' . $item['name'] . '</td>';				
 				echo '<td><span style="float:right;">' . money_format($item['price']) . '</span></td>';
 				echo '<td><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></td>';
-				echo '<td><input type="number" name="qty" min="1" max="100" value="' . $item['qty'] . '"></td>';
-				echo '<td><a style="width:50px;" ';
-				echo 'href="#" class="btn btn-danger btn-sm glyphicon glyphicon-trash" value=""></a></td>';			
-				echo '</tr>';
+				echo form_open('orders/update_item/');
+				echo '<td><input id="input_' . $item['id'] . '" type="number" name="qty" min="1" max="100" value="' . $item['qty'] . '"></td>';
+				echo '<td>';
+				echo '<button type=submit name="row_id"
+					class="btn btn-primary btn-sm "
+					value="' . $item['rowid'] . '"> Update</button>';
+				echo '</td>';
+				echo form_close();
+				echo '<td>';
+				echo form_open('orders/remove_item');
+				echo '<button type=submit style="width:50px;" name="row_id"
+					class="btn btn-danger btn-sm glyphicon glyphicon-trash"
+					value="' . $item['rowid'] . '"></button>';
+				echo form_close();
+				echo '</td>';
 				$i++;
 				}
 			?>		      
 		   </tbody>
-		</table>
+		</table>		
 	</div>
 	<div class="panel panel-default">
 		<!-- Default panel contents -->
 		<div class="panel-heading">Order Summary</div>
 		<div class="panel-body">
-    		<table style="width:60%; margin:auto; border-style:none;">
+    		<table class="table-responsive" style="width:60%; margin:auto; border-style:none;".>
     		<thead>
     			<tr></tr>
     			<tr></tr>
     		</thead>
 	    		<tbody>
 		    		<tr>
-		    			<td style="width:50%; text-align:right;">Total number of items:</td>
+		    			<td style="width:50%; text-align:right;">Total items:</td>
 		    			<td style="width:50%; text-align:right;"><?php echo $this->cart->total_items();?></td>
 		    		</tr>
 		    		<tr>
@@ -84,8 +96,14 @@
 		</div>
 		<div class="panel-footer" style="height:50px;">
 			<a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Continue Shopping</a>		
-			<a style="float:right;" class="btn btn-success btn-sm" href="#" value="">Check-out</a>	
-			<span style="float:right; padding-right:15px;"><a class="btn btn-danger btn-sm" href="#" value="">Start-over</a></span>	
+			<a style="float:right;" class="btn btn-success btn-sm" href="<?php echo site_url('orders/load_checkout')?>" value="">Check-out</a>	
+			<span style="float:right; padding-right:15px;"><a class="btn btn-danger btn-sm" href="<?php echo site_url('orders/distroy_cart');?>" value="">Start-over</a></span>	
 		</div>
   	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	$("#cart_view").fadeIn(900);    
+});
+</script>
