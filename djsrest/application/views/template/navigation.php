@@ -30,7 +30,15 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-			  		<a href="<?php echo base_url() ;?>index.php/login">Login <span class="glyphicon glyphicon-log-in"></span></a>
+				<?php 
+					if ($this->Login_model->is_logged_in()) {
+						echo '<a href="' . site_url('login/logout') . '">Logout <span class="glyphicon glyphicon-log-out"></span></a>';
+					} else {
+						echo '<a href="' . site_url('login') . '">Login <span class="glyphicon glyphicon-log-in"></span></a>';
+					}
+				?>
+				
+			  		
 				</li>
 			</ul>
 			

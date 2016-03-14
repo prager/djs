@@ -123,6 +123,11 @@ var $user;
 		}
 	}
 	
+	public function logout() {
+		$this->Login_model->logout();
+		$this->load_login();
+	}
+	
 	public function create_customer_account() {
 		$this->load->model('User_model', '', TRUE);
 		$this->User_model->create_user('4');		
