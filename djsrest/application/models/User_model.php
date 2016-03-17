@@ -31,17 +31,28 @@ class User_model extends CI_Model {
     	return $userAdded && $loginAdded;
     }
     
-    public function get_user_type($username) {
+    public function get_user($username) {    	
     	$this->load->model('login_model');
-    	$userId = $this->login_model->get_user_id($username);
+    	$userId = $this->login_model->get_user_id(strtolower($username));
     	
     	$this->db->where('USER_ID', $userId);
     	$query = $this->db->get('USER_TBL');
-    	if ($query->num_rows() == 1) {
-    		return $query->row()->USER_TYPE_CD;
-    	} else {
-    		return null;
-    	}
-    }
+	    if ($query->num_rows() == 1) {
+				return array(
+						'user_id' => $query->row()->USER_ID,
+						'first_name' => $query->row()->FIRST_NM,
+						'last_name' => $query->row()->LAST_NM,
+						'full_name' => $query->row()->FIRST_NM . ' ' . $query->row()->LAST_NM,
+						'email' => $query->row()->EMAIL_ADDR,
+						'address' => $query->row()->STREET_NUM,
+						'apt_num' => $query->row()->STREET_NM,
+						'state' => $query->row()->STATE_CD,
+						'zip' => $query->row()->ZIP_CD,
+						'user_type' => $query->row()->USER_TYPE_CD
+				);
+			} else {
+				return null;
+			}
+	    }
 }
 ?>
