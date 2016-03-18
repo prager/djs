@@ -22,10 +22,25 @@ class Table_reservation_model extends CI_Model {
     	return $retval;
     }
     
+ /**
+  * Saves the data from table reservations form passed by $data array
+  * and sends email to the manager on duty
+  * @param array $data
+  */
+    
     function set_data($data) {
     	$_SESSION['resdata'] = $data;
+    	$recipient = "";
+ //get the manager on duty from user_tbl   	
+    	$this->db->select('EMAIL_ADDR');
+    	$query = $this->db->get('user_tbl');
+    	$this->db->where('ON_DUTY', 1);
+    	$row = $query->row();    	
+    	if (isset($row)) {
+    		$recipient =  $row->EMAIL_ADDR;
+    		
+    	}
     	
-    	$recipient = 'jkulisek.us@gmail.com';
     	$subject = 'DJs Table Reservation';
     	$message = "The following table reservation was made:\nDate: " . $data['date'] . "\n" . 
       				"Time " . $data['time'] . "\n" .

@@ -225,7 +225,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('RESERVATION_TBL');
+		$crud->set_table('reservation_tbl');
+		//$crud->set_table('RESERVATION_TBL');
 		$crud->set_subject('Reservation');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM, RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
