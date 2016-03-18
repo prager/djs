@@ -33,10 +33,12 @@
 				<?php if ($this->Login_model->is_logged_in()) { ?>	
 							
 				<li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo ucwords($this->session->userdata('full_name'));?><span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		          <?php echo ucwords($this->session->userdata('full_name'));?><span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		          	<li><a href="#">Profile</a></li>
 		          	<li role="separator" class="divider"></li>
+		            <li><?php echo anchor('admin', 'Admin Page'); ?></li>
 		            <li><a href="#">Manage Account</a></li>
 		            <li><a href="#">Manage Orders</a></li>
 		            <li><a href="#">Manage Reservations</a></li>

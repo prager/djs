@@ -22,28 +22,58 @@ class Table_reservation_model extends CI_Model {
     	return $retval;
     }
     
+ /**
+  * Saves the data from table reservations form passed by $data array
+  * and sends email to the manager on duty
+  * @param array $data
+  */
+    
     function set_data($data) {
     	$_SESSION['resdata'] = $data;
+    	$recipient = "";
+ //get the manager on duty from user_tbl   	
+    	$this->db->select('EMAIL_ADDR');
+    	$query = $this->db->get('user_tbl');
+    	$this->db->where('ON_DUTY', 1);
+    	$row = $query->row();    	
+    	if (isset($row)) {
+    		$recipient =  $row->EMAIL_ADDR;
+    		
+    	}
     	
-    	$recipient = 'jkulisek.us@gmail.com';
     	$subject = 'DJs Table Reservation';
-    	$message = "This is the confirmation of your table reservation:\ndate: " . $data['date'] . "\n" . 
+    	$message = "The following table reservation was made:\nDate: " . $data['date'] . "\n" . 
       				"Time " . $data['time'] . "\n" .
       				"First Name: " . $data['fname'] . "\n" .
       				"Last Name: " . $data['lname'] . "\n" .
+      				"Email: " . $data['email'] . "\n" .
       				"Party Size: " . $data['party'] . "\n" .
       				"Phone Number: " . $data['phone'] . "\n";
     	
+    	//date_timezone_set(object,timezone);
+    	//$date=date_create("2013-05-25",timezone_open("Indian/Kerguelen"));
+    	//$date=date_create();
+    	//echo date_timestamp_get($date);
+    	
+    	date_default_timezone_set("America/New_York");
+    	$unixdate = date_timestamp_get(date_create($data['date'], timezone_open("America/New_York")));
+    	$unixres = (intval(substr($data['time'], 0, 2) + 12) * 60 * 60) + (intval(substr($data['time'], 3, 2)) * 60) + strtotime($data['date']);
+    	
+    	//echo "res time: " . date("m/d/Y - h:i a", $unixres);
       	
     	$this->load->helper('email');
     	mail($recipient, $subject, $message);
   		
-  		//$reserv = array(
-  			//'reservation_tm' => $data['time'], 			
-  			
-  		//);
+  		$reserv = array(
+  			'reservation_tm' => $data['time'],
+  			'reservation_dt' => $data['date'], 			
+  			'reservation_unix' => $unixres,
+  			'first_nm' => $data['fname'],
+  			'last_nm' => $data['lname'],
+  			'email' => $data['email'],
+  			'party_size' =>$data['party']);
     	
-    	//$this->db->insert('messages', $ins);
+    	$this->db->insert('RESERVATION_TBL', $reserv);
 
     }
 }

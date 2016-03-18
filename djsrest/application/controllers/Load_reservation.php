@@ -58,6 +58,15 @@ class Load_reservation extends CI_Controller {
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
+		
+		$data['phone'] = $this->phone;
+		$data['email'] = $this->email;
+		$data['fname'] = $this->fname;
+		$data['lname'] = $this->lname;
+		$data['party'] = $this->party;
+		$data['time'] = $this->time;
+		$data['date'] = $this->date;
+		
 		$this->load->view('reservations_view', $data);
 		$this->load->view('template/footer');
 	}

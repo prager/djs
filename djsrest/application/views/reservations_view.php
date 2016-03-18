@@ -9,28 +9,28 @@
         <label class="control-label col-sm-2" for="fname" >First Name:</label>
         <div class="col-sm-10">
         <span style="color: red;"><?php echo form_error('fname'); ?></span>
-          <input type="text" class="form-control" id="FName" placeholder="Enter First Name" id="fname" name="fname">
+          <input type="text" class="form-control" id="FName" placeholder="Enter First Name" id="fname" name="fname" value="<?php echo $fname; ?>">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="LName">Last Name:</label>
         <div class="col-sm-10">
         <span style="color: red;"><?php echo form_error('lname'); ?></span>
-          <input type="text" class="form-control" id="LName" placeholder="Enter Last Name" id="lname" name="lname">
+          <input type="text" class="form-control" id="LName" placeholder="Enter Last Name" id="lname" name="lname" value="<?php echo $lname; ?>">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="email">Email Address:</label>
         <div class="col-sm-10">
         <span style="color: red;"><?php echo form_error('email'); ?></span>
-          <input type="email" class="form-control" id="email" placeholder="Enter Email Address" id="email" name="email"> 
+          <input type="email" class="form-control" id="email" placeholder="Enter Email Address" id="email" name="email" value="<?php echo $email; ?>"> 
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="phone">Phone Number:</label>
         <div class="col-sm-10">
         <span style="color: red;"><?php echo form_error('phone'); ?></span>
-          <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone">
+          <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone" value="<?php echo $phone; ?>">
         </div>
       </div>
        <div class="form-group">
@@ -59,7 +59,7 @@
         <label class="control-label col-sm-2" for="date">Enter Date:</label>
         <div class="col-sm-10">
         <span style="color: red;"><?php echo form_error('date'); ?></span> 
-          <input type="tel" class="form-control" id="date" name="date" placeholder="MM/DD/YYY">
+          <input type="tel" class="form-control" id="date" name="date" placeholder="MM/DD/YYY" value="<?php echo $date; ?>">
         </div>
       </div>
       <div class="form-group">
