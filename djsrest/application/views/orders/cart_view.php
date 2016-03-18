@@ -1,7 +1,7 @@
 <div id="cart_view" style="display: none;" class="col-md-9"><br>
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
-	  <div class="panel-heading">Shopping Cart</div>
+	  <div class="panel-heading"><strong>Shopping Cart</strong></div>
 	  <div class="panel-body">
 	    <a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Continue Shopping</a>		
 		<a style="float:right;" class="btn btn-success btn-sm" href="<?php echo site_url('orders/load_checkout')?>" value="">Check-out</a>		

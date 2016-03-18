@@ -11,8 +11,8 @@ class Orders extends CI_Controller {
 	public function index()
 	{
 		$this->load_menu();
-	}
-	
+	}	
+		
 	public function load_menu() {
 		$this->load->helper('url');
 		$this->load->model('Menu_model');
@@ -50,16 +50,27 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	public function insert_item() {
+	function insert_items(){
 		$this->load->model('Menu_model');
-		$item = $this->Menu_model->get_menu_item($this->input->post('item_id'));
-		$data = array(
-               'id'      => $item['MENU_ID'],
-               'qty'     => 1,
-               'price'   => $item['PRICE'],
-               'name'    => $item['ITEM_NAME']
-		);
-		$this->cart->insert($data);
+		
+		$cartInput = $this->input->post('cartInput');
+		$lines = explode(',', $cartInput);
+		echo sizeOf($lines);
+		foreach ($lines as $line) {
+			if (!empty($line)) {
+				$itemLine = preg_split("/[\s]+/", $line, 2);			
+				$item = $this->Menu_model->get_menu_item($itemLine[0]);
+				
+				$data = array(
+						'id'      => $itemLine[0],
+						'qty'     => $itemLine[1],
+						'price'   => $item['PRICE'],
+						'name'    => $item['ITEM_NAME']
+				);
+				$this->cart->insert($data);	
+			}
+					
+		}
 		$this->load_cart();
 	}
 	
