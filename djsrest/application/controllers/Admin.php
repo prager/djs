@@ -44,8 +44,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();		
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_tbl');
-		//$crud->set_table('USER_TBL');
+		//$crud->set_table('user_tbl');
+		$crud->set_table('USER_TBL');
 		$crud->set_subject('User');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM',  'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
@@ -79,8 +79,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_tbl');
-		//$crud->set_table('USER_TBL');
+		//$crud->set_table('user_tbl');
+		$crud->set_table('USER_TBL');
 		$crud->where('USER_TBL.USER_TYPE_CD', '3');	
 		$crud->or_where('USER_TBL.USER_TYPE_CD', '2');
 		$crud->or_where('USER_TBL.USER_TYPE_CD', '1');
@@ -116,8 +116,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 	
-		$crud->set_table('user_tbl');
-		//$crud->set_table('USER_TBL');
+		//$crud->set_table('user_tbl');
+		$crud->set_table('USER_TBL');
 		$crud->where('USER_TBL.USER_TYPE_CD', '4');
 		$crud->or_where('USER_TBL.USER_TYPE_CD', '5');
 		$crud->set_subject('Customer');
@@ -152,8 +152,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('menu_tbl');
-		//$crud->set_table('MENU_TBL');
+		//$crud->set_table('menu_tbl');
+		$crud->set_table('MENU_TBL');
 		$crud->set_subject('');
 		
 		$crud->field_type('PRICE','integer');
@@ -171,8 +171,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 	
-		$crud->set_table('feedback_tbl');
-		//$crud->set_table('FEEDBACK_TBL');
+		//$crud->set_table('feedback_tbl');
+		$crud->set_table('FEEDBACK_TBL');
 		$crud->set_subject('Feedback');
 		
 		$crud->required_fields('NAME', 'EMAIL', 'FEEDBACK', 'PUBLISH');
@@ -194,8 +194,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('cc_tbl');
-		//$crud->set_table('CC_TBL');
+		//$crud->set_table('cc_tbl');
+		$crud->set_table('CC_TBL');
 		$crud->set_subject('Credit Card');
 		
 		$crud->add_fields('USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD');
@@ -225,8 +225,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('reservation_tbl');
-		//$crud->set_table('RESERVATION_TBL');
+		//$crud->set_table('reservation_tbl');
+		$crud->set_table('RESERVATION_TBL');
 		$crud->set_subject('Reservation');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM, RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
@@ -253,8 +253,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_type_ref');
-		//$crud->set_table('USER_TYPE_REF');
+		//$crud->set_table('user_type_ref');
+		$crud->set_table('USER_TYPE_REF');
 		$crud->set_subject('User-group');
 		
 		$crud->required_fields('USER_TYPE_CD', 'USER_TYPE_DESC');
@@ -272,8 +272,8 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('login');
-		//$crud->set_table('LOGIN');
+		//$crud->set_table('login');
+		$crud->set_table('LOGIN');
 		$crud->set_subject('Login Info');
 		
 		$crud->add_fields('USER_ID', 'USERNAME', 'PWD');
