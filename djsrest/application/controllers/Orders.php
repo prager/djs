@@ -50,6 +50,16 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	public function load_success() {
+		$this->load->helper('url');
+		$data['title'] = 'Take-out';
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
+		$this->load->view('template/leftNavigation');
+		$this->load->view('orders/success_view', $data);
+		$this->load->view('template/footer');
+	}
+	
 	function insert_items(){
 		$this->load->model('Menu_model');
 		
@@ -78,6 +88,10 @@ class Orders extends CI_Controller {
 			}					
 		}
 		$this->load_cart();
+	}
+	
+	public function process_order() {
+		$this->load_success();
 	}
 	
 	function get_row_id($itemId) {

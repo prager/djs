@@ -3,7 +3,7 @@
 	  <!-- Default panel contents -->
 	  <div class="panel-heading"><strong>Shopping Cart</strong></div>
 	  <div class="panel-body">
-	    <a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Continue Shopping</a>		
+	    <a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Back</a>		
 		<a style="float:right;" class="btn btn-success btn-sm" href="<?php echo site_url('orders/load_checkout')?>" value="">Check-out</a>		
 	  </div>
 	
@@ -95,7 +95,7 @@
     		</table>
 		</div>
 		<div class="panel-footer" style="height:50px;">
-			<a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Continue Shopping</a>		
+			<a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Back</a>		
 			<a style="float:right;" class="btn btn-success btn-sm" href="<?php echo site_url('orders/load_checkout')?>" value="">Check-out</a>	
 			<span style="float:right; padding-right:15px;"><a class="btn btn-danger btn-sm" href="<?php echo site_url('orders/distroy_cart');?>" value="">Start-over</a></span>	
 		</div>

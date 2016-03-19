@@ -122,17 +122,18 @@ class Login_model extends CI_Model {
     
     function is_logged_in() {
     	$sess_id = $this->session->userdata('username');
-    	
-    	if(empty($sess_id))
+    	$logged_in = $this->session->userdata('logged_in');
+    	if(isset($sess_id) || isset($logged_in))
     	{
-    		return false;
+    		return $sess_id && $logged_in;
     	
     	}else{
-	    	return true;
+	    	return false;
     	}
     }
     
     function logout() {
+    	$this->session->set_userdata('logged_in', false);
     	$this->session->sess_destroy();
     }
     

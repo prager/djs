@@ -1,6 +1,6 @@
 <div id="page-container" class="col-md-9">
 	<br>
-	<?php echo form_open('orders/payment_validation')?>
+	<?php echo form_open('orders/process_order')?>
 	<div id="pickup_info" style="display: none;"
 		class="panel panel-default">
 		<!-- Default panel contents -->
@@ -39,13 +39,14 @@
 				href="<?php echo site_url('orders/load_cart');?>" 
 				value="">Back to cart
 			</a> 
-			<a 
+			<button 
+				type="submit"
 				style="float: right; width:85px;" 
 				class="btn btn-success btn-sm"
 				id='place_order' 
-				href="#" 
-				value="">Place Order
-			</a>
+				name="method" 
+				value="pickup">Place Order
+			</button>
 			<a 
 				style="float: right; width:85px; display:none;" 
 				class="btn btn-primary btn-sm"
@@ -115,13 +116,27 @@
 			</div>
 		</div>
 		<div class="panel-footer" style="height: 50px;">
-			<a style="float: left;" id="back-pickup"
-				class="btn btn-primary btn-sm" href="#" value="">Back</a> <a
-				style="float: right;" type="submit" class="btn btn-success btn-sm"
-				href="#" value="">Place your order</a> <span
-				style="float: right; padding-right: 15px;"><a
-				class="btn btn-danger btn-sm"
-				href="<?php echo site_url('orders/distroy_cart');?>" value="">Start-over</a></span>
+			<a 
+				style="float: left;" id="back-pickup"
+				class="btn btn-primary btn-sm" 
+				href="#" value="">Back
+			</a> 
+			<button
+				style="float: right;" 
+				type="submit" 
+				class="btn btn-success btn-sm"
+				name="method" 
+				value="pickup">Place your order				
+			</button> 
+			<span style="float: right; padding-right: 15px;">
+				<a
+					class="btn btn-danger btn-sm"
+					type="submit"
+					name="method"
+					href="<?php echo site_url('orders/distroy_cart');?>" 
+					value="cc_payment">Start-over
+				</a>
+			</span>
 		</div>
 	</div>
 	<?php echo form_close()?>

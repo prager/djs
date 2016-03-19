@@ -33,7 +33,7 @@
 							id="remove_btn_<?php echo $item['MENU_ID'];?>" 
 							onclick="removeItem(this.value)"
 			            	style="display:none; float:right; width:45px;" 
-			            	class="btn btn-primary btn-sm glyphicon glyphicon-trash"
+			            	class="btn btn-danger btn-sm glyphicon glyphicon-trash"
 			            	value="<?php echo $item['MENU_ID'];?>">
 						</button>
 					</div>
@@ -47,7 +47,7 @@
 		<div class="panel-footer" style="height:50px;">
 			<ul style="margin: auto;" class="pagination"></ul>
 			<input type="hidden" name="cartInput" class="cart-data" value="" >
-			<button style="float: right;" type="submit" onclick="getCart()" class="btn btn-primary btn-sm btn-success">Check-out</button>			
+			<button style="float: right;" type="submit" onclick="getCart()" class="btn btn-primary btn-sm btn-success">Go to Cart</button>			
 		</div>
 	</div>
 	<?php echo form_close();?>
@@ -93,7 +93,7 @@ function removeItem(itemId) {
 	$(removeButton).css('display', 'none');
 
 	$(addButton).fadeIn();
-
+}
 
 function getCart() {	
 	var data = ""
