@@ -55,23 +55,42 @@ class Orders extends CI_Controller {
 		
 		$cartInput = $this->input->post('cartInput');
 		$lines = explode(',', $cartInput);
-		echo sizeOf($lines);
 		foreach ($lines as $line) {
 			if (!empty($line)) {
 				$itemLine = preg_split("/[\s]+/", $line, 2);			
 				$item = $this->Menu_model->get_menu_item($itemLine[0]);
-				
-				$data = array(
-						'id'      => $itemLine[0],
-						'qty'     => $itemLine[1],
-						'price'   => $item['PRICE'],
-						'name'    => $item['ITEM_NAME']
-				);
-				$this->cart->insert($data);	
-			}
-					
+				$rowId = $this->get_row_id($itemLine[0]);
+				if(empty($rowId)) {
+					$data = array(
+							'id'      => $itemLine[0],
+							'qty'     => $itemLine[1],
+							'price'   => $item['PRICE'],
+							'name'    => $item['ITEM_NAME']
+					);
+					$this->cart->insert($data);
+				} else {
+					$data = array(
+							'rowid' => $rowId,
+							'qty'   => $itemLine[1]
+					);
+					$this->cart->update($data);
+				}
+			}					
 		}
 		$this->load_cart();
+	}
+	
+	function get_row_id($itemId) {
+		$shoppingCart = $this->cart->contents();
+		if (!empty($shoppingCart)) {
+			foreach ($shoppingCart as $item) {
+				if($item['id'] == $itemId) {
+					return $item['rowid'];
+				}
+			}
+		} else {		
+			return null;
+		}
 	}
 	
 	public function remove_item() {

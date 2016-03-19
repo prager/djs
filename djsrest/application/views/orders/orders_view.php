@@ -2,7 +2,8 @@
 <script src="http://listjs.com/no-cdn/list.pagination.js"></script>
 
 <div class="col-md-9"><br>
-	<?php echo form_open('orders/insert_items');?>
+	<?php $attributes = array('novalidate' => 'novalidate')?>
+	<?php echo form_open('orders/insert_items', $attributes);?>
 	<div id="food-menu" class="panel panel-default">
 		<div class="panel-heading"><strong>Select food items</strong></div>
 		<div class="panel-body">
@@ -18,7 +19,7 @@
 						<p><?php echo $item['DESCRIPTION'];?></p>
 					</div>
 					<div class="col-md-3 col-sm-3 col-xs-6">
-						<input data-id="<?php echo $item['MENU_ID'];?>" class="form-control" style="display:none; float:left; height:30px; width:60px;" id="qty_<?php echo $item['MENU_ID'];?>" type="number" name="qty" min="1" max="100" value="1" >
+						<input data-id="<?php echo $item['MENU_ID'];?>" class="form-control" style="display:none; float:left; height:30px; width:60px;" id="qty_<?php echo $item['MENU_ID'];?>" type="number" name="qty_<?php echo $item['MENU_ID'];?>" min="1" max="100" value="1" >
 						<button
 							type="button"
 							id="add_btn_<?php echo $item['MENU_ID'];?>" 
@@ -52,7 +53,7 @@
 	<?php echo form_close();?>
 	<?php 
 	foreach ($this->cart->contents() as $item) {
-		echo '<input type="hidden" class="addedItems" data-qty="' . $item['qty'] . '" value="' . $item['id'] . '">';
+		echo '<div style="display:none" class="addedItems" data-qty="' . $item['qty'] . '" data-id="' . $item['id'] . '"></div>';
 	}
 	?>	
 </div>
@@ -66,7 +67,7 @@ function addItem(itemId) {
 	var qtyInput = "#qty_" + itemId;
 
 	cart[itemId] = 1;
-	$(qtyInput).attr('value','1');
+	$(qtyInput).val('1');
 	$("#panel_" + itemId).removeClass('panel-default');
 	$("#panel_" + itemId).addClass('panel-success');  
 	$(addButton).fadeOut();
@@ -84,8 +85,8 @@ function removeItem(itemId) {
 	$("#panel_" + itemId).removeClass('panel-success');
 	$("#panel_" + itemId).addClass('panel-default');
 
-	delete cart[itemId];
-	$(qtyInput).attr('value','0');
+	cart[itemId] = 0;
+	$(qtyInput).val('0');
 	
 	$(qtyInput).fadeOut();
 	$(removeButton).fadeOut();
@@ -108,7 +109,7 @@ $( "input[type='number']" ).change(function() {
 });
 
 $( ".addedItems" ).each(function() {
-	var itemId = $(this).val();
+	var itemId = $(this).attr('data-id');
 	var addButton = "#add_btn_" + itemId;
 	var removeButton = "#remove_btn_" + itemId;
 	var qtyInput = "#qty_" + itemId;
