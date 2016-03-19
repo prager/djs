@@ -93,7 +93,7 @@ function removeItem(itemId) {
 	$(removeButton).css('display', 'none');
 
 	$(addButton).fadeIn();
-
+}
 
 function getCart() {	
 	var data = ""
