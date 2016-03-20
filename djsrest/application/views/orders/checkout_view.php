@@ -1,6 +1,10 @@
+<script src="<?php echo base_url() ;?>/assets/js/form_validation/additional-methods.js"></script>
+<script src="<?php echo base_url() ;?>/assets/js/form_validation/jquery.validate.js"></script>
+
 <div id="page-container" class="col-md-9">
 	<br>
-	<?php echo form_open('orders/process_order')?>
+	<?php $attributes = array('id' => 'checkout_form')?>
+	<?php echo form_open('orders/process_order', $attributes)?>
 	<div id="pickup_info" style="display: none;"
 		class="panel panel-default">
 		<!-- Default panel contents -->
@@ -9,7 +13,7 @@
 			<div class="form-group">
 				<label for="firstName">Name</label> <span style="color: red;"><?php echo form_error('firstName'); ?></span>
 				<input type="text" value="<?php echo set_value('firstName'); ?>"
-					class="form-control input_long" id="firstName" name="firstName"
+					class="form-control input_long bg-danger" id="firstName" name="firstName"
 					placeholder="First Name">
 			</div>
 			<div class="form-group">
@@ -145,16 +149,38 @@
 <script>
 $(document).ready(function(){
 	$("#pickup_info").fadeIn(900);
-    $("#pickup_next").click(function(){
-    	$("#pickup_info").hide();
-    	$("#billing_info").fadeIn();
-    });
+    
     $("#back-pickup").click(function(){
     	$("#billing_info").hide();
     	$("#pickup_info").fadeIn();
     });
+    $('#checkout_form').validate({ // initialize the plugin
+        rules: {
+            firstName: {
+                required: true
+            },
+            phone: {
+                required: true,
+                digits:true
+            },
+            email: {
+                required: true,
+                email:true
+            }
+        }
+    });
 
-    
+    $('#place_order').click(function() {
+        if ($('#checkout_form').valid()) {
+            alert('form is valid - not submitted');
+        }
+    });
+    $('#pickup_next').click(function() {
+        if ($('#checkout_form').valid()) {
+        	$("#pickup_info").hide();
+        	$("#billing_info").fadeIn();
+        }
+    });    
 });
 
 $('#now_radio').click(function() {	

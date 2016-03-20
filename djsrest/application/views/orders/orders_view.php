@@ -2,7 +2,7 @@
 <script src="http://listjs.com/no-cdn/list.pagination.js"></script>
 
 <div class="col-md-9"><br>
-	<?php $attributes = array('novalidate' => 'novalidate')?>
+	<?php $attributes = array('novalidate' => 'novalidate', 'name' => 'menu_form')?>
 	<?php echo form_open('orders/insert_items', $attributes);?>
 	<div id="food-menu" class="panel panel-default">
 		<div class="panel-heading"><strong>Select food items</strong></div>
@@ -47,7 +47,7 @@
 		<div class="panel-footer" style="height:50px;">
 			<ul style="margin: auto;" class="pagination"></ul>
 			<input type="hidden" name="cartInput" class="cart-data" value="" >
-			<button style="float: right;" type="submit" onclick="getCart()" class="btn btn-primary btn-sm btn-success">Go to Cart</button>			
+			<button style="float: right;" type="submit" onclick="getCart(); return validateForm();" class="btn btn-primary btn-sm btn-success">Go to Cart</button>			
 		</div>
 	</div>
 	<?php echo form_close();?>
@@ -58,6 +58,7 @@
 	?>	
 </div>
 
+<!-- script for shopping cart -->
 <script>
 var cart = new Array();
 
@@ -69,7 +70,8 @@ function addItem(itemId) {
 	cart[itemId] = 1;
 	$(qtyInput).val('1');
 	$("#panel_" + itemId).removeClass('panel-default');
-	$("#panel_" + itemId).addClass('panel-success');  
+	$("#panel_" + itemId).addClass('panel-success');
+	$("#panel_" + itemId).addClass('added');  
 	$(addButton).fadeOut();
 	$(addButton).css('display', 'none');
 
@@ -84,6 +86,7 @@ function removeItem(itemId) {
 
 	$("#panel_" + itemId).removeClass('panel-success');
 	$("#panel_" + itemId).addClass('panel-default');
+	$("#panel_" + itemId).removeClass('added');
 
 	cart[itemId] = 0;
 	$(qtyInput).val('0');
@@ -116,7 +119,8 @@ $( ".addedItems" ).each(function() {
 	var qty = $(this).attr('data-qty');
 
 	$("#panel_" + itemId).removeClass('panel-default');
-	$("#panel_" + itemId).addClass('panel-success');  
+	$("#panel_" + itemId).addClass('panel-success'); 
+	$("#panel_" + itemId).addClass('added'); 
 	$(addButton).fadeOut();
 	$(addButton).css('display', 'none');
 
@@ -126,10 +130,19 @@ $( ".addedItems" ).each(function() {
 	$(qtyInput).fadeIn();
 });
 
+$.fn.exists = function () {
+    return this.length !== 0;
+}
+
+function validateForm() {    
+    if (!($(".added").exists())) {
+        alert("Cart is empty!");
+        return false;
+    }
+}
+
 var monkeyList = new List('food-menu', {
 	  page: 3,
 	  plugins: [ ListPagination({}) ] 
 });
-
-
 </script>
