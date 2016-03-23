@@ -36,12 +36,15 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 		          <?php echo ucwords($this->session->userdata('full_name'));?><span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		          	<li><a href="#">Profile</a></li>
+		          	<li><a href="<?php echo site_url('login/load_profile');?>">Profile</a></li>
 		          	<li role="separator" class="divider"></li>
-		            <li><?php echo anchor('admin', 'Admin Page'); ?></li>
-		            <li><a href="#">Manage Account</a></li>
+		          	<?php if($this->session->userdata('user_type') == 1) {?>
+		            <li><?php echo anchor('admin', 'Site Management'); ?></li>
+		            <?php } else {?>
 		            <li><a href="#">Manage Orders</a></li>
 		            <li><a href="#">Manage Reservations</a></li>
+		            <?php }?>
+		            <li><a href="#">Manage Account</a></li>		            
 		            <li role="separator" class="divider"></li>
 		            <li><a href="<?php echo site_url('login/logout/');?>">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
 		          </ul>

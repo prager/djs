@@ -19,7 +19,7 @@ var $user;
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
-		$this->load->view('login_view');
+		$this->load->view('login/login_view');
 		$this->load->view('template/footer');
 	}	
 	
@@ -30,7 +30,7 @@ var $user;
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
-		$this->load->view('login_view');
+		$this->load->view('login/login_view');
 		$this->load->view('template/footer');
 	}
 	
@@ -39,7 +39,8 @@ var $user;
 		$data['message'] = 'Your account has been created';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('success_view',$data);
+		$this->load->view('template/leftNavigation');
+		$this->load->view('login/success_view',$data);
 		$this->load->view('template/footer');
 	}
 	
@@ -48,7 +49,8 @@ var $user;
 		$data['message'] = "Login Error, try again!";
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('err_view', $data);
+		$this->load->view('template/leftNavigation');
+		$this->load->view('login/err_view', $data);
 		$this->load->view('template/footer');
 	}
 	
@@ -65,6 +67,23 @@ var $user;
 		else {
 			$this->load_login();
 		}
+	}
+	
+	public function load_profile() {
+		$username= $this->session->userdata('username');
+		if (!empty($username)) {
+			$this->load->model('user_model');
+		
+			$data['user'] = $this->user_model->get_user($username);		
+			$data['title'] = 'Profile';
+			$this->load->view('template/header', $data);
+			$this->load->view('template/navigation');
+			$this->load->view('template/leftNavigation');
+			$this->load->view('login/profile_view', $data);
+			$this->load->view('template/footer');
+		} else {
+			redirect('login');
+		}		
 	}
 	
 	public function redirect_view() {
