@@ -116,14 +116,16 @@ class User extends CI_Controller {
 	
 	public function update_login_info() {
 		if ($this->login_info_validation() == TRUE) {
+			$newUsername = strtolower($this->input->post('username'));
 			$loginData = array(
-					'USERNAME' => strtolower($this->input->post('username')),
+					'USERNAME' => $newUsername,
 					'PWD' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
 			);
 	
 				
 			$this->load->model('Login_model');
 			$user_updated= $this->Login_model->update_login($loginData);
+			$this->session->set_userdata('username', $newUsername);
 				
 			if ($user_updated) {
 				$this->load_success();
