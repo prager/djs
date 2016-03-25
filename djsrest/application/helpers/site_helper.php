@@ -168,7 +168,7 @@ function times_dropdown($elementId, $defaultVal) {
 
 	// prints the dropdown
 	$output ='';
-	$output .= '<select id="' . $elementId . '" class="form-control" name="time">';
+	$output .= '<select style="width: 125px;" id="' . $elementId . '" class="form-control" name="time">';
 
 	foreach($times as $abbr => $time){
 		if ($defaultVal == $abbr) {
@@ -214,7 +214,7 @@ function party_dropdown($elementId, $defaultVal) {
 	
 	// prints the dropdown
 	$output ='';
-	$output .= '<select id="' . ($elementId + 1) . '" class="form-control" name="party">';
+	$output .= '<select style="width: 75px;" id="' . ($elementId + 1) . '" class="form-control" name="party">';
 	
 	foreach($party as $abbr => $num){
 		if ($defaultVal == $abbr) {

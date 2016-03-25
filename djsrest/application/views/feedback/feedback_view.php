@@ -1,4 +1,4 @@
-<div class="col-lg-9">
+<div class="col-md-9">
 	<h2>Contact us</h2>
 	<hr>
 	<p>
