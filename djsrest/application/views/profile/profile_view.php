@@ -58,14 +58,19 @@
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
-		    	<label for="role" class="col-md-2 col-sm-2 col-xs-4 control-label">Role</label>
-		    	<div id="role" class="col-lg-10 col-md-10 col-sm-10 col-xs-8">
+		    	<label for="userType" class="col-md-2 col-sm-2 col-xs-4 control-label">User Type</label>
+		    	<div id="userType" class="col-lg-10 col-md-10 col-sm-10 col-xs-8">
 		      		<p  style="padding:0px;" class="form-control-static"><?php echo $user['user_type_string'];?></p>
 		    	</div>
 		  	</div>		  	
 		</div>
-		<div class="panel-footer" style="height:50px;">
-	  		<a style="float:right;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Edit Profile</a>
-	  	</div>
+		<div class="panel-footer" style="height:70px;">
+	  		<div>
+		  		<a style="float:left;" href="<?php echo site_url('user/load_edit_login_info');?>" value="">Update login information</a>	  	
+		  	</div><br>
+		  	<div>
+		  		<a style="float:left;" href="<?php echo site_url('user/load_edit_contact_info');?>" value="">Update contact information</a>	  	
+		  	</div>
+		</div>
 	</div><br>
 </div>

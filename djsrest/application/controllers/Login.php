@@ -69,23 +69,6 @@ var $user;
 		}
 	}
 	
-	public function load_profile() {
-		$username= $this->session->userdata('username');
-		if (!empty($username)) {
-			$this->load->model('user_model');
-		
-			$data['user'] = $this->user_model->get_user($username);		
-			$data['title'] = 'Profile';
-			$this->load->view('template/header', $data);
-			$this->load->view('template/navigation');
-			$this->load->view('template/leftNavigation');
-			$this->load->view('login/profile_view', $data);
-			$this->load->view('template/footer');
-		} else {
-			redirect('login');
-		}		
-	}
-	
 	public function redirect_view() {
 		$userType = $this->session->userdata('user_type');
 		switch ($userType) {

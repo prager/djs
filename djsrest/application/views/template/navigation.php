@@ -36,7 +36,7 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 		          <?php echo ucwords($this->session->userdata('full_name'));?><span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		          	<li><a href="<?php echo site_url('login/load_profile');?>">Profile</a></li>
+		          	<li><a href="<?php echo site_url('user/load_profile');?>">Profile</a></li>
 		          	<li role="separator" class="divider"></li>
 		          	<?php if($this->session->userdata('user_type') == 1) {?>
 		            <li><?php echo anchor('admin', 'Site Management'); ?></li>

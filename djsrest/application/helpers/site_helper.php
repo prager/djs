@@ -9,7 +9,7 @@ function states_dropdown($elementId, $defaultVal) {
 	$output .= '</span>';
 	
 	// prints the dropdown
-	$output .= '<select id="' . $elementId . '" class="form-control" name="state">';
+	$output .= '<select style="width: 200px;" id="' . $elementId . '" class="form-control" name="state">';
 	$output .= '<option value="" disabled selected>Select State</option>';
 	
 	foreach($states as $abbr => $name){
@@ -22,6 +22,35 @@ function states_dropdown($elementId, $defaultVal) {
 	
 	$output .= '</select>';
 	return $output;
+}
+
+function user_types_dropdown($elementId, $defaultVal, $disabled="") {
+	$types = get_user_type_array();
+	// prints the error message
+	$output ='';
+	$output .= '<span style="color: red;">';
+	$output .= form_error('userType');
+	$output .= '</span>';
+
+	// prints the dropdown
+	$output .= '<select ' . $disabled . ' style="width: 200px;" id="' . $elementId . '" class="form-control" name="userType">';
+	$output .= '<option value="" disabled selected>Select User Type</option>';
+
+	foreach($types as $type){
+		if ($defaultVal == $type['USER_TYPE_CD']) {
+			$output .= '<option selected="selected" value="' . $type['USER_TYPE_CD'] . '">' . $type['USER_TYPE_DESC'] . '</option>';
+		} else {
+			$output .= '<option value="' . $type['USER_TYPE_CD'] . '">' . $type['USER_TYPE_DESC'] . '</option>';
+		}
+	}
+
+	$output .= '</select>';
+	return $output;
+}
+
+function get_user_type_array() {
+	$User_model = new User_model;
+	return $User_model->get_user_types();
 }
 
 function get_states_array() {
