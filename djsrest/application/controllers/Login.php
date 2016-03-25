@@ -19,7 +19,7 @@ var $user;
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
-		$this->load->view('login_view');
+		$this->load->view('login/login_view');
 		$this->load->view('template/footer');
 	}	
 	
@@ -30,7 +30,7 @@ var $user;
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
-		$this->load->view('login_view');
+		$this->load->view('login/login_view');
 		$this->load->view('template/footer');
 	}
 	
@@ -39,7 +39,8 @@ var $user;
 		$data['message'] = 'Your account has been created';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('success_view',$data);
+		$this->load->view('template/leftNavigation');
+		$this->load->view('login/success_view',$data);
 		$this->load->view('template/footer');
 	}
 	
@@ -48,7 +49,8 @@ var $user;
 		$data['message'] = "Login Error, try again!";
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
-		$this->load->view('err_view', $data);
+		$this->load->view('template/leftNavigation');
+		$this->load->view('login/err_view', $data);
 		$this->load->view('template/footer');
 	}
 	

@@ -38,21 +38,45 @@ class User_model extends CI_Model {
     	$this->db->where('USER_ID', $userId);
     	$query = $this->db->get('USER_TBL');
 	    if ($query->num_rows() == 1) {
-				return array(
-						'user_id' => $query->row()->USER_ID,
-						'first_name' => $query->row()->FIRST_NM,
-						'last_name' => $query->row()->LAST_NM,
-						'full_name' => $query->row()->FIRST_NM . ' ' . $query->row()->LAST_NM,
-						'email' => $query->row()->EMAIL_ADDR,
-						'address' => $query->row()->STREET_NUM,
-						'apt_num' => $query->row()->STREET_NM,
-						'state' => $query->row()->STATE_CD,
-						'zip' => $query->row()->ZIP_CD,
-						'user_type' => $query->row()->USER_TYPE_CD
-				);
-			} else {
-				return null;
-			}
-	    }
+			return array(
+					'user_id' => $query->row()->USER_ID,
+					'username' => $username,
+					'first_name' => $query->row()->FIRST_NM,
+					'last_name' => $query->row()->LAST_NM,
+					'full_name' => $query->row()->FIRST_NM . ' ' . $query->row()->LAST_NM,
+					'email' => $query->row()->EMAIL_ADDR,
+					'address' => $query->row()->STREET_NUM,
+					'apt_num' => $query->row()->STREET_NM,
+					'state' => $query->row()->STATE_CD,
+					'zip' => $query->row()->ZIP_CD,
+					'user_type' => $query->row()->USER_TYPE_CD,
+					'user_type_string' => $this->get_user_type_string($query->row()->USER_TYPE_CD)
+			);
+		} else {
+			return null;
+		}
+    }
+    
+    public function update_user($data) {
+    	$userId= $this->session->userdata('user_id');
+    	$this->db->where('USER_ID', $userId);
+		return $this->db->update('USER_TBL', $data);
+    }
+    
+    public function get_user_type_string($type_code) {
+    	$this->db->where('USER_TYPE_CD', $type_code);
+    	$query = $this->db->get('USER_TYPE_REF');
+    	
+    	if ($query->num_rows() == 1) {
+    		return $query->row()->USER_TYPE_DESC;
+    	} else {
+    		return null;
+    	}
+    }
+    
+    public function get_user_types() {
+    	$query = $this->db->get('USER_TYPE_REF');
+		return $query->result_array();
+    }
 }
 ?>

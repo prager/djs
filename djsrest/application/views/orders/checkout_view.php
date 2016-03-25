@@ -73,27 +73,28 @@
 		<div class="panel-heading">Billing Information</div>
 		<div class="panel-body">
 			<div class="form-group">
-				<label for="firstName">First Name</label> <span style="color: red;"><?php echo form_error('firstName'); ?></span>
-				<input type="text" value="<?php echo set_value('firstName'); ?>"
-					class="form-control input_long" id="firstName" name="firstName"
+				<label for="bill_firstName">First Name</label> <span style="color: red;"><?php echo form_error('bill_firstName'); ?></span>
+				<input type="text" value="<?php echo set_value('bill_firstName'); ?>"
+					class="form-control input_long" id="bill_firstName" name="bill_firstName"
 					placeholder="First Name">
 			</div>
 			<div class="form-group">
-				<label for="lastName">Last Name</label> <span style="color: red;"><?php echo form_error('lastName'); ?></span>
-				<input type="text" value="<?php echo set_value('lastName'); ?>"
-					class="form-control input_long" id="lastName" name="lastName"
+				<label for="bill_lastName">Last Name</label> <span style="color: red;"><?php echo form_error('bill_lastName'); ?></span>
+				<input type="text" value="<?php echo set_value('bill_lastName'); ?>"
+					class="form-control input_long" id="bill_lastName" name="bill_lastName"
 					placeholder="Last Name">
 			</div>
 			<div class="form-group">
-				<label for="address">Billing Address</label> <span
-					style="color: red;"><?php echo form_error('address'); ?></span> <input
-					type="text" value="<?php echo set_value('address'); ?>"
-					class="form-control input_long" id="address" name="address"
+				<label for="bill_address">Billing Address</label> <span
+					style="color: red;"><?php echo form_error('bill_address'); ?></span> 
+				<input
+					type="text" value="<?php echo set_value('bill_address'); ?>"
+					class="form-control input_long" id="bill_address" name="bill_address"
 					placeholder="address">
 			</div>
 			<div class="form-group">
 				<label for="cardType">Card Type</label> <span style="color: red;"><?php echo form_error('cardType'); ?></span>
-				<select style="width: 150px;" class="form-control">
+				<select id="cardType" name="cardType" style="width: 150px;" class="form-control">
 					<option value="visa">Visa</option>
 					<option value="master">Master</option>
 					<option value="american express">American Experss</option>
@@ -113,9 +114,9 @@
 					placeholder="Security Code">
 			</div>
 			<div class="form-group">
-				<label for="billEmail">Email</label> <span style="color: red;"><?php echo form_error('billEmail'); ?></span>
-				<input type="email" value="<?php echo set_value('billEmail'); ?>"
-					class="form-control input_long" id="billEmail" name="billEmail"
+				<label for="bill_email">Email</label> <span style="color: red;"><?php echo form_error('bill_email'); ?></span>
+				<input type="email" value="<?php echo set_value('bill_email'); ?>"
+					class="form-control input_long" id="bill_email" name="bill_email"
 					placeholder="Email">
 			</div>
 		</div>

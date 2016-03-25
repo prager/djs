@@ -84,6 +84,27 @@ class Login_model extends CI_Model {
     	return $this->db->insert('LOGIN', $loginData);
     }
     
+    function update_login($data) {
+    	$userId= $this->session->userdata('user_id');
+    	$this->db->where('USER_ID', $userId);
+    	return $this->db->update('LOGIN', $data);
+    }
+    
+    function get_login($userId) {
+    	$this->db->where('USER_ID', $userId);
+    	$query = $this->db->get('LOGIN');
+    	if ($query->num_rows() == 1) {
+    		$data = array(
+    			'username' => $query->row()->USERNAME,
+    			'user_id' => $query->row()->USER_ID,
+    			'password' => $query->row()->PWD
+    		);
+    		return $data;    	
+    	} else {
+    		return null;
+    	}
+    }
+    
     function get_user_Id($username) {
     	$this->db->where('username', $username);
     	$query = $this->db->get('LOGIN');
@@ -106,7 +127,7 @@ class Login_model extends CI_Model {
     	$user_type_string = $query->row()->USER_TYPE_DESC;
     		
     	$data = array(
-    			'user_id' => $user_id,
+    			'user_id' => $user['user_id'],
 				'username'  => $username,
 				'email'     => $user['email'],
     			'first_name' => $user['first_name'],
