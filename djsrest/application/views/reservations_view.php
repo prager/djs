@@ -29,7 +29,7 @@
         <div class="form-group">
         	<label class="control-label" for="date">Enter Date:</label>
         	<span style="color: red;"><?php echo form_error('date'); ?></span> 
-          	<input style="width: 150px;" type="tel" class="form-control" id="date" name="date" placeholder="MM/DD/YYY" value="<?php echo $date; ?>">
+          	<input style="width: 125px;" type="tel" class="form-control" id="date" name="date" placeholder="MM/DD/YYY" value="<?php echo $date; ?>">
       	</div>
       	<div class="form-group">
 			<label class="control-label" for="time_dropdown">Select Time</label>

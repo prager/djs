@@ -48,6 +48,48 @@ function user_types_dropdown($elementId, $defaultVal, $disabled="") {
 	return $output;
 }
 
+function times_dropdown($elementId, $defaultVal) {
+	$times = get_times_array();
+
+	// prints the dropdown
+	$output ='';
+	$output .= '<select style="width: 125px;" id="' . $elementId . '" class="form-control" name="time">';
+
+	foreach($times as $abbr => $time){
+		if ($defaultVal == $abbr) {
+			$output .= '<option selected="selected" value="' . $abbr . '">' . $time . '</option>';
+		} else {
+			$output .= '<option value="' . $abbr . '">' . $time . '</option>';
+		}
+	}
+
+	$output .= '</select>';
+	return $output;
+}
+
+function party_dropdown($elementId, $defaultVal) {
+	$party = get_party_array();
+	
+	// prints the dropdown
+	$output ='';
+	$output .= '<select style="width: 75px;" id="' . ($elementId + 1) . '" class="form-control" name="party">';
+	
+	foreach($party as $abbr => $num){
+		if ($defaultVal == $abbr) {
+			$output .= '<option selected="selected" value="' . $abbr . '">' . $num  . '</option>';
+		} else {
+			$output .= '<option value="' . $abbr . '">' . $num  . '</option>';
+		}
+	}
+	
+	$output .= '</select>';
+	return $output;
+}
+
+function money_format($val) {
+	return '$' . number_format($val, 2, '.', '');
+}
+
 function get_user_type_array() {
 	$User_model = new User_model;
 	return $User_model->get_user_types();
@@ -55,67 +97,67 @@ function get_user_type_array() {
 
 function get_states_array() {
 	$states = array(
-					"AL" => "Alabama",
-					"AK" => "Alaska",
-					"AZ" => "Arizona",
-					"AR" => "Arkansas",
-					"CA" => "California",
-					"CO" => "Colorado",
-					"CT" => "Connecticut",
-					"DE" => "Delaware",
-					"FL" => "Florida",
-					"GA" => "Georgia",
-					"HI" => "Hawaii",
-					"ID" => "Idaho",
-					"IL" => "Illinois",
-					"IN" => "Indiana",
-					"IA" => "Iowa",
-					"KS" => "Kansas",
-					"KY" => "Kentucky",
-					"LA" => "Louisiana",
-					"ME" => "Maine",
-					"MD" => "Maryland",
-					"MA" => "Massachusetts",
-					"MI" => "Michigan",
-					"MN" => "Minnesota",
-					"MS" => "Mississippi",
-					"MO" => "Missouri",
-					"MT" => "Montana",
-					"NE" => "Nebraska",
-					"NV" => "Nevada",
-					"NH" => "New Hampshire",
-					"NJ" => "New Jersey",
-					"NM" => "New Mexico",
-					"NY" => "New York",
-					"NC" => "North Carolina",
-					"ND" => "North Dakota",
-					"OH" => "Ohio",
-					"OK" => "Oklahoma",
-					"OR" => "Oregon",
-					"PA" => "Pennsylvania",
-					"RI" => "Rhode Island",
-					"SC" => "South Carolina",
-					"SD" => "South Dakota",
-					"TN" => "Tennessee",
-					"TX" => "Texas",
-					"UT" => "Utah",
-					"VT" => "Vermont",
-					"VA" => "Virginia",
-					"WA" => "Washington",
-					"WV" => "West Virginia",
-					"WI" => "Wisconsin",
-					"WY" => "Wyoming",
-					"AS" => "American Samoa",
-					"DC" => "District of Columbia",
-					"FM" => "Federated States of Micronesia",
-					"GU" => "Guam",
-					"MH" => "Marshall Islands",
-					"MP" => "Northern Mariana Islands",
-					"PW" => "Palau",
-					"PR" => "Puerto Rico",
-					"VI" => "Virgin Islands"
+			"AL" => "Alabama",
+			"AK" => "Alaska",
+			"AZ" => "Arizona",
+			"AR" => "Arkansas",
+			"CA" => "California",
+			"CO" => "Colorado",
+			"CT" => "Connecticut",
+			"DE" => "Delaware",
+			"FL" => "Florida",
+			"GA" => "Georgia",
+			"HI" => "Hawaii",
+			"ID" => "Idaho",
+			"IL" => "Illinois",
+			"IN" => "Indiana",
+			"IA" => "Iowa",
+			"KS" => "Kansas",
+			"KY" => "Kentucky",
+			"LA" => "Louisiana",
+			"ME" => "Maine",
+			"MD" => "Maryland",
+			"MA" => "Massachusetts",
+			"MI" => "Michigan",
+			"MN" => "Minnesota",
+			"MS" => "Mississippi",
+			"MO" => "Missouri",
+			"MT" => "Montana",
+			"NE" => "Nebraska",
+			"NV" => "Nevada",
+			"NH" => "New Hampshire",
+			"NJ" => "New Jersey",
+			"NM" => "New Mexico",
+			"NY" => "New York",
+			"NC" => "North Carolina",
+			"ND" => "North Dakota",
+			"OH" => "Ohio",
+			"OK" => "Oklahoma",
+			"OR" => "Oregon",
+			"PA" => "Pennsylvania",
+			"RI" => "Rhode Island",
+			"SC" => "South Carolina",
+			"SD" => "South Dakota",
+			"TN" => "Tennessee",
+			"TX" => "Texas",
+			"UT" => "Utah",
+			"VT" => "Vermont",
+			"VA" => "Virginia",
+			"WA" => "Washington",
+			"WV" => "West Virginia",
+			"WI" => "Wisconsin",
+			"WY" => "Wyoming",
+			"AS" => "American Samoa",
+			"DC" => "District of Columbia",
+			"FM" => "Federated States of Micronesia",
+			"GU" => "Guam",
+			"MH" => "Marshall Islands",
+			"MP" => "Northern Mariana Islands",
+			"PW" => "Palau",
+			"PR" => "Puerto Rico",
+			"VI" => "Virgin Islands"
 	);
-	
+
 	return $states;
 }
 
@@ -163,27 +205,8 @@ function get_times_array() {
 
 }
 
-function times_dropdown($elementId, $defaultVal) {
-	$times = get_times_array();
-
-	// prints the dropdown
-	$output ='';
-	$output .= '<select style="width: 125px;" id="' . $elementId . '" class="form-control" name="time">';
-
-	foreach($times as $abbr => $time){
-		if ($defaultVal == $abbr) {
-			$output .= '<option selected="selected" value="' . $abbr . '">' . $time . '</option>';
-		} else {
-			$output .= '<option value="' . $abbr . '">' . $time . '</option>';
-		}
-	}
-
-	$output .= '</select>';
-	return $output;
-}
-
 function get_party_array() {
-	
+
 	$party = array (
 			"1" => 1,
 			"2" => 2,
@@ -205,29 +228,6 @@ function get_party_array() {
 			"18" => 18,
 			"19" => 19,
 			"20" => 20);
-	
+
 	return $party;
-}
-
-function party_dropdown($elementId, $defaultVal) {
-	$party = get_party_array();
-	
-	// prints the dropdown
-	$output ='';
-	$output .= '<select style="width: 75px;" id="' . ($elementId + 1) . '" class="form-control" name="party">';
-	
-	foreach($party as $abbr => $num){
-		if ($defaultVal == $abbr) {
-			$output .= '<option selected="selected" value="' . $abbr . '">' . $num  . '</option>';
-		} else {
-			$output .= '<option value="' . $abbr . '">' . $num  . '</option>';
-		}
-	}
-	
-	$output .= '</select>';
-	return $output;
-}
-
-function money_format($val) {
-	return '$' . number_format($val, 2, '.', '');
 }
