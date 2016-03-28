@@ -228,6 +228,7 @@ function party_dropdown($elementId, $defaultVal) {
 	return $output;
 }
 
-function money_format($val) {
-	return '$' . number_format($val, 2, '.', '');
-}
+//function money_format($val) {
+	//return '$' . number_format($val, 2, '.', '');
+	//return  $val;
+//}

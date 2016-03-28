@@ -26,8 +26,9 @@
 				foreach ($cart as $item) {
 				echo '<tr>';
 				echo '<th scope="row">' . $i . '</th>';
-				echo '<td>' . $item['name'] . '</td>';				
-				echo '<td><span style="float:right;">' . money_format($item['price']) . '</span></td>';
+				echo '<td>' . $item['name'] . '</td>';	
+				echo '<td><span style="float:right;">' . $item['price'] . '</span></td>';
+				//echo '<td><span style="float:right;">' . money_format($item['price']) . '</span></td>';
 				echo '<td><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></td>';
 				echo form_open('orders/update_item/');
 				echo '<td><input id="input_' . $item['id'] . '" type="number" name="qty" min="1" max="100" value="' . $item['qty'] . '"></td>';
@@ -66,7 +67,8 @@
 		    		</tr>
 		    		<tr>
 		    			<td style="width:50%; text-align:right;">Total:</td>
-		    			<td style="width:50%; text-align:right;"><?php echo money_format($this->cart->total());?></td>
+		    			<td style="width:50%; text-align:right;"><?php echo $this->cart->total();?></td>
+		    			//<td style="width:50%; text-align:right;"><?php echo money_format($this->cart->total());?></td>
 		    		</tr>
 		    		<tr>
 		    			<td style="width:50%; text-align:right;">Tax rate:</td>
@@ -82,14 +84,17 @@
 		    			<td style="width:50%; text-align:right;">
 						<?php 
 						$tax = $this->cart->total() * $rate / 100;
-						echo money_format($tax);
+						echo $tax;
+						//echo money_format($tax);
 						?>
 						</td>
 		    		</tr> 
 		    		<tr><td><hr></td><td><hr></td></tr>
 		    		<tr>
 		    			<td style="width:50%; text-align:right;"><strong>Amount due:</strong></td>
-		    			<td style="width:50%; text-align:right;"><strong><u><?php echo money_format($tax + $this->cart->total());?></u></strong></td>
+		    			<td style="width:50%; text-align:right;"><strong><u><?php 
+		    			echo $tax + $this->cart->total();
+		    			//echo money_format($tax + $this->cart->total());?></u></strong></td>
 		    		</tr>   		
 	    		</tbody>
     		</table>
