@@ -1,5 +1,5 @@
 <div class="col-lg-9">
-	<h1>Menu</h1>
+	<h2>Menu</h2>
 	<hr>
 	<?php 
 		foreach ($menu as $item) {

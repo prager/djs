@@ -33,8 +33,8 @@
 					<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
 					<label for="remember"> Remember Me</label>
 				</div>	
-			  	<button type="submit" class="btn btn-default">Login</button>		  	
-			<?php echo form_close(); ?><br>      
+			  	<button type="submit" class="btn btn-primary btn-sm" >Login</button>		  	
+			<?php echo form_close(); ?>     
       </div>
     </div>
   </div>
@@ -125,8 +125,8 @@
 				<!-- right side ends -->
 				
 			</div>	
-		  	<button type="submit" class="btn btn-default">Sign up</button>		  	
-		<?php echo form_close(); ?><br>      
+		  	<button type="submit" class="btn btn-primary btn-sm">Sign up</button>		  	
+		<?php echo form_close(); ?>     
       </div>
     </div>
   </div>  

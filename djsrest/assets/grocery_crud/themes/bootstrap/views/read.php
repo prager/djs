@@ -16,7 +16,7 @@ if ($this->config->environment == 'production') {
 }
 ?>
 <div class="crud-form" data-unique-hash="<?php echo $unique_hash; ?>">
-    <div class="container gc-container">
+    <div class="container-fluid gc-container">
         <div class="row">
             <div class="col-md-12">
                 <div class="table-label">

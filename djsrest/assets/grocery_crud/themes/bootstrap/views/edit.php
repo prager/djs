@@ -21,7 +21,7 @@
 	$this->set_js_lib($this->default_javascript_path.'/jquery_plugins/config/jquery.noty.config.js');
 ?>
 <div class="crud-form" data-unique-hash="<?php echo $unique_hash; ?>">
-    <div class="container gc-container">
+    <div class="container-fluid gc-container">
         <div class="row">
             <div class="col-md-12">
                 <div class="table-label">

@@ -1,7 +1,9 @@
 <div id="cart_view" style="display: none;" class="col-md-9"><br>
+	<h2>Review Order</h2>
+	<hr>
 	<div class="panel panel-default">
 	  <!-- Default panel contents -->
-	  <div class="panel-heading"><strong>Shopping Cart</strong></div>
+	  <div class="panel-heading">Please review your items before checkout</div>
 	  <div class="panel-body">
 	    <a style="float:left;" class="btn btn-primary btn-sm" href="<?php echo site_url('orders/');?>" value="">Back</a>		
 		<a style="float:right;" class="btn btn-success btn-sm" href="<?php echo site_url('orders/load_checkout')?>" value="">Check-out</a>		

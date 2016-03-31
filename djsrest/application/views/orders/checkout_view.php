@@ -1,8 +1,9 @@
 <script src="<?php echo base_url() ;?>/assets/js/form_validation/additional-methods.js"></script>
 <script src="<?php echo base_url() ;?>/assets/js/form_validation/jquery.validate.js"></script>
 
-<div id="page-container" class="col-md-9">
-	<br>
+<div id="page-container" class="col-md-9"><br>
+	<h2>Checkout</h2>
+	<hr>
 	<?php $attributes = array('id' => 'checkout_form')?>
 	<?php echo form_open('orders/process_order', $attributes)?>
 	<div id="pickup_info" style="display: none;"

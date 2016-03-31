@@ -52,31 +52,30 @@
             <ul class="nav navbar-nav">
               
               <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="<?php echo base_url() ;?>/assets/admin/img/user.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Administrator</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- User image -->
-                  <li class="user-header">
-                    <img src="<?php echo base_url() ;?>/assets/admin/img/user.png" class="img-circle" alt="User Image">
-                    <p>
-                      Administrator
-                      <small>COMP 394</small>
-                    </p>
-                  </li>
-                 <!-- Menu Footer-->
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
+              <ul id="login_dropdown" class="nav navbar-nav navbar-right" style="padding-right: 15px;">       
+				
+				<?php if ($this->Login_model->is_logged_in()) { ?>								
+					<li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			          <?php echo ucwords($this->session->userdata('full_name'));?><span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			          	<li><a href="<?php echo site_url('user/load_profile');?>">Profile</a></li>
+			          	<li role="separator" class="divider"></li>
+			          	<?php if($this->session->userdata('user_type') == 1) {?>
+			            <li><?php echo anchor('admin', 'Site Management'); ?></li>
+			            <?php } else {?>
+			            <li><a href="#">Manage Orders</a></li>
+			            <li><a href="#">Manage Reservations</a></li>
+			            <?php }?>
+			            <li><a href="#">Manage Account</a></li>		            
+			            <li role="separator" class="divider"></li>
+			            <li><a href="<?php echo site_url('login/logout/');?>">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+			          </ul>
+			        </li>				
+				<?php } else { ?>	
+					<li><a href="<?php echo site_url('login'); ?>">Login <span class="glyphicon glyphicon-log-in"></span></a></li>
+				<?php }	?>				
+			</ul>
               <!-- Control Sidebar Toggle Button -->              
             </ul>
           </div>
@@ -106,7 +105,8 @@
             <li><a href="<?php echo site_url('home')?>"><i class="glyphicon glyphicon-globe"></i> <span>Home </span></a></li>
             <li><a href="<?php echo site_url('reservations')?>"><i class="glyphicon glyphicon-globe"></i> <span>Reservations </span></a></li>
             <li><a href="<?php echo site_url('menu')?>"><i class="glyphicon glyphicon-globe"></i> <span>Menu </span></a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-globe"></i> <span>Contact us </span></a></li>
+            <li><a href="<?php echo site_url('Orders')?>"><i class="glyphicon glyphicon-globe"></i> <span>Take-out </span></a></li>
+            <li><a href="<?php echo site_url('feedback')?>"><i class="glyphicon glyphicon-globe"></i> <span>Contact us </span></a></li>
             
             <li class="header">Admin Navigation</li>
             <li class="treeview">

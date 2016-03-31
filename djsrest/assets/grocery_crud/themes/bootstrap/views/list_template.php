@@ -74,7 +74,7 @@
 
 </script>
     <br/>
-    <div class="container gc-container">
+    <div class="container-fluid gc-container">
         <div class="success-message hidden"><?php
         if($success_message !== null){?>
            <?php echo $success_message; ?> &nbsp; &nbsp;
@@ -82,12 +82,13 @@
         ?></div>
 
  		<div class="row">
+ 		<div class="col-md-12">
         	<div class="table-section">
                 <div class="table-label">
                     <div class="floatL l5">
                         <?php echo $subject_plural; ?>
                     </div>  
-<!-- Disabled minimise/ maximise feature: edited by Sajith  -->                                    
+<!-- Disabled minimize/ maximize feature: edited by Sajith  -->                                    
 <!--                     <div class="floatR r5 minimize-maximize-container minimize-maximize"> -->
 <!--                         <i class="fa fa-caret-up"></i> -->
 <!--                     </div> -->
@@ -131,6 +132,7 @@
                             </div>
                             <div class="clear"></div>
                         </div>
+                        <div class="table-responsive">
         			    <table class="table table-bordered grocery-crud-table table-hover">
         					<thead>
         						<tr>
@@ -177,7 +179,7 @@
         					<tbody>
                                 <?php include(__DIR__."/list_tbody.php"); ?>
         					</tbody>
-                            </table>
+                            </table></div>
                             <!-- Table Footer -->
         					<div class="footer-tools">
 
@@ -263,7 +265,7 @@
                     <?php echo form_close(); ?>
                 </div>
         	</div>
-
+			</div>
             <!-- Delete confirmation dialog -->
             <div class="delete-confirmation modal fade">
                 <div class="modal-dialog">

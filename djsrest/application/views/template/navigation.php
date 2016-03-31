@@ -30,27 +30,24 @@
 			</ul>
 			<ul id="login_dropdown" class="nav navbar-nav navbar-right">       
 				
-				<?php if ($this->Login_model->is_logged_in()) { ?>	
-							
-				<li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		          <?php echo ucwords($this->session->userdata('full_name'));?><span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		          	<li><a href="<?php echo site_url('user/load_profile');?>">Profile</a></li>
-		          	<li role="separator" class="divider"></li>
-		          	<?php if($this->session->userdata('user_type') == 1) {?>
-		            <li><?php echo anchor('admin', 'Site Management'); ?></li>
-		            <?php } else {?>
-		            <li><a href="#">Manage Orders</a></li>
-		            <li><a href="#">Manage Reservations</a></li>
-		            <?php }?>
-		            <li><a href="#">Manage Account</a></li>		            
-		            <li role="separator" class="divider"></li>
-		            <li><a href="<?php echo site_url('login/logout/');?>">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
-		          </ul>
-		        </li>
-				
-				
+				<?php if ($this->Login_model->is_logged_in()) { ?>								
+					<li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			          <?php echo ucwords($this->session->userdata('full_name'));?><span class="caret"></span></a>
+			          <ul class="dropdown-menu">
+			          	<li><a href="<?php echo site_url('user/load_profile');?>">Profile</a></li>
+			          	<li role="separator" class="divider"></li>
+			          	<?php if($this->session->userdata('user_type') == 1) {?>
+			            <li><?php echo anchor('admin', 'Site Management'); ?></li>
+			            <?php } else {?>
+			            <li><a href="#">Manage Orders</a></li>
+			            <li><a href="#">Manage Reservations</a></li>
+			            <?php }?>
+			            <li><a href="#">Manage Account</a></li>		            
+			            <li role="separator" class="divider"></li>
+			            <li><a href="<?php echo site_url('login/logout/');?>">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+			          </ul>
+			        </li>				
 				<?php } else { ?>	
 					<li><a href="<?php echo site_url('login'); ?>">Login <span class="glyphicon glyphicon-log-in"></span></a></li>
 				<?php }	?>				

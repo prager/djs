@@ -2,10 +2,14 @@
 <script src="http://listjs.com/no-cdn/list.pagination.js"></script>
 
 <div class="col-md-9"><br>
+	<h2>Take-out</h2>
+	<hr>
+	
 	<?php $attributes = array('novalidate' => 'novalidate', 'name' => 'menu_form')?>
+	
 	<?php echo form_open('orders/insert_items', $attributes);?>
 	<div id="food-menu" class="panel panel-default">
-		<div class="panel-heading"><strong>Select food items</strong></div>
+		<div class="panel-heading">Please select the food items you like</div>
 		<div class="panel-body">
 		<ul class="list" style="list-style: none; padding-left: 0px;">
 			<?php foreach ($menu as $item) {?>
@@ -142,7 +146,7 @@ function validateForm() {
 }
 
 var monkeyList = new List('food-menu', {
-	  page: 3,
+	  page: 5,
 	  plugins: [ ListPagination({}) ] 
 });
 </script>

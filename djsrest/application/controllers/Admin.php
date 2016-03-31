@@ -4,21 +4,21 @@ class Admin extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$logged_in = $this->Login_model->is_logged_in();
-		$allowed = $this->Login_model->can_access('1');
+// 		$logged_in = $this->Login_model->is_logged_in();
+// 		$allowed = $this->Login_model->can_access('1');
 		
-		if (!$logged_in) {
- 			redirect('login');
-		}
+// 		if (!$logged_in) {
+//  			redirect('login');
+// 		}
 		
-		if (!$allowed) {
-			$data['title'] = 'Access Denied!';
-			$this->load->view('template/header', $data);
-			$this->load->view('template/navigation');
-			$this->load->view('template/leftNavigation');
-			$this->load->view('admin/access_denied_view');
-			$this->load->view('template/footer');
-		}		
+// 		if (!$allowed) {
+// 			$data['title'] = 'Access Denied!';
+// 			$this->load->view('template/header', $data);
+// 			$this->load->view('template/navigation');
+// 			$this->load->view('template/leftNavigation');
+// 			$this->load->view('admin/access_denied_view');
+// 			$this->load->view('template/footer');
+// 		}		
 
 		$this->load->database();
 		$this->load->helper('url');
@@ -29,23 +29,21 @@ class Admin extends CI_Controller {
 	public function render_output($page_title, $view_path, $output = null) {
 		// i have disabled template stuff just to simplify the page
  		$data['title'] = $page_title;
-// 		$this->load->view('template/header', $data);
-// 		$this->load->view('template/navigation');
-// 		$this->load->view('template/leftNavigation');
+		$this->load->view('admin/admin_header', $data);
 		$this->load->view($view_path,$output);
-// 		$this->load->view('template/footer');
+		$this->load->view('admin/admin_footer');
 	}
 
 	public function index() {
-		$this->render_output('Administrator', 'admin/admin_view', (object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
+		//$this->render_output('Administrator', 'admin/admin_view', (object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
+		$this->user_management();
 	}
 
 	public function user_management() {
 		$crud = new grocery_CRUD();		
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_tbl');
-		//$crud->set_table('USER_TBL');
+		$crud->set_table('USER_TBL');
 		$crud->set_subject('User');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM',  'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
@@ -79,8 +77,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_tbl');
-		//$crud->set_table('USER_TBL');
+		$crud->set_table('USER_TBL');
 		$crud->where('USER_TBL.USER_TYPE_CD', '3');	
 		$crud->or_where('USER_TBL.USER_TYPE_CD', '2');
 		$crud->or_where('USER_TBL.USER_TYPE_CD', '1');
@@ -116,8 +113,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 	
-		$crud->set_table('user_tbl');
-		//$crud->set_table('USER_TBL');
+		$crud->set_table('USER_TBL');
 		$crud->where('USER_TBL.USER_TYPE_CD', '4');
 		$crud->or_where('USER_TBL.USER_TYPE_CD', '5');
 		$crud->set_subject('Customer');
@@ -152,8 +148,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('menu_tbl');
-		//$crud->set_table('MENU_TBL');
+		$crud->set_table('MENU_TBL');
 		$crud->set_subject('');
 		
 		$crud->field_type('PRICE','integer');
@@ -171,8 +166,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 	
-		$crud->set_table('feedback_tbl');
-		//$crud->set_table('FEEDBACK_TBL');
+		$crud->set_table('FEEDBACK_TBL');
 		$crud->set_subject('Feedback');
 		
 		$crud->required_fields('NAME', 'EMAIL', 'FEEDBACK', 'PUBLISH');
@@ -181,7 +175,7 @@ class Admin extends CI_Controller {
 		->display_as('NAME','Sender')
 		->display_as('EMAIL_ADDR','Email')
 		->display_as('FEEDBACK','Feedback')
-		->display_as('PUBLISH','Publish');
+		->display_as('PUBLISH','Published');
 		
  		$crud->field_type('PUBLISH', 'enum', array('Yes', 'No'));
  		$crud->field_type('FEEDBACK', 'textbox');
@@ -194,8 +188,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('cc_tbl');
-		//$crud->set_table('CC_TBL');
+		$crud->set_table('CC_TBL');
 		$crud->set_subject('Credit Card');
 		
 		$crud->add_fields('USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD');
@@ -225,8 +218,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('reservation_tbl');
-		//$crud->set_table('RESERVATION_TBL');
+		$crud->set_table('RESERVATION_TBL');
 		$crud->set_subject('Reservation');
 		
 		$crud->add_fields('FIRST_NM', 'LAST_NM, RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
@@ -253,8 +245,7 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('user_type_ref');
-		//$crud->set_table('USER_TYPE_REF');
+		$crud->set_table('USER_TYPE_REF');
 		$crud->set_subject('User-group');
 		
 		$crud->required_fields('USER_TYPE_CD', 'USER_TYPE_DESC');
@@ -271,9 +262,8 @@ class Admin extends CI_Controller {
 	public function login_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
-		
-		$crud->set_table('login');
-		//$crud->set_table('LOGIN');
+									
+		$crud->set_table('LOGIN');
 		$crud->set_subject('Login Info');
 		
 		$crud->add_fields('USER_ID', 'USERNAME', 'PWD');

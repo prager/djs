@@ -1,5 +1,9 @@
 body {
-	padding-top:50px;
+	
+}
+
+img#brand {
+    padding-top: 100px;
 }
 
 ul.dropdown-menu {
@@ -28,7 +32,7 @@ ul.dropdown-menu {
 
 #masthead {
 	background: url(../img/header.jpg) no-repeat top center;
-	min-height:270px;
+	min-height:315px;
 	background-color:#000000;
   	color:#000000;
 }
