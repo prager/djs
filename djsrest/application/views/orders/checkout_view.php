@@ -1,5 +1,11 @@
+<!-- Validation scripts -->
 <script src="<?php echo base_url() ;?>/assets/js/form_validation/additional-methods.js"></script>
 <script src="<?php echo base_url() ;?>/assets/js/form_validation/jquery.validate.js"></script>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+ 
 
 <div id="page-container" class="col-md-9"><br>
 	<h2>Checkout</h2>
@@ -86,12 +92,32 @@
 					placeholder="Last Name">
 			</div>
 			<div class="form-group">
-				<label for="bill_address">Billing Address</label> <span
-					style="color: red;"><?php echo form_error('bill_address'); ?></span> 
+				<label for="address">Billing Address</label> <span
+					style="color: red;"><?php echo form_error('address'); ?></span> 
 				<input
-					type="text" value="<?php echo set_value('bill_address'); ?>"
-					class="form-control input_long" id="bill_address" name="bill_address"
-					placeholder="address">
+					type="text" value="<?php echo set_value('address'); ?>"
+					class="form-control input_long" id="address" name="address"
+					placeholder="Address">
+			</div>
+			<div class="form-group">
+				<label for="apt_num">Apt #</label> <span
+					style="color: red;"><?php echo form_error('apt_num'); ?></span> 
+				<input
+					type="text" value="<?php echo set_value('apt_num'); ?>"
+					class="form-control input_long" id="apt_num" name="apt_num"
+					placeholder="Apt #">
+			</div>
+			<div class="form-group">
+				  		<label for="state_dropdown">State</label>
+					  	<?php echo states_dropdown('state_dropdown', set_value('state')); ?>
+				    </div>
+			<div class="form-group">
+				<label for="zip">Zip</label> <span
+					style="color: red;"><?php echo form_error('zip'); ?></span> 
+				<input
+					type="text" value="<?php echo set_value('zip'); ?>"
+					class="form-control input_long" id="zip" name="zip"
+					placeholder="Zip code">
 			</div>
 			<div class="form-group">
 				<label for="cardType">Card Type</label> <span style="color: red;"><?php echo form_error('cardType'); ?></span>
@@ -115,6 +141,11 @@
 					placeholder="Security Code">
 			</div>
 			<div class="form-group">
+				<label for="expDate">Expire Date</label> <span style="color: red;"><?php echo form_error('expDate'); ?></span>
+				<span style="color: red;"><?php echo form_error('expDate'); ?></span> 
+          		<input style="width: 125px;" type="tel" class="form-control" id="expDate" name="expDate" placeholder="MM/DD/YYY" value="<?php echo form_error('expDate'); ?>">
+      		</div>
+			<div class="form-group">
 				<label for="bill_email">Email</label> <span style="color: red;"><?php echo form_error('bill_email'); ?></span>
 				<input type="email" value="<?php echo set_value('bill_email'); ?>"
 					class="form-control input_long" id="bill_email" name="bill_email"
@@ -124,23 +155,19 @@
 		<div class="panel-footer" style="height: 50px;">
 			<a 
 				style="float: left;" id="back-pickup"
-				class="btn btn-primary btn-sm" 
-				href="#" value="">Back
+				class="btn btn-primary btn-sm">Back
 			</a> 
 			<button
 				style="float: right;" 
 				type="submit" 
 				class="btn btn-success btn-sm"
 				name="method" 
-				value="pickup">Place your order				
+				value="cc_payment">Place your order				
 			</button> 
 			<span style="float: right; padding-right: 15px;">
 				<a
 					class="btn btn-danger btn-sm"
-					type="submit"
-					name="method"
-					href="<?php echo site_url('orders/distroy_cart');?>" 
-					value="cc_payment">Start-over
+					href="<?php echo site_url('orders/distroy_cart');?>">Start-over
 				</a>
 			</span>
 		</div>
@@ -181,12 +208,22 @@ $(document).ready(function(){
 });
 
 $('#now_radio').click(function() {	
-	$("#place_order").hide();
+	$("#pickup_submit").hide();
 	$("#pickup_next").fadeIn();
 });
 
 $('#pickup_radio').click(function() {
 	$("#pickup_next").hide();
-	$("#place_order").fadeIn();
+	$("#pickup_submit").fadeIn();
 });
+
+var date_input=$('input[name="expDate"]'); //our date input has the name "date"
+var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+var options={
+	format: 'mm/dd/yyyy',
+    container: container,
+    todayHighlight: true,
+    autoclose: true,
+};
+date_input.datepicker(options); //initiali110/26/2015 8:20:59 PM ze plugin
 </script>

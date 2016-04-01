@@ -6,8 +6,9 @@ class Card_model extends CI_Model {
 		parent::__construct();
 	}
 	
-	public function get_card($cardNum) {
+	function get_card($cardNum, $userId) {
 		$this->db->where('CC_NUM', $cardNum);
+		$this->db->where('USER_ID', $userId);
 		$query = $this->db->get('CC_TBL');
 		if ($query->num_rows() == 1) {
 			return array(
@@ -26,6 +27,15 @@ class Card_model extends CI_Model {
 			return null;
 		}
 	}
+	
+	function get_card_insert_id() {
+		return $this->db->insert_id();
+	}
+	
+	function insert_card($data) {
+		return $this->db->insert('CC_TBL', $data);
+	}
+
 }
 
 ?>

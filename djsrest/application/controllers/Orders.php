@@ -100,29 +100,69 @@ class Orders extends CI_Controller {
 		$this->load_cart();
 	}
 	
-	public function process_order() {
-		$method = $this->input->post('method');
-		
-		if(!empty($method) && $method == "pickup") {
-			if ($this->save_pickup_info()) {
-				$this->load_success();
-			} else {
-				$this->load_error();
-			}
-		}		
-	}
-	
-	function save_pickup_info() {
+	function process_order() {
 		$this->load->model('Order_model');
-		$logged_in = $this->Login_model->is_logged_in();
-		
-		$data = array(
-				'USER_ID' => $logged_in ? $this->session->userdata('user_id'): null,
+		$this->load->model('Card_model');
+		$pickupData = array(
+				'USER_ID' => null,
 				'CUS_NAME' => $this->input->post('customer_name'),
 				'PHONE_NM' => $this->input->post('phone'),
-				'PICKUP' => $this->input->post('method') == 'pickup' ? 'Yes' : 'No'
+				'PICKUP' => $this->input->post('method') == 'pickup' ? 'Yes' : 'No',
+				'CC_ID' => null
 		);
-		return $this->Order_model->insert_pickup_info($data);
+		
+		$billingData = array(
+				'CC_TYPE' => $this->input->post('cardType'),
+				'USER_ID' => null,
+				'CC_NUM' => $this->input->post('cardNum'),
+				'SEC_CD' => $this->input->post('secCode'),
+				'EXP_DT' => $this->input->post('expDate'),
+				'STREET_NUM' => $this->input->post('address'),
+				'STREET_NM' => $this->input->post('apt_num'),
+				'STATE_CD' => $this->input->post('state'),
+				'ZIP_CD' => $this->input->post('zip')
+		);
+		
+		$logged_in = $this->Login_model->is_logged_in();
+		if ($logged_in) {
+			$pickupData['USER_ID'] = $this->session->userdata('user_id');
+			$billingData['USER_ID'] = $this->session->userdata('user_id');
+		}
+		
+		$pickup = $this->input->post('method') == 'pickup' ? 'Yes' : 'No';			
+		if ($logged_in && $pickup == 'No') {
+			$userId = $this->session->userdata('user_id');
+			$card = $this->Card_model->get_card($this->input->post('cardNum'), $userId);
+			if(!empty($card)) {
+				$pickupData['CC_ID'] = $card['CC_ID'];
+			} else {
+				$this->save_billing_info($billingData);
+				$pickupData['CC_ID'] = $this->Card_model->get_card_insert_id();
+			}
+		} elseif ($pickup == 'No') {
+			$this->save_billing_info($billingData);
+			$pickupData['CC_ID'] = $this->Card_model->get_card_insert_id();
+		}
+		$this->save_pickup_info($pickupData) 
+			&& $this->save_order_items($this->Order_model->get_order_insert_id()) 
+			? $this->load_success() 
+			: $this->load_error();
+		
+	}
+	
+	function save_order_items($orderId) {
+		$this->load->model('Order_model');
+		return $this->Order_model->insert_order_items($orderId);
+	}
+	
+	function save_billing_info($data) {
+		$this->load->model('Card_model');
+		return $this->Card_model->insert_card($data);
+	}
+	
+	function save_pickup_info($data) {
+		$this->load->model('Order_model');
+		return $this->Order_model->insert_order($data);
 	}
 	
 	function get_row_id($itemId) {
