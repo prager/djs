@@ -89,8 +89,7 @@ class Login extends CI_Controller {
 		} else {
 			$this->form_validation->set_message('validate_credentials', 'Incorrect username/ password');
 			return FALSE;
-		}
-	
+		}	
 	}	
 	
 	public function registration_validation() {
