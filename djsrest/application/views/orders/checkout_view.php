@@ -12,10 +12,10 @@
 		<div class="panel-heading">Pick-up Information</div>
 		<div class="panel-body">
 			<div class="form-group">
-				<label for="firstName">Name</label> <span style="color: red;"><?php echo form_error('firstName'); ?></span>
-				<input type="text" value="<?php echo set_value('firstName'); ?>"
-					class="form-control input_long bg-danger" id="firstName" name="firstName"
-					placeholder="First Name">
+				<label for="cus_name">Name</label> <span style="color: red;"><?php echo form_error('customer_name'); ?></span>
+				<input type="text" value="<?php echo set_value('customer_name'); ?>"
+					class="form-control input_long bg-danger" id="cus_name" name="customer_name"
+					placeholder="Name">
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone</label> <span style="color: red;"><?php echo form_error('phone'); ?></span>
@@ -41,14 +41,14 @@
 			<a 
 				style="float: left;" 
 				class="btn btn-primary btn-sm"
-				href="<?php echo site_url('orders/load_cart');?>" 
-				value="">Back to cart
+				href="<?php echo site_url('orders/load_cart');?>">
+				Back to cart
 			</a> 
 			<button 
 				type="submit"
 				style="float: right; width:85px;" 
 				class="btn btn-success btn-sm"
-				id='place_order' 
+				id='pickup_submit' 
 				name="method" 
 				value="pickup">Place Order
 			</button>
@@ -172,12 +172,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#place_order').click(function() {
-        if ($('#checkout_form').valid()) {
-            alert('form is valid - not submitted');
-        }
-    });
-    $('#pickup_next').click(function() {
+   $('#pickup_next').click(function() {
         if ($('#checkout_form').valid()) {
         	$("#pickup_info").hide();
         	$("#billing_info").fadeIn();

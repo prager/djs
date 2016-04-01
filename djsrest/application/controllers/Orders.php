@@ -60,6 +60,16 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	public function load_error() {
+		$this->load->helper('url');
+		$data['title'] = 'Take-out';
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');
+		$this->load->view('template/leftNavigation');
+		$this->load->view('orders/err_view');
+		$this->load->view('template/footer');
+	}
+	
 	function insert_items(){
 		$this->load->model('Menu_model');
 		
@@ -91,7 +101,28 @@ class Orders extends CI_Controller {
 	}
 	
 	public function process_order() {
-		$this->load_success();
+		$method = $this->input->post('method');
+		
+		if(!empty($method) && $method == "pickup") {
+			if ($this->save_pickup_info()) {
+				$this->load_success();
+			} else {
+				$this->load_error();
+			}
+		}		
+	}
+	
+	function save_pickup_info() {
+		$this->load->model('Order_model');
+		$logged_in = $this->Login_model->is_logged_in();
+		
+		$data = array(
+				'USER_ID' => $logged_in ? $this->session->userdata('user_id'): null,
+				'CUS_NAME' => $this->input->post('customer_name'),
+				'PHONE_NM' => $this->input->post('phone'),
+				'PICKUP' => $this->input->post('method') == 'pickup' ? 'Yes' : 'No'
+		);
+		return $this->Order_model->insert_pickup_info($data);
 	}
 	
 	function get_row_id($itemId) {
