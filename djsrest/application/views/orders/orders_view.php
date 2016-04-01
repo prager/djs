@@ -16,7 +16,10 @@
 			<li>
 			<div id="panel_<?php echo $item['MENU_ID'];?>" class="panel panel-default">
 			   <div class="panel-heading">
-			      <h4 style="padding-left: 15px;"><?php echo $item['ITEM_NAME'];?><span style="float:right; padding-right: 15px;"><?php echo money_format($item['PRICE']);?></span></h4>
+			      <h4 style="padding-left: 15px;"><?php echo $item['ITEM_NAME'];?><span style="float:right; padding-right: 15px;"><?php 
+			      echo$item['PRICE'];
+			      //echo money_format($item['PRICE']);?>
+			      </span></h4>
 			   </div>
 			   <div class="panel-body">
 			   		<div class="col-md-9 col-sm-9 col-xs-6">

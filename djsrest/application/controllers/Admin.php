@@ -233,8 +233,9 @@ class Admin extends CI_Controller {
 		->display_as('RESERVATION_DT', 'Reservation Date')
 		->display_as('RESERVATION_TM', 'Reservation Time')
 		->display_as('PARTY_SIZE', 'Party Size')
-		->display_as('ENTRY_TS', 'Entry Timestamp');		
-		
+		->display_as('ENTRY_TS', 'Entry Timestamp');	
+			
+		$crud->order_by('RESERVATION_DT','desc');
 		$output = $crud->render();
 		$this->render_output('Reservation Management', 'admin/reservation_management', $output);
 	}
@@ -260,7 +261,7 @@ class Admin extends CI_Controller {
 	public function login_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
-									
+		
 		$crud->set_table('LOGIN');
 		$crud->set_subject('Login Info');
 		

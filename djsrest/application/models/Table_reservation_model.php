@@ -6,7 +6,11 @@ class Table_reservation_model extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
-    
+/**
+ * Retrieves reservations data from session
+ * 
+ * @return string array
+ */    
     function get_data() {
     	$retval['title'] = 'Reservations';
     	
@@ -26,8 +30,7 @@ class Table_reservation_model extends CI_Model {
   * Saves the data from table reservations form passed by $data array
   * and sends email to the manager on duty
   * @param array $data
-  */
-    
+  */   
     function set_data($data) {
     	$_SESSION['resdata'] = $data;
     	$recipient = "";
@@ -56,25 +59,76 @@ class Table_reservation_model extends CI_Model {
     	//echo date_timestamp_get($date);
     	
     	date_default_timezone_set("America/New_York");
+    	
     	$unixdate = date_timestamp_get(date_create($data['date'], timezone_open("America/New_York")));
     	$unixres = (intval(substr($data['time'], 0, 2) + 12) * 60 * 60) + (intval(substr($data['time'], 3, 2)) * 60) + strtotime($data['date']);
+    	    	
+    	$retval = TRUE;
     	
-    	//echo "res time: " . date("m/d/Y - h:i a", $unixres);
-      	
-    	$this->load->helper('email');
-    	mail($recipient, $subject, $message);
-  		
-  		$reserv = array(
-  			'reservation_tm' => $data['time'],
-  			'reservation_dt' => $data['date'], 			
-  			'reservation_unix' => $unixres,
-  			'first_nm' => $data['fname'],
-  			'last_nm' => $data['lname'],
-  			'email' => $data['email'],
-  			'party_size' =>$data['party']);
+    	if(!$this->check_res($unixres, $data['party'])) {
+    		$retval = FALSE;
+    	}
+    	else {      	
+	    	$this->load->helper('email');
+	    	mail($recipient, $subject, $message);
+	  		
+	  		$reserv = array(
+	  			'reservation_tm' => $data['time'],
+	  			'reservation_dt' => $data['date'], 			
+	  			'reservation_unix' => $unixres,
+	  			'first_nm' => $data['fname'],
+	  			'last_nm' => $data['lname'],
+	  			'email' => $data['email'],
+	  			'party_size' =>$data['party']);
+	    	
+	    	$this->db->insert('RESERVATION_TBL', $reserv);
+    	}
+		
+    	return $retval;
+    }
+    
+    /**
+     * Finds whether or not we have valid reservation date and
+     * if the restaurant is full
+     * @param unknown $unixres
+     * @return boolean
+     */
+ 
+    function check_res($unixres, $party) {
+    	$retval = TRUE;
     	
-    	$this->db->insert('RESERVATION_TBL', $reserv);
-
+    	$now = time();
+    	
+    	if($unixres < $now) {
+    		$retval = FALSE;
+    	}
+    	else {
+    	
+	    	$this->db->reset_query();
+	    	
+	    	$this->db->select('*');
+	    	$query = $this->db->get('RESERVATION_TBL');
+	    	
+//find out how many reservations we have -45min and +45min of the current reservation 
+//to figure whether or not all reservations are taken, but the below statement doesn't work	
+	    	//$where = "RESERVATION_UNIX BETWEEN " . ($unixres - (45 * 60)) . " AND ". ($unixres + (45 * 60)) . "";
+			//$this->db->where($where);
+			
+//then I resort to use of brut force
+	    	$total_guests = 0;	    	
+			foreach ($query->result() as $row) {
+				
+				if(($row->RESERVATION_UNIX < ($unixres + (46 * 60))) && ($row->RESERVATION_UNIX > ($unixres - (46 * 60)))) {
+					$total_guests += $row->PARTY_SIZE;
+				}
+			}
+			
+			if(($total_guests + $party) > 20) {
+				$retval = FALSE;
+			}
+    	}
+    	
+    	return  $retval;
     }
 }
 

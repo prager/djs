@@ -25,17 +25,21 @@ class Load_reservation extends CI_Controller {
 		if($this->err_flag) {
 			$this->load_err();
 		}
-		else {
-			$this->load_success();
+		else {			
+			if (!$this->check_data()) {
+				$this->load_err();
+			}
+			else {
+				$this->load_success();
+			}		
 		}
 		
 	}
-	
-	function load_success() {
-		$data['title'] = 'Done';
-		$this->load->helper('email');
-		$this->load->view('template/header', $data);
-		$this->load->view('template/navigation');
+/**
+ * Check for invalid dates, conflicting times, etc.
+ * 
+ */	
+	function check_data() {
 
 		$data['phone'] = $this->phone;
 		$data['email'] = $this->email;
@@ -46,7 +50,15 @@ class Load_reservation extends CI_Controller {
 		$data['date'] = $this->date;
 		
 		$this->load->model('table_reservation_model');
-		$this->table_reservation_model->set_data($data);
+		
+		return $this->table_reservation_model->set_data($data);
+	}
+	
+	function load_success() {
+		$data['title'] = 'Done';
+		$this->load->helper('email');
+		$this->load->view('template/header', $data);
+		$this->load->view('template/navigation');		
 		
 		$data['message'] = 'Thank you for your table reservation!';
 		$this->load->view('success_view', $data);
@@ -66,6 +78,7 @@ class Load_reservation extends CI_Controller {
 		$data['party'] = $this->party;
 		$data['time'] = $this->time;
 		$data['date'] = $this->date;
+		$data['message'] = '<p><font color="red">There was an error. Please, check your data below and try again </font></p>';
 		
 		$this->load->view('reservations_view', $data);
 		$this->load->view('template/footer');

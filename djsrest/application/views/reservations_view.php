@@ -5,7 +5,9 @@
 	<div class="panel-heading">Please fill out the following information</div>
 	<div class="panel-body">
 	<?php echo form_open('load_reservation');?>
-		<?php //echo validation_errors(); ?>
+		<?php 
+		echo $message;
+		//echo validation_errors(); ?>
       	<div class="form-group">
 	        <label for="fname" >First Name:</label>
 	        <span style="color: red;"><?php echo form_error('fname'); ?></span>
