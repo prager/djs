@@ -1,18 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
-	
-var $user;
-	
+class Login extends CI_Controller {	
+
 	public function index()
 	{
 		$this->load_login();
 	}
 	
-	/**
-	 * loads the login page
-	 */
 	public function load_login() {
 		$data['title'] = 'Login';
 		$data['collapsed_form'] = 'login_form_tab';

@@ -143,11 +143,13 @@ class Orders extends CI_Controller {
 			$this->save_billing_info($billingData);
 			$pickupData['CC_ID'] = $this->Card_model->get_card_insert_id();
 		}
-		$this->save_pickup_info($pickupData) 
-			&& $this->save_order_items($this->Order_model->get_order_insert_id()) 
-			? $this->load_success() 
-			: $this->load_error();
-		
+		if ($this->save_pickup_info($pickupData) && $this->save_order_items($this->Order_model->get_order_insert_id())) {
+			$this->distroy_cart();
+			$this->load_success();
+		} else {
+			$this->distroy_cart();
+			$this->load_error();
+		}		
 	}
 	
 	function save_order_items($orderId) {

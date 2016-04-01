@@ -154,6 +154,8 @@ class Login_model extends CI_Model {
     }
     
     function logout() {
+    	$this->load->library('cart');
+    	$this->cart->destroy();
     	$this->session->set_userdata('logged_in', false);
     	$this->session->sess_destroy();
     }

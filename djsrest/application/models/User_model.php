@@ -6,11 +6,6 @@ class User_model extends CI_Model {
         parent::__construct();
     }
     
-    /**
-     * Creates a new user
-     * @param string $userType
-     * @return boolean
-     */    
     public function create_user($user_type) {
     	$userData = array(
     			'FIRST_NM' => $this->input->post('firstName'),
