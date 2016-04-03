@@ -1,10 +1,9 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
 /*
  * Controller for feedback page
  *
  */
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Feedback extends CI_Controller {
 	/*
 	 * when the controller is called, loads the contact us page
