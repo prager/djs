@@ -1,8 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/*
+ * Controller for the menu page
+ *
+ */
 class Menu extends CI_Controller {
 	
+	/*
+	 * Loads the menu page
+	 *
+	 */
 	public function index()
 	{	
 		$this->load->helper('url');
