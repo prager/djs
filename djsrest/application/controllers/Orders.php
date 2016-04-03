@@ -195,6 +195,9 @@ class Orders extends CI_Controller {
 	/*
 	 * Save order items to the database
 	 *
+	 * $param string $orderId order id
+	 * @return boolean true if successfully added to the database, false if not.
+	 *
 	 */
 	function save_order_items($orderId) {
 		$this->load->model('Order_model');
@@ -203,7 +206,10 @@ class Orders extends CI_Controller {
 	
 	/*
 	 * Save the billing information to the database
-	 *
+	 * 
+	 * @param array $data billing information
+	 * @return boolean true if successfully added to the database, false if not.
+	 * 
 	 */
 	function save_billing_info($data) {
 		$this->load->model('Card_model');
@@ -213,6 +219,9 @@ class Orders extends CI_Controller {
 	/*
 	 * Save the pickup information to the database
 	 *
+	 * @param array $data billing information
+	 * @return boolean true if successfully added to the database, false if not.
+	 * 
 	 */
 	function save_pickup_info($data) {
 		$this->load->model('Order_model');
