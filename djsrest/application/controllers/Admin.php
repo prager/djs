@@ -1,7 +1,15 @@
+/**
+ * This is the controller for admin page 
+ *
+ */
+ 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Admin extends CI_Controller {
 
+	/**
+	 * the consturctor for admin  controller
+	 *
+	 */
 	public function __construct() {
 		parent::__construct();
 		$logged_in = $this->Login_model->is_logged_in();
@@ -26,17 +34,37 @@ class Admin extends CI_Controller {
 		$this->load->library('grocery_CRUD');
 	}
 
+	/*
+	 * Render output to the view
+	 *
+	 * @param string $page_title title of the page
+	 * @param string $view_path path to the view
+	 * @param $output rendered output from groceryCRUD
+	 *
+	 */
 	public function render_output($page_title, $view_path, $output = null) {
 		$data['title'] = $page_title;
 		$this->load->view('admin/admin_header', $data);
 		$this->load->view($view_path,$output);
 		$this->load->view('admin/admin_footer');
 	}
-
+	
+	/*
+	 * Loads the user management page as the index page of the controller
+	 *
+	 * @param string $page_title title of the page
+	 * @param string $view_path path to the view
+	 * @param $output rendered output from groceryCRUD
+	 *
+	 */
 	public function index() {
 		$this->user_management();
 	}
-
+	
+	/*
+	 * Loads the user management page
+	 *
+	 */
 	public function user_management() {
 		$crud = new grocery_CRUD();		
 		$crud->set_theme('bootstrap');
@@ -70,7 +98,11 @@ class Admin extends CI_Controller {
 		$output = $crud->render();
 		$this->render_output('User Management', 'admin/user_management', $output);
 	}
-	
+
+	/*
+	 * Loads the employee management page
+	 *
+	 */
 	public function employee_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
@@ -106,7 +138,11 @@ class Admin extends CI_Controller {
 		$output = $crud->render();
 		$this->render_output('Employee Management', 'admin/employee_management', $output);
 	}
-	
+
+	/*
+	 * Loads the customer management page
+	 *
+	 */
 	public function customer_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
@@ -142,6 +178,10 @@ class Admin extends CI_Controller {
 		$this->render_output('Customer Management', 'admin/customer_management', $output);
 	}
 	
+	/*
+	 * Loads the food menu management page
+	 *
+	 */	
 	public function food_menu_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
@@ -160,6 +200,10 @@ class Admin extends CI_Controller {
 		$this->render_output('Food Menu Management', 'admin/food_menu_management', $output);
 	}
 	
+	/*
+	 * Loads the feedback management page
+	 *
+	 */
 	public function feedback_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
@@ -182,6 +226,10 @@ class Admin extends CI_Controller {
 		$this->render_output('Feedback Management', 'admin/feedback_management', $output);
 	}
 	
+	/*
+	 * Loads credit card management page
+	 *
+	 */	
 	public function credit_card_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
@@ -240,6 +288,10 @@ class Admin extends CI_Controller {
 		$this->render_output('Reservation Management', 'admin/reservation_management', $output);
 	}
 	
+	/*
+	 * Loads the user group management page
+	 *
+	 */	
 	public function user_group_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
@@ -258,6 +310,10 @@ class Admin extends CI_Controller {
 		$this->render_output('User Group Management', 'admin/user_group_management', $output);
 	}
 	
+	/*
+	 * Loads the login management page
+	 *
+	 */
 	public function login_management() {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
@@ -285,6 +341,13 @@ class Admin extends CI_Controller {
 		$this->render_output('Login Management', 'admin/login_management', $output);
 	}
 	
+	/*
+	 * Callback function for deleting records connected to 
+	 * foreign tables
+	 * 
+	 * @param string $foreign_key foreign key of the record 
+	 * 
+	 */
 	function delete_records($foreign_key) {
 		$this->db->where('USER_ID', $foreign_key);
 		$this->db->delete('LOGIN');
@@ -294,6 +357,13 @@ class Admin extends CI_Controller {
 		$this->db->delete('RESERVATION_TBL');
 	}
 	
+	/*
+	 * Callback function for hashing passwords
+	 * 
+	 * @param array $post_arry current row of the posting data
+	 * @param string $primary_key primary key of the current row
+	 *
+	 */
 	function password_encrypt($post_array, $primary_key = null)
 	{
 		$post_array['PWD'] = password_hash($this->input->post('PWD'), PASSWORD_BCRYPT);
