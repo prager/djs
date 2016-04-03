@@ -1,18 +1,34 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+ * Controller for takeout orders
+ *
+ */
 class Orders extends CI_Controller {
-
+	
+	/*
+	 * Constructor for the controller
+	 *
+	 */
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('cart');
 	}
 	
+	/*
+	 * Loads the menu
+	 *
+	 */
 	public function index()
 	{
 		$this->load_menu();
 	}	
-		
+	
+	/*
+	 * Loads the takeout page
+	 *
+	 */
 	public function load_menu() {
 		$this->load->helper('url');
 		$this->load->model('Menu_model');
@@ -26,6 +42,10 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the shopping cart
+	 *
+	 */
 	public function load_cart() {
 		$this->load->helper('url');		
 		
@@ -38,6 +58,10 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the checkout page
+	 *
+	 */
 	public function load_checkout() {
 		$this->load->helper('url');
 		
@@ -50,6 +74,10 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the success page
+	 *
+	 */
 	public function load_success() {
 		$this->load->helper('url');
 		$data['title'] = 'Take-out';
@@ -60,6 +88,10 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the error page
+	 *
+	 */
 	public function load_error() {
 		$this->load->helper('url');
 		$data['title'] = 'Take-out';
@@ -70,6 +102,10 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Insert food item to the card
+	 *
+	 */
 	function insert_items(){
 		$this->load->model('Menu_model');
 		
@@ -100,6 +136,10 @@ class Orders extends CI_Controller {
 		$this->load_cart();
 	}
 	
+	/*
+	 * Process the order
+	 *
+	 */
 	function process_order() {
 		$this->load->model('Order_model');
 		$this->load->model('Card_model');
@@ -152,21 +192,40 @@ class Orders extends CI_Controller {
 		}		
 	}
 	
+	/*
+	 * Save order items to the database
+	 *
+	 */
 	function save_order_items($orderId) {
 		$this->load->model('Order_model');
 		return $this->Order_model->insert_order_items($orderId);
 	}
 	
+	/*
+	 * Save the billing information to the database
+	 *
+	 */
 	function save_billing_info($data) {
 		$this->load->model('Card_model');
 		return $this->Card_model->insert_card($data);
 	}
 	
+	/*
+	 * Save the pickup information to the database
+	 *
+	 */
 	function save_pickup_info($data) {
 		$this->load->model('Order_model');
 		return $this->Order_model->insert_order($data);
 	}
 	
+	/*
+	 * Get item's row id in cart
+	 *
+	 * @param string $itemId food item id
+	 * 
+	 * @return int | null retuns the row id if the item exist in the cart, null if its not
+	 */
 	function get_row_id($itemId) {
 		$shoppingCart = $this->cart->contents();
 		if (!empty($shoppingCart)) {
@@ -180,6 +239,10 @@ class Orders extends CI_Controller {
 		}
 	}
 	
+	/* 
+	 * Removes item from the cart and refresh the page
+	 *
+	 */
 	public function remove_item() {
 		$data = array(
 				'rowid' => $this->input->post('row_id'),
@@ -189,6 +252,10 @@ class Orders extends CI_Controller {
 		$this->load_cart();
 	}
 	
+	/*
+	 * Updates an item in the cart and refresh the page
+	 *
+	 */
 	public function update_item() {
 		$data = array(
 				'rowid' => $this->input->post('row_id'),
@@ -198,6 +265,10 @@ class Orders extends CI_Controller {
 		$this->load_cart();
 	}
 	
+	/*
+	 * Distroy the cart and refresh the page
+	 *
+	 */
 	public function distroy_cart() {
 		$this->cart->destroy();
 		$this->load_menu();
