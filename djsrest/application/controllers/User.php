@@ -1,7 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/*
+ * user controller
+ *
+ */
 class User extends CI_Controller {
+	/*
+	 * Constructor for the controller
+	 *
+	 */
 	public function __construct() {
 		parent::__construct();
 		$logged_in = $this->Login_model->is_logged_in();
@@ -16,11 +24,19 @@ class User extends CI_Controller {
 		$this->load->helper('site_helper');
 	}
 	
+	/*
+	 * loads the user profile when the controller is called
+	 *
+	 */
 	public function index()
 	{
 		$this->load_profile();
 	}
 	
+	/*
+	 * Loads the user profile
+	 *
+	 */
 	public function load_profile() {
 		$username= $this->session->userdata('username');
 		$this->load->model('user_model');
@@ -34,6 +50,10 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the page for edit contact information
+	 *
+	 */
 	public function load_edit_contact_info() {
 		$username= $this->session->userdata('username');
 		$userId= $this->session->userdata('user_id');
@@ -50,6 +70,10 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the page for edit login information
+	 *
+	 */
 	public function load_edit_login_info() {
 		$username= $this->session->userdata('username');
 		$userId= $this->session->userdata('user_id');
@@ -66,6 +90,10 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the error page
+	 *
+	 */
 	public function load_error() {
 		$data['title'] = 'Login Error';
 		$data['message'] = "Could not update you profile at this time.";
@@ -76,6 +104,10 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the success page
+	 *
+	 */
 	public function load_success() {
 		$data['title'] = 'Success Page';
 		$data['message'] = 'Your profile has been updated';
@@ -86,6 +118,12 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Validates the contact information
+	 * 
+	 * @return boolean true if information is valid and false if not
+	 * 
+	 */
 	public function contact_info_validation() {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
@@ -104,6 +142,12 @@ class User extends CI_Controller {
 		return $this->form_validation->run();		
 	}
 	
+	/*
+	 * Validates the login information
+	 *
+	 * @return boolean true if information is valid and false if not
+	 *
+	 */
 	public function login_info_validation() {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
@@ -114,6 +158,10 @@ class User extends CI_Controller {
 		return $this->form_validation->run();
 	}
 	
+	/*
+	 * Updates the login information and load the profil page
+	 *
+	 */
 	public function update_login_info() {
 		if ($this->login_info_validation() == TRUE) {
 			$newUsername = strtolower($this->input->post('username'));
@@ -139,6 +187,10 @@ class User extends CI_Controller {
 	
 	}
 	
+	/*
+	 * Updates the contact information and load the profil page
+	 *
+	 */
 	public function update_contact_info() {
 		if ($this->contact_info_validation() == TRUE) {
 			$userData = array(

@@ -108,6 +108,8 @@ class Login extends CI_Controller {
 	
 	/*
 	 * Validates the users credentials
+	 * 
+	 * @return boolean true if information is valid and false if not
 	 *
 	 */
 	public function validate_credentials() {
