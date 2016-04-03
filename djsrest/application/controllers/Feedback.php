@@ -1,13 +1,24 @@
+/*
+ * Controller for feedback page
+ *
+ */
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Feedback extends CI_Controller {
-	
+	/*
+	 * when the controller is called, loads the contact us page
+	 *
+	 */
 	public function index()
 	{		
 		$this->load_contact();
 	}
 	
+	/*
+	 * Loads the contact us page
+	 *
+	 */
 	public function load_contact() {
 		$this->load->helper('url');
 		
@@ -20,6 +31,10 @@ class Feedback extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Loads the success page
+	 *
+	 */
 	public function load_success() {
 		$this->load->helper('url');
 	
@@ -32,6 +47,10 @@ class Feedback extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
+	/*
+	 * Validates the feedback form input
+	 *
+	 */
 	public function feedback_validation() {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
@@ -51,6 +70,10 @@ class Feedback extends CI_Controller {
 		}
 	}
 	
+	/*
+	 * Saves the feedback to database
+	 *
+	 */
 	public function save_feedback() {
 		$message = array(
 			'name' => $this->input->post('name'),
