@@ -1,11 +1,23 @@
 <?php
-class Menu_model extends CI_Model {
 
+/**
+ * This the model for menu
+ *
+ */
+class Menu_model extends CI_Model {
+	/**
+	 * constructor for the menu model
+	 */
 	function __construct()
 	{
 		parent::__construct();
 	}
 	
+	/**
+	 * Gets all the menu items from the database
+	 * 
+	 * @return array returns an array of menu items
+	 */
 	public function get_menu() {
 		$query = $this->db->get('MENU_TBL');
 		return $query->result_array();

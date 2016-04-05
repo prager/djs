@@ -1,11 +1,28 @@
 <?php
+/**
+ * this is model represent credit card
+ *
+ */
 class Card_model extends CI_Model {
-
+	/**
+	 * Constructor for this model
+	 * 
+	 */
 	function __construct()
 	{
 		parent::__construct();
 	}
 	
+	/**
+	 * Get the user types from the database
+	 * 
+	 * @param string $cardNum credit card number
+	 * @param string $userId user id of the card holder
+	 * 
+	 * @return array returns an array with credit card information,
+	 * if the credit card doesnt exist in the data base returns null
+	 * 
+	 */
 	function get_card($cardNum, $userId) {
 		$this->db->where('CC_NUM', $cardNum);
 		$this->db->where('USER_ID', $userId);
@@ -28,10 +45,22 @@ class Card_model extends CI_Model {
 		}
 	}
 	
+	/**
+	 * Get the id of the last inserted row
+	 *
+	 * @return int returns the row id
+	 *
+	 */
 	function get_card_insert_id() {
 		return $this->db->insert_id();
 	}
 	
+	/**
+	 * Insert a credit card into ths database
+	 *
+	 * @return boolean returns true if successfully inserted the card, if not false
+	 *
+	 */
 	function insert_card($data) {
 		return $this->db->insert('CC_TBL', $data);
 	}

@@ -1,5 +1,14 @@
 <?php
-// function for all states dropdown menu 
+
+/**
+ * Display states dropdown menu
+ * 
+ * @param string $elementId id for the html element
+ * @param string $defaultVal default value for the dropdown
+ * 
+ * @return string html code for the dropdown 
+ *
+ */
 function states_dropdown($elementId, $defaultVal) {
 	$states = get_states_array();
 	// prints the error message
@@ -23,8 +32,16 @@ function states_dropdown($elementId, $defaultVal) {
 	$output .= '</select>';
 	return $output;
 }
-
-function user_types_dropdown($elementId, $defaultVal, $disabled="") {
+/**
+ * Display user types dropdown menu
+ *
+ * @param string $elementId id for the html element
+ * @param string $defaultVal default value for the dropdown
+ *
+ * @return string html code for the dropdown
+ *
+ */
+function user_types_dropdown($elementId, $defaultVal) {
 	$types = get_user_type_array();
 	// prints the error message
 	$output ='';
@@ -33,7 +50,7 @@ function user_types_dropdown($elementId, $defaultVal, $disabled="") {
 	$output .= '</span>';
 
 	// prints the dropdown
-	$output .= '<select ' . $disabled . ' style="width: 200px;" id="' . $elementId . '" class="form-control" name="userType">';
+	$output .= '<select style="width: 200px;" id="' . $elementId . '" class="form-control" name="userType">';
 	$output .= '<option value="" disabled selected>Select User Type</option>';
 
 	foreach($types as $type){
@@ -48,6 +65,15 @@ function user_types_dropdown($elementId, $defaultVal, $disabled="") {
 	return $output;
 }
 
+/**
+ * Display reservation times dropdown menu
+ *
+ * @param string $elementId id for the html element
+ * @param string $defaultVal default value for the dropdown
+ *
+ * @return string html code for the dropdown
+ *
+ */
 function times_dropdown($elementId, $defaultVal) {
 	$times = get_times_array();
 
@@ -67,6 +93,15 @@ function times_dropdown($elementId, $defaultVal) {
 	return $output;
 }
 
+/**
+ * Display party size dropdown menu
+ *
+ * @param string $elementId id for the html element
+ * @param string $defaultVal default value for the dropdown
+ *
+ * @return string html code for the dropdown
+ *
+ */
 function party_dropdown($elementId, $defaultVal) {
 	$party = get_party_array();
 	
@@ -86,15 +121,35 @@ function party_dropdown($elementId, $defaultVal) {
 	return $output;
 }
 
-function money_format($val) {
+/**
+ * convert integer to USD currency format
+ *
+ * @param int $val integer to be converted to USD
+ *
+ * @return string formated currency
+ *
+ */
+function currency_format($val) {
 	return '$' . number_format($val, 2, '.', '');
 }
 
+/**
+ * Get the user types from the database
+ *
+ * @return array array of user types
+ *
+ */
 function get_user_type_array() {
 	$User_model = new User_model;
 	return $User_model->get_user_types();
 }
 
+/**
+ * Get all the states
+ *
+ * @return array array of states
+ *
+ */
 function get_states_array() {
 	$states = array(
 			"AL" => "Alabama",
@@ -161,6 +216,12 @@ function get_states_array() {
 	return $states;
 }
 
+/**
+ * Get reservation times
+ *
+ * @return array array of reservation times
+ *
+ */
 function get_times_array() {
 
 	$times = array(
@@ -205,6 +266,12 @@ function get_times_array() {
 
 }
 
+/**
+ * Get the available party sizes for the reservation
+ *
+ * @return array array of reservation party sizes
+ *
+ */
 function get_party_array() {
 
 	$party = array (

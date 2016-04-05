@@ -1,4 +1,8 @@
 <?php
+/**
+ * This the model for login
+ *
+ */
 class Login_model extends CI_Model {
 	
     function __construct()
@@ -84,12 +88,28 @@ class Login_model extends CI_Model {
     	return $this->db->insert('LOGIN', $loginData);
     }
     
+    /**
+     * Updates the login information
+     * 
+     * @param string $data login information to be updated
+     * 
+     * @return boolean reture if the update is successful, if not false
+     * 
+     */
     function update_login($data) {
     	$userId= $this->session->userdata('user_id');
     	$this->db->where('USER_ID', $userId);
     	return $this->db->update('LOGIN', $data);
     }
     
+    /**
+     * Get the login information from database
+     * 
+     * @param string id of the user
+     * 
+     * @return login information if exists, null if not
+     *
+     */
     function get_login($userId) {
     	$this->db->where('USER_ID', $userId);
     	$query = $this->db->get('LOGIN');
@@ -105,6 +125,14 @@ class Login_model extends CI_Model {
     	}
     }
     
+    /**
+     * Get user id when username is given
+     * 
+     * @param string $username username of the user
+     * 
+     * @return string returns the user id of the user if exists, if not returns null
+     *
+     */
     function get_user_Id($username) {
     	$this->db->where('username', $username);
     	$query = $this->db->get('LOGIN');
@@ -117,6 +145,10 @@ class Login_model extends CI_Model {
     	
     }
     
+    /**
+     * Gets the user information from the database and store it in the session
+     * 
+     */
     function login() {
     	$username = $this->input->post('user');
     	$this->load->model('User_model', '', TRUE);
@@ -141,6 +173,11 @@ class Login_model extends CI_Model {
 		$this->session->set_userdata($data);
     }
     
+    /**
+     * Checks if a user is logged in 
+     * 
+     * @return boolean returns true if a user is logged in, if not false
+     */
     function is_logged_in() {
     	$sess_id = $this->session->userdata('username');
     	$logged_in = $this->session->userdata('logged_in');
@@ -153,6 +190,9 @@ class Login_model extends CI_Model {
     	}
     }
     
+    /**
+     * Clears the session data
+     */
     function logout() {
     	$this->load->library('cart');
     	$this->cart->destroy();
@@ -160,6 +200,12 @@ class Login_model extends CI_Model {
     	$this->session->sess_destroy();
     }
     
+    /**
+     * Checks if the user has enough access
+     * 
+     * @param int $accessLevel user type code
+     * @return boolean returns true if the user has enough access, false if not
+     */
     function can_access($accessLevel) {
     	$userType = $this->session->userdata('user_type');
     	if ($userType == $accessLevel) {
