@@ -37,12 +37,12 @@ class Table_reservation_model extends CI_Model {
     	$_SESSION['resdata'] = $data;
     	$recipient = "";
  //get the manager on duty from user_tbl   	
-    	$this->db->select('EMAIL_ADDR');
+    	$this->db->select('email_addr');
     	$query = $this->db->get('user_tbl');
-    	$this->db->where('ON_DUTY', 1);
+    	$this->db->where('on_duty', 1);
     	$row = $query->row();    	
     	if (isset($row)) {
-    		$recipient =  $row->EMAIL_ADDR;
+    		$recipient =  $row->email_addr;
     		
     	}
     	
@@ -90,7 +90,7 @@ class Table_reservation_model extends CI_Model {
 	  			'email' => $data['email'],
 	  			'party_size' =>$data['party']);
 	    	
-	    	$this->db->insert('RESERVATION_TBL', $reserv);
+	    	$this->db->insert('reservation_tbl', $reserv);
     	}
 		
     	return $retval;
@@ -116,7 +116,7 @@ class Table_reservation_model extends CI_Model {
 	    	$this->db->reset_query();
 	    	
 	    	$this->db->select('*');
-	    	$query = $this->db->get('RESERVATION_TBL');
+	    	$query = $this->db->get('reservation_tbl');
 	    	
 //find out how many reservations we have -45min and +45min of the current reservation 
 //to figure whether or not all reservations are taken, but the below statement doesn't work	
@@ -127,8 +127,8 @@ class Table_reservation_model extends CI_Model {
 	    	$total_guests = 0;	    	
 			foreach ($query->result() as $row) {
 				
-				if(($row->RESERVATION_UNIX < ($unixres + (46 * 60))) && ($row->RESERVATION_UNIX > ($unixres - (46 * 60)))) {
-					$total_guests += $row->PARTY_SIZE;
+				if(($row->reservation_unix < ($unixres + (46 * 60))) && ($row->reservation_unix > ($unixres - (46 * 60)))) {
+					$total_guests += $row->party_size;
 				}
 			}
 			

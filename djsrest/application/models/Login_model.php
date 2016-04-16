@@ -44,12 +44,12 @@ class Login_model extends CI_Model {
     	$retval = TRUE;
     	$user = $data['user'];
     	$pass = $data['pass'];
-    	$this->db->where('USERNAME', $user);
-    	$query = $this->db->get('LOGIN');
+    	$this->db->where('username', $user);
+    	$query = $this->db->get('login');
     	if($query->num_rows() > 0) {
     		$row = $query->row();
     		//echo "hashed pass: " . $row->password;
-    		return password_verify($pass, $row->PWD);
+    		return password_verify($pass, $row->pwd);
     	}
     	else {
     		$retval = FALSE;
@@ -67,7 +67,7 @@ class Login_model extends CI_Model {
     	$retval = TRUE;
     	$username = strtolower($user);
     	$this->db->where('username', $user);
-    	$query = $this->db->get('LOGIN');
+    	$query = $this->db->get('login');
     	if ($query->num_rows() == 0) {
     		$retval = FALSE;
     	}    	
@@ -81,11 +81,11 @@ class Login_model extends CI_Model {
 	 */    
     function create_login($userId) {
     	$loginData = array(
-    			'USERNAME' => strtolower($this->input->post('username')),
-    			'USER_ID' => $userId,
-    			'PWD' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
+    			'username' => strtolower($this->input->post('username')),
+    			'user_id' => $userId,
+    			'pwd' => password_hash($this->input->post('password'), PASSWORD_BCRYPT)
     	);
-    	return $this->db->insert('LOGIN', $loginData);
+    	return $this->db->insert('login', $loginData);
     }
     
     /**
@@ -98,8 +98,8 @@ class Login_model extends CI_Model {
      */
     function update_login($data) {
     	$userId= $this->session->userdata('user_id');
-    	$this->db->where('USER_ID', $userId);
-    	return $this->db->update('LOGIN', $data);
+    	$this->db->where('user_id', $userId);
+    	return $this->db->update('login', $data);
     }
     
     /**
@@ -111,13 +111,13 @@ class Login_model extends CI_Model {
      *
      */
     function get_login($userId) {
-    	$this->db->where('USER_ID', $userId);
-    	$query = $this->db->get('LOGIN');
+    	$this->db->where('user_id', $userId);
+    	$query = $this->db->get('login');
     	if ($query->num_rows() == 1) {
     		$data = array(
-    			'username' => $query->row()->USERNAME,
-    			'user_id' => $query->row()->USER_ID,
-    			'password' => $query->row()->PWD
+    			'username' => $query->row()->username,
+    			'user_id' => $query->row()->user_id,
+    			'password' => $query->row()->pwd
     		);
     		return $data;    	
     	} else {
@@ -135,10 +135,10 @@ class Login_model extends CI_Model {
      */
     function get_user_Id($username) {
     	$this->db->where('username', $username);
-    	$query = $this->db->get('LOGIN');
+    	$query = $this->db->get('login');
     	if ($query->num_rows() == 1) {
     		$row = $query->row();
-    		return $row->USER_ID;
+    		return $row->user_id;
     	} else {
     		return null;
     	}
@@ -154,9 +154,9 @@ class Login_model extends CI_Model {
     	$this->load->model('User_model', '', TRUE);
     	$user = $this->User_model->get_user($username);
     	
-    	$this->db->where('USER_TYPE_CD', $user['user_type']);
-    	$query = $this->db->get('USER_TYPE_REF');
-    	$user_type_string = $query->row()->USER_TYPE_DESC;
+    	$this->db->where('user_type_cd', $user['user_type']);
+    	$query = $this->db->get('user_type_ref');
+    	$user_type_string = $query->row()->user_type_desc;
     		
     	$data = array(
     			'user_id' => $user['user_id'],

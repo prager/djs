@@ -70,29 +70,29 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();		
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('USER_TBL');
+		$crud->set_table('user_tbl');
 		$crud->set_subject('User');
 		
-		$crud->add_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM',  'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
-		$crud->field_type('STATE_CD','dropdown',get_states_array());
-		$crud->required_fields('FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STATE_CD', 'ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');			
-		$crud->set_rules('FIRST_NM', 'First Name', 'trim|required|alpha');
-		$crud->set_rules('LAST_NM', 'First Name', 'trim|required|alpha');
+		$crud->add_fields('first_nm', 'last_nm', 'street_num', 'street_nm',  'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');
+		$crud->field_type('state_cd','dropdown',get_states_array());
+		$crud->required_fields('first_nm', 'last_nm', 'street_num', 'street_nm', 'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');			
+		$crud->set_rules('first_nm', 'First Name', 'trim|required|alpha');
+		$crud->set_rules('last_nm', 'First Name', 'trim|required|alpha');
 		//$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.EMAIL_ADDR]');
-		$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email');
+		$crud->set_rules('email_addr', 'Email', 'trim|required|valid_email');
 		
-		$crud->columns('USER_ID', 'FIRST_NM', 'LAST_NM', 'STREET_NUM', 'STREET_NM','ZIP_CD', 'EMAIL_ADDR', 'USER_TYPE_CD');
-		$crud->set_relation('USER_TYPE_CD', 'USER_TYPE_REF', 'USER_TYPE_DESC');
+		$crud->columns('first_nm', 'last_nm', 'street_num', 'street_nm',  'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');
+		$crud->set_relation('user_type_cd', 'user_type_ref', 'user_type_desc');
 		$crud
-			->display_as('USER_ID','Id')
-			->display_as('FIRST_NM','First Name')
-			->display_as('LAST_NM','Last Name')
-			->display_as('STREET_NUM','Address Line 1')
-			->display_as('STREET_NM','Address Line 2')
-			->display_as('STATE_CD','State')
-			->display_as('ZIP_CD','Zip Code')
-			->display_as('EMAIL_ADDR','Email')
-			->display_as('USER_TYPE_CD', 'User Type');
+			->display_as('user_id','Id')
+			->display_as('first_nm','First Name')
+			->display_as('last_nm','Last Name')
+			->display_as('street_num','Address Line 1')
+			->display_as('street_nm','Address Line 2')
+			->display_as('state_cd','State')
+			->display_as('zip_cd','Zip Code')
+			->display_as('email_addr','Email')
+			->display_as('user_type_cd', 'User Type');
 		
 		$crud->callback_before_delete(array($this,'delete_records'));
 		

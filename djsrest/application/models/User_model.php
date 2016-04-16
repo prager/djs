@@ -22,17 +22,17 @@ class User_model extends CI_Model {
      */
     public function create_user($user_type) {
     	$userData = array(
-    			'FIRST_NM' => $this->input->post('firstName'),
-    			'LAST_NM' => $this->input->post('lastName'),
-    			'EMAIL_ADDR' => $this->input->post('email'),
-    			'STREET_NUM' => $this->input->post('address1'),
-    			'STREET_NM' => $this->input->post('address2'),
-    			'STATE_CD' => $this->input->post('state'),
-    			'ZIP_CD' => $this->input->post('zip'),
-    			'USER_TYPE_CD' => $user_type
+    			'first_nm' => $this->input->post('firstName'),
+    			'last_nm' => $this->input->post('lastName'),
+    			'email_addr' => $this->input->post('email'),
+    			'street_num' => $this->input->post('address1'),
+    			'street_nm' => $this->input->post('address2'),
+    			'state_cd' => $this->input->post('state'),
+    			'zip_cd' => $this->input->post('zip'),
+    			'user_type_cd' => $user_type
     	);  
     	
-    	$userAdded = $this->db->insert('USER_TBL', $userData);    	
+    	$userAdded = $this->db->insert('user_tbl', $userData);    	
 	   
 		$this->load->model('login_model');
     	$loginAdded = $this->login_model->create_login($this->db->insert_id());
@@ -51,22 +51,22 @@ class User_model extends CI_Model {
     	$this->load->model('login_model');
     	$userId = $this->login_model->get_user_id(strtolower($username));
     	
-    	$this->db->where('USER_ID', $userId);
-    	$query = $this->db->get('USER_TBL');
+    	$this->db->where('user_id', $userId);
+    	$query = $this->db->get('user_tbl');
 	    if ($query->num_rows() == 1) {
 			return array(
-					'user_id' => $query->row()->USER_ID,
+					'user_id' => $query->row()->user_id,
 					'username' => $username,
-					'first_name' => $query->row()->FIRST_NM,
-					'last_name' => $query->row()->LAST_NM,
-					'full_name' => $query->row()->FIRST_NM . ' ' . $query->row()->LAST_NM,
-					'email' => $query->row()->EMAIL_ADDR,
-					'address' => $query->row()->STREET_NUM,
-					'apt_num' => $query->row()->STREET_NM,
-					'state' => $query->row()->STATE_CD,
-					'zip' => $query->row()->ZIP_CD,
-					'user_type' => $query->row()->USER_TYPE_CD,
-					'user_type_string' => $this->get_user_type_string($query->row()->USER_TYPE_CD)
+					'first_name' => $query->row()->first_nm,
+					'last_name' => $query->row()->last_nm,
+					'full_name' => $query->row()->first_nm . ' ' . $query->row()->last_nm,
+					'email' => $query->row()->email_addr,
+					'address' => $query->row()->street_num,
+					'apt_num' => $query->row()->street_nm,
+					'state' => $query->row()->state_cd,
+					'zip' => $query->row()->zip_cd,
+					'user_type' => $query->row()->user_type_cd,
+					'user_type_string' => $this->get_user_type_string($query->row()->user_type_cd)
 			);
 		} else {
 			return null;
@@ -81,8 +81,8 @@ class User_model extends CI_Model {
      */
     public function update_user($data) {
     	$userId= $this->session->userdata('user_id');
-    	$this->db->where('USER_ID', $userId);
-		return $this->db->update('USER_TBL', $data);
+    	$this->db->where('user_id', $userId);
+		return $this->db->update('user_tbl', $data);
     }
     
     /**
@@ -93,11 +93,11 @@ class User_model extends CI_Model {
      * @return string user type description
      */
     public function get_user_type_string($type_code) {
-    	$this->db->where('USER_TYPE_CD', $type_code);
-    	$query = $this->db->get('USER_TYPE_REF');
+    	$this->db->where('user_type_cd', $type_code);
+    	$query = $this->db->get('user_type_ref');
     	
     	if ($query->num_rows() == 1) {
-    		return $query->row()->USER_TYPE_DESC;
+    		return $query->row()->user_type_desc;
     	} else {
     		return null;
     	}
@@ -109,7 +109,7 @@ class User_model extends CI_Model {
      * @return array of user types
      */
     public function get_user_types() {
-    	$query = $this->db->get('USER_TYPE_REF');
+    	$query = $this->db->get('user_type_ref');
 		return $query->result_array();
     }
 }
