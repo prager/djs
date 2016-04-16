@@ -104,7 +104,7 @@ class Load_reservation extends CI_Controller {
 	 */
 	function loadcomps() {
 		$this->load->library('form_validation');
-		$this->load->library('session', 'email');
+		$this->load->library('session');
 		$this->load->helper('url', 'html', 'date');
 	}
 	

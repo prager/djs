@@ -4,6 +4,8 @@ class Table_reservation_model extends CI_Model {
     function __construct()
     {
         parent::__construct();
+        date_default_timezone_set("America/New_York");
+        
         $this->load->database();
     }
 /**
@@ -58,7 +60,7 @@ class Table_reservation_model extends CI_Model {
     	//$date=date_create();
     	//echo date_timestamp_get($date);
     	
-    	date_default_timezone_set("America/New_York");
+    	//date_default_timezone_set("America/New_York");
     	
     	$unixdate = date_timestamp_get(date_create($data['date'], timezone_open("America/New_York")));
     	$unixres = (intval(substr($data['time'], 0, 2) + 12) * 60 * 60) + (intval(substr($data['time'], 3, 2)) * 60) + strtotime($data['date']);
@@ -70,6 +72,13 @@ class Table_reservation_model extends CI_Model {
     	}
     	else {      	
 	    	$this->load->helper('email');
+    		/*$this->load->library('email');
+    		$this->email->from('djs_reservations@djs.com', 'DJs Reservations');
+    		$this->email->to($recipient);
+    		
+    		$this->email->subject($subject);
+    		$this->email->message($message);
+    		$this->email->send();*/
 	    	mail($recipient, $subject, $message);
 	  		
 	  		$reserv = array(

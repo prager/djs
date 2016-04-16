@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="block">
-                        <p>Copyright © 2016 - All Rights Reserved.Design and Developed By DJ's Bistro</p>
+                        <p>Copyright © 2016 - All Rights Reserved. Designed and Developed By Franklin University Team: Jan, Eric and Sajith</p>
                     </div>
                 </div>
             </div>

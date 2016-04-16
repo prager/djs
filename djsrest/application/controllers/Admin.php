@@ -12,6 +12,7 @@ class Admin extends CI_Controller {
 	 */
 	public function __construct() {
 		parent::__construct();
+		date_default_timezone_set("America/New_York");
 		$logged_in = $this->Login_model->is_logged_in();
 		$allowed = $this->Login_model->can_access('1');
 		
