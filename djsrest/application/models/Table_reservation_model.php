@@ -66,12 +66,12 @@ class Table_reservation_model extends CI_Model {
     	$unixres = (intval(substr($data['time'], 0, 2) + 12) * 60 * 60) + (intval(substr($data['time'], 3, 2)) * 60) + strtotime($data['date']);
     	    	
     	$retval = TRUE;
-    	
+    	    	
     	if(!$this->check_res($unixres, $data['party'])) {
     		$retval = FALSE;
     	}
     	else {      	
-	    	$this->load->helper('email');
+	    	//$this->load->helper('email');
     		/*$this->load->library('email');
     		$this->email->from('djs_reservations@djs.com', 'DJs Reservations');
     		$this->email->to($recipient);
@@ -79,7 +79,8 @@ class Table_reservation_model extends CI_Model {
     		$this->email->subject($subject);
     		$this->email->message($message);
     		$this->email->send();*/
-	    	mail($recipient, $subject, $message);
+	    	
+	    	//mail($recipient, $subject, $message);
 	  		
 	  		$reserv = array(
 	  			'reservation_tm' => $data['time'],

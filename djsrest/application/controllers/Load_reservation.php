@@ -21,7 +21,7 @@ class Load_reservation extends CI_Controller {
 		$this->err_flag = FALSE;
 		
 		$this->validate_form();
-		
+				
 		if($this->err_flag) {
 			$this->load_err();
 		}
@@ -61,6 +61,7 @@ class Load_reservation extends CI_Controller {
 		$this->load->view('template/navigation');		
 		
 		$data['message'] = 'Thank you for your table reservation!';
+		$data['alert'] = 'alert!';
 		$this->load->view('success_view', $data);
 		$this->load->view('template/footer');
 	}
@@ -95,7 +96,7 @@ class Load_reservation extends CI_Controller {
 		$this->form_validation->set_rules('party', 'Party', 'callback_party_check');
 		$this->form_validation->set_rules('phone', 'Phone', 'callback_phone_check');
 		$this->form_validation->set_rules('time', 'Time', 'callback_time_check');
-		
+				
 		return $this->form_validation->run();
 	}
 	

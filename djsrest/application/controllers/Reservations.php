@@ -19,6 +19,7 @@ class Reservations extends CI_Controller {
 		$data['phone'] = "";
 		$data['time'] ="";
 		$data['message'] = "";
+		
 		$this->load->view('reservations_view', $data);
 		$this->load->view('template/footer');
 	}

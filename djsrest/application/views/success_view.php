@@ -7,7 +7,7 @@
 	<!-- carousel starts here -->
 	
 	<p></p>				
-	<?php echo $message; ?>			
+	<?php echo $message . "; " . $alert; ?>			
 	<p>&nbsp;</p>
 </div>
 		

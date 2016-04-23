@@ -156,7 +156,7 @@ class Login_model extends CI_Model {
     	
     	$this->db->where('user_type_cd', $user['user_type']);
     	$query = $this->db->get('user_type_ref');
-    	$user_type_string = $query->row()->user_type_desc;
+    	$user_type_string = $query->row()->user_type_desc; 
     		
     	$data = array(
     			'user_id' => $user['user_id'],

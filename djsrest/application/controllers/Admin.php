@@ -187,15 +187,15 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('MENU_TBL');
+		$crud->set_table('menu_tbl');
 		$crud->set_subject('');
 		
-		$crud->field_type('PRICE','integer');
+		$crud->field_type('price','integer');
 		
 		$crud
-		->display_as('ITEM_NAME','Food Item')
-		->display_as('PRICE','Price')
-		->display_as('DESCRIPTION','Description');
+		->display_as('item_name','Food Item')
+		->display_as('price','Price')
+		->display_as('description','Description');
 		
 		$output = $crud->render();
 		$this->render_output('Food Menu Management', 'admin/food_menu_management', $output);
@@ -235,27 +235,27 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('CC_TBL');
+		$crud->set_table('cc_tbl');
 		$crud->set_subject('Credit Card');
 		
-		$crud->add_fields('USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD');
-		$crud->field_type('EXP_DT', 'date');
-		$crud->field_type('STATE_CD','dropdown',get_states_array());
-		$crud->required_fields('USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'ZIP_CD');
+		$crud->add_fields('user_id', 'cc_type', 'cc_num', 'sec_cd', 'exp_dt', 'street_num', 'street_nm', 'state_cd', 'zip_cd');
+		$crud->field_type('exp_dt', 'date');
+		$crud->field_type('state_cd','dropdown',get_states_array());
+		$crud->required_fields('user_id', 'cc_type', 'cc_num', 'sec_cd', 'exp_dt', 'street_num', 'zip_cd');
 		
-		$crud->columns('CC_ID','USER_ID', 'CC_TYPE', 'CC_NUM', 'SEC_CD', 'EXP_DT', 'STREET_NUM', 'STREET_NM', 'STATE_CD', 'ZIP_CD');
-		$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');		
+		$crud->columns('cc_id','user_id', 'cc_type', 'cc_num', 'sec_cd', 'exp_dt', 'street_num', 'street_nm', 'state_cd', 'zip_cd');
+		$crud->set_relation('user_id', 'user_tbl', '{first_nm} {last_nm}');		
 		$crud
-		->display_as('CC_ID', 'Id')
-		->display_as('USER_ID', 'Name')
-		->display_as('CC_TYPE', 'Type')
-		->display_as('CC_NUM', 'Credit Card #')
-		->display_as('SEC_CD', 'Security Code')
-		->display_as('EXP_DT', 'Expire Date')
-		->display_as('STREET_NUM', 'Address Line 1')
-		->display_as('STREET_NM', 'Address Line 2')
-		->display_as('STATE_CD', 'State')
-		->display_as('ZIP_CD', 'Zip Code');
+		->display_as('cc_id', 'Id')
+		->display_as('user_id', 'Name')
+		->display_as('cc_type', 'Type')
+		->display_as('cc_num', 'Credit Card #')
+		->display_as('sec_cd', 'Security Code')
+		->display_as('exp_dt', 'Expire Date')
+		->display_as('street_num', 'Address Line 1')
+		->display_as('street_nm', 'Address Line 2')
+		->display_as('state_cd', 'State')
+		->display_as('zip_cd', 'Zip Code');
 		
 		$output = $crud->render();		
 		$this->render_output('Credit Card Management', 'admin/credit_card_management', $output);
@@ -265,26 +265,26 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('RESERVATION_TBL');
+		$crud->set_table('reservation_tbl');
 		$crud->set_subject('Reservation');
 		
-		$crud->add_fields('FIRST_NM', 'LAST_NM, RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
+		$crud->add_fields('first_nm', 'last_nm', 'reservation_dt', 'reservation_tm', 'party_size');
 		//$crud->field_type('RESERVATION_DT', 'string');
-		$crud->required_fields('FIRST_NM', 'LAST_NM', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
-		$crud->edit_fields('FIRST_NM', 'LAST_NM',  'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE');
+		$crud->required_fields('first_nm', 'last_nm', 'reservation_dt', 'reservation_tm', 'party_size');
+		$crud->edit_fields('first_nm', 'last_nm', 'reservation_dt', 'reservation_tm', 'party_size');
 		
-		$crud->columns('RESERVATION_ID', 'FIRST_NM', 'LAST_NM', 'RESERVATION_DT', 'RESERVATION_TM', 'PARTY_SIZE', 'ENTRY_TS');
+		$crud->columns('first_nm', 'last_nm', 'reservation_dt', 'reservation_tm', 'party_size', 'entry_ts');
 		//$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');		
 		$crud
-		->display_as('RESERVATION_ID','Reservation Id')
-		->display_as('FIRST_NM', 'First Name')
-		->display_as('LAST_NM', 'Last Name')
-		->display_as('RESERVATION_DT', 'Reservation Date')
-		->display_as('RESERVATION_TM', 'Reservation Time')
-		->display_as('PARTY_SIZE', 'Party Size')
-		->display_as('ENTRY_TS', 'Entry Timestamp');	
+		->display_as('reservation_id','Reservation Id')
+		->display_as('first_nm', 'First Name')
+		->display_as('last_nm', 'Last Name')
+		->display_as('reservation_dt', 'Reservation Date')
+		->display_as('reservation_tm', 'Reservation Time')
+		->display_as('party_size', 'Party Size')
+		->display_as('entry_ts', 'Entry Timestamp');	
 			
-		$crud->order_by('RESERVATION_DT','desc');
+		$crud->order_by('reservation_dt','desc');
 		$output = $crud->render();
 		$this->render_output('Reservation Management', 'admin/reservation_management', $output);
 	}
@@ -297,15 +297,15 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('USER_TYPE_REF');
+		$crud->set_table('user_type_ref');
 		$crud->set_subject('User-group');
 		
-		$crud->required_fields('USER_TYPE_CD', 'USER_TYPE_DESC');
+		$crud->required_fields('user_type_cd', 'user_type_desc');
 		
-		$crud->columns('USER_TYPE_CD', 'USER_TYPE_DESC');		
+		$crud->columns('user_type_cd', 'user_type_desc');		
 		$crud
-		->display_as('USER_TYPE_CD','Group Code')
-		->display_as('USER_TYPE_DESC', 'Description');
+		->display_as('user_type_cd','Group Code')
+		->display_as('user_type_desc', 'Description');
 		
 		$output = $crud->render();
 		$this->render_output('User Group Management', 'admin/user_group_management', $output);
@@ -319,24 +319,24 @@ class Admin extends CI_Controller {
 		$crud = new grocery_CRUD();
 		$crud->set_theme('bootstrap');
 		
-		$crud->set_table('LOGIN');
+		$crud->set_table('login');
 		$crud->set_subject('Login Info');
 		
-		$crud->add_fields('USER_ID', 'USERNAME', 'PWD');
-		$crud->unique_fields('USERNAME', 'USER_ID');
-		$crud->field_type('PWD', 'password');
-		$crud->required_fields('USERNAME', 'PWD');
-		$crud->edit_fields('USERNAME', 'PWD');
+		$crud->add_fields('user_id', 'username', 'pwd');
+		$crud->unique_fields('username', 'user_id');
+		$crud->field_type('pwd', 'password');
+		$crud->required_fields('username', 'pwd');
+		$crud->edit_fields('username', 'pwd');
 		$crud->callback_before_insert(array($this,'password_encrypt'));
 		$crud->callback_before_update(array($this,'password_encrypt'));
 		
-		$crud->columns('USERNAME', 'USER_ID', 'PWD', 'LOGIN_TS');	
-		$crud->set_relation('USER_ID', 'USER_TBL', '{FIRST_NM} {LAST_NM}');
+		$crud->columns('username', 'user_id', 'pwd', 'login_ts');	
+		$crud->set_relation('user_id', 'user_tbl', '{first_nm} {last_nm}');
 		$crud
-		->display_as('USERNAME','Username')
-		->display_as('USER_ID','Name')
-		->display_as('PWD','Password')
-		->display_as('LOGIN_TS','Login Timestamp');
+		->display_as('username','Username')
+		->display_as('user_id','Name')
+		->display_as('pwd','Password')
+		->display_as('login_ts','Login Timestamp');
 		
 		$output = $crud->render();
 		$this->render_output('Login Management', 'admin/login_management', $output);
@@ -350,12 +350,12 @@ class Admin extends CI_Controller {
 	 * 
 	 */
 	function delete_records($foreign_key) {
-		$this->db->where('USER_ID', $foreign_key);
-		$this->db->delete('LOGIN');
-		$this->db->where('USER_ID', $foreign_key);
-		$this->db->delete('CC_TBL');
-		$this->db->where('USER_ID', $foreign_key);
-		$this->db->delete('RESERVATION_TBL');
+		$this->db->where('user_id', $foreign_key);
+		$this->db->delete('login');
+		$this->db->where('user_id', $foreign_key);
+		$this->db->delete('cc_tbl');
+		$this->db->where('user_id', $foreign_key);
+		$this->db->delete('reservation_tbl');
 	}
 	
 	/*
@@ -367,7 +367,7 @@ class Admin extends CI_Controller {
 	 */
 	function password_encrypt($post_array, $primary_key = null)
 	{
-		$post_array['PWD'] = password_hash($this->input->post('PWD'), PASSWORD_BCRYPT);
+		$post_array['pwd'] = password_hash($this->input->post('pwd'), PASSWORD_BCRYPT);
 		return $post_array;
 	}	
 }
