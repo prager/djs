@@ -19,20 +19,19 @@ class Menu_model extends CI_Model {
 	 * @return array returns an array of menu items
 	 */
 	public function get_menu() {
-		$query = $this->db->get('MENU_TBL');
+		$query = $this->db->get('menu_tbl');
 		return $query->result_array();
 	}
 	
 	public function get_menu_item($itemId) {
-		$this->db->where('MENU_ID', $itemId);
-		$query = $this->db->get('MENU_TBL');
+		$this->db->where('menu_id', $itemId);
+		$query = $this->db->get('menu_tbl');
 		if ($query->num_rows() == 1) {
 			return array(
-					'MENU_ID' => $query->row()->MENU_ID,
-					'ITEM_NAME' => $query->row()->ITEM_NAME,
-					'PRICE' => $query->row()->PRICE,
-					'DESCRIPTION' => $query->row()->DESCRIPTION,
-			);
+					'menu_id' => $query->row()->menu_id,
+					'item_nam' => $query->row()->item_name,
+					'price' => $query->row()->price,
+					'description' => $query->row()->description);
 		} else {
 			return null;
 		}
