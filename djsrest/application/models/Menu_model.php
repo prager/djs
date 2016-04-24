@@ -29,7 +29,7 @@ class Menu_model extends CI_Model {
 		if ($query->num_rows() == 1) {
 			return array(
 					'menu_id' => $query->row()->menu_id,
-					'item_nam' => $query->row()->item_name,
+					'item_name' => $query->row()->item_name,
 					'price' => $query->row()->price,
 					'description' => $query->row()->description);
 		} else {
