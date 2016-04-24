@@ -14,34 +14,36 @@
 		<ul class="list" style="list-style: none; padding-left: 0px;">
 			<?php foreach ($menu as $item) {?>
 			<li>
-			<div id="panel_<?php echo $item['MENU_ID'];?>" class="panel panel-default">
+			<div id="panel_<?php echo $item['menu_id'];?>" class="panel panel-default">
 			   <div class="panel-heading">
-			      <h4 style="padding-left: 15px;"><?php echo $item['ITEM_NAME'];?><span style="float:right; padding-right: 15px;"><?php 
-			      echo$item['PRICE'];
+			      <h4 style="padding-left: 15px;"><?php echo $item['item_name'];?><span style="float:right; padding-right: 15px;"><?php 
+			      echo $item['price'];
 			      //echo money_format($item['PRICE']);?>
 			      </span></h4>
 			   </div>
 			   <div class="panel-body">
 			   		<div class="col-md-9 col-sm-9 col-xs-6">
-						<p><?php echo $item['DESCRIPTION'];?></p>
+						<p><?php echo $item['description'];?></p>
 					</div>
 					<div class="col-md-3 col-sm-3 col-xs-6">
-						<input data-id="<?php echo $item['MENU_ID'];?>" class="form-control" style="display:none; float:left; height:30px; width:60px;" id="qty_<?php echo $item['MENU_ID'];?>" type="number" name="qty_<?php echo $item['MENU_ID'];?>" min="1" max="100" value="1" >
+						<input data-id="<?php echo $item['menu_id'];?>" class="form-control" style="display:none; 
+						float:left; height:30px; width:60px;" id="qty_<?php echo $item['menu_id'];?>" 
+						type="number" name="qty_<?php echo $item['menu_id'];?>" min="1" max="100" value="1" >
 						<button
 							type="button"
-							id="add_btn_<?php echo $item['MENU_ID'];?>" 
+							id="add_btn_<?php echo $item['menu_id'];?>" 
 							onclick="addItem(this.value)"
 			            	style="float:right; width:45px;" 
 			            	class="btn btn-primary btn-sm glyphicon glyphicon-shopping-cart"
-			            	value="<?php echo $item['MENU_ID'];?>">
+			            	value="<?php echo $item['menu_id'];?>">
 						</button>				
 						<button
 							type="button"
-							id="remove_btn_<?php echo $item['MENU_ID'];?>" 
+							id="remove_btn_<?php echo $item['menu_id'];?>" 
 							onclick="removeItem(this.value)"
 			            	style="display:none; float:right; width:45px;" 
 			            	class="btn btn-danger btn-sm glyphicon glyphicon-trash"
-			            	value="<?php echo $item['MENU_ID'];?>">
+			            	value="<?php echo $item['menu_id'];?>">
 						</button>
 					</div>
 				</div>
@@ -54,7 +56,8 @@
 		<div class="panel-footer" style="height:50px;">
 			<ul style="margin: auto;" class="pagination"></ul>
 			<input type="hidden" name="cartInput" class="cart-data" value="" >
-			<button style="float: right;" type="submit" onclick="getCart(); return validateForm();" class="btn btn-primary btn-sm btn-success">Go to Cart</button>			
+			<button style="float: right;" type="submit" onclick="getCart(); return validateForm();" 
+			class="btn btn-primary btn-sm btn-success">Go to Cart</button>			
 		</div>
 	</div>
 	<?php echo form_close();?>

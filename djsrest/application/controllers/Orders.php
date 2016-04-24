@@ -110,7 +110,7 @@ class Orders extends CI_Controller {
 		$this->load->model('Menu_model');
 		
 		$cartInput = $this->input->post('cartInput');
-		$lines = explode(',', $cartInput);
+ 		$lines = explode(',', $cartInput);
 		foreach ($lines as $line) {
 			if (!empty($line)) {
 				$itemLine = preg_split("/[\s]+/", $line, 2);			
@@ -120,8 +120,8 @@ class Orders extends CI_Controller {
 					$data = array(
 							'id'      => $itemLine[0],
 							'qty'     => $itemLine[1],
-							'price'   => $item['PRICE'],
-							'name'    => $item['ITEM_NAME']
+							'price'   => $item['price'],
+							'name'    => $item['item_name']
 					);
 					$this->cart->insert($data);
 				} else {
@@ -144,29 +144,29 @@ class Orders extends CI_Controller {
 		$this->load->model('Order_model');
 		$this->load->model('Card_model');
 		$pickupData = array(
-				'USER_ID' => null,
-				'CUS_NAME' => $this->input->post('customer_name'),
-				'PHONE_NM' => $this->input->post('phone'),
-				'PICKUP' => $this->input->post('method') == 'pickup' ? 'Yes' : 'No',
-				'CC_ID' => null
+				'user_id' => null,
+				'cus_name' => $this->input->post('customer_name'),
+				'phone_nm' => $this->input->post('phone'),
+				'pickup' => $this->input->post('method') == 'pickup' ? 'Yes' : 'No',
+				'cc_id' => null
 		);
 		
 		$billingData = array(
-				'CC_TYPE' => $this->input->post('cardType'),
-				'USER_ID' => null,
-				'CC_NUM' => $this->input->post('cardNum'),
-				'SEC_CD' => $this->input->post('secCode'),
-				'EXP_DT' => $this->input->post('expDate'),
-				'STREET_NUM' => $this->input->post('address'),
-				'STREET_NM' => $this->input->post('apt_num'),
-				'STATE_CD' => $this->input->post('state'),
-				'ZIP_CD' => $this->input->post('zip')
+				'cc_type' => $this->input->post('cardType'),
+				'user_id' => null,
+				'cc_num' => $this->input->post('cardNum'),
+				'sec_cd' => $this->input->post('secCode'),
+				'exp_dt' => $this->input->post('expDate'),
+				'street_num' => $this->input->post('address'),
+				'street_nm' => $this->input->post('apt_num'),
+				'state_cd' => $this->input->post('state'),
+				'zip_cd' => $this->input->post('zip')
 		);
 		
 		$logged_in = $this->Login_model->is_logged_in();
 		if ($logged_in) {
-			$pickupData['USER_ID'] = $this->session->userdata('user_id');
-			$billingData['USER_ID'] = $this->session->userdata('user_id');
+			$pickupData['user_id'] = $this->session->userdata('user_id');
+			$billingData['user_id'] = $this->session->userdata('user_id');
 		}
 		
 		$pickup = $this->input->post('method') == 'pickup' ? 'Yes' : 'No';			
@@ -174,14 +174,14 @@ class Orders extends CI_Controller {
 			$userId = $this->session->userdata('user_id');
 			$card = $this->Card_model->get_card($this->input->post('cardNum'), $userId);
 			if(!empty($card)) {
-				$pickupData['CC_ID'] = $card['CC_ID'];
+				$pickupData['cc_id'] = $card['cc_id'];
 			} else {
 				$this->save_billing_info($billingData);
-				$pickupData['CC_ID'] = $this->Card_model->get_card_insert_id();
+				$pickupData['cc_id'] = $this->Card_model->get_card_insert_id();
 			}
 		} elseif ($pickup == 'No') {
 			$this->save_billing_info($billingData);
-			$pickupData['CC_ID'] = $this->Card_model->get_card_insert_id();
+			$pickupData['cc_id'] = $this->Card_model->get_card_insert_id();
 		}
 		if ($this->save_pickup_info($pickupData) && $this->save_order_items($this->Order_model->get_order_insert_id())) {
 			$this->distroy_cart();

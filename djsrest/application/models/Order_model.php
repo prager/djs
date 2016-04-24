@@ -19,7 +19,7 @@ class Order_model extends CI_Model {
      * @param boolean returns true if successfully inserted into the database
      */
     function insert_order($data) {
-    	return $this->db->insert('TAKEOUT_TBL', $data);    	
+    	return $this->db->insert('takeout_tbl', $data);    	
     }
     
     /**
@@ -33,12 +33,12 @@ class Order_model extends CI_Model {
     	$data = array();
     	foreach ($this->cart->contents() as $item) {
     		array_push($data, array(
-    				'ORDER_ID' => $orderId,
-    				'MENU_ID' => $item['id'],
-    				'QTY' => $item['qty']
+    				'order_id' => $orderId,
+    				'menu_id' => $item['id'],
+    				'qty' => $item['qty']
     		));
     	}    		
-    	return $this->db->insert_batch('TAKEOUT_TO_MENU_TBL', $data);
+    	return $this->db->insert_batch('takeout_to_menu_tbl', $data);
     }
     
     /**

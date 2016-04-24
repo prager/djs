@@ -2,7 +2,7 @@
 	<h3>Menu</h3>
 	<hr>
 	<?php 
-		/*foreach ($menu as $item) {
+		foreach ($menu as $item) {
 			echo '<div class="panel panel-default">';
 			echo '<div class="panel-heading"><h4>' . $item['item_name'] . '</h4></div>';
 			echo '<div class="panel-body">';
@@ -12,11 +12,11 @@
 			echo '<div class="col-md-3 col-sm-3 col-xs-3">$' . $item['price'] . '</div>';
 			echo '</div>';
 			echo '</div>';		
-		}*/
+		}
 	?>
 	<table style="width:90%; ">
 	<?php 
-	foreach ($menu as $item) {
+	/*foreach ($menu as $item) {
 		echo "<tr>
 				<td style=\"width:65%\"><h4>
 				" . $item['item_name'] . "
@@ -30,7 +30,7 @@
 			  <tr>
 			 	<td>------------------------------------------</td><td>--------------</td>	
 			  </tr>		";			  
-	}
+	}*/
 	?>
 	</table>
 </div>
