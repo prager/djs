@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 class Login extends CI_Controller {	
-	/*
+	/**
 	 * loads the login page when the controller is called
 	 *
 	 */
@@ -15,7 +15,7 @@ class Login extends CI_Controller {
 		$this->load_login();
 	}
 	
-	/*
+	/**
 	 * Loads the login page
 	 *
 	 */
@@ -29,7 +29,7 @@ class Login extends CI_Controller {
 		$this->load->view('template/footer');
 	}	
 	
-	/*
+	/**
 	 * Loads the registration page
 	 *
 	 */
@@ -44,7 +44,7 @@ class Login extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * loads the success page after successful registration
 	 *
 	 */
@@ -58,7 +58,7 @@ class Login extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * Loads the error page
 	 *
 	 */

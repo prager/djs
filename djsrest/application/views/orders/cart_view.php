@@ -1,7 +1,7 @@
 <div id="cart_view" style="display: none;" class="col-md-9"><br>
 	<h2>Review Order</h2>
 	<hr>
-	<div class="panel panel-default">
+		<div class="panel panel-default">
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Please review your items before checkout</div>
 	  <div class="panel-body">
@@ -26,28 +26,28 @@
 		   <?php
 		   		$i = 1;
 				foreach ($cart as $item) {
-				echo '<tr>';
-				echo '<th scope="row">' . $i . '</th>';
-				echo '<td>' . $item['name'] . '</td>';	
-				echo '<td><span style="float:right;">' . $item['price'] . '</span></td>';
-				//echo '<td><span style="float:right;">' . money_format($item['price']) . '</span></td>';
-				echo '<td><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></td>';
-				echo form_open('orders/update_item/');
-				echo '<td><input id="input_' . $item['id'] . '" type="number" name="qty" min="1" max="100" value="' . $item['qty'] . '"></td>';
-				echo '<td>';
-				echo '<button type=submit name="row_id"
-					class="btn btn-primary btn-sm "
-					value="' . $item['rowid'] . '"> Update</button>';
-				echo '</td>';
-				echo form_close();
-				echo '<td>';
-				echo form_open('orders/remove_item');
-				echo '<button type=submit style="width:50px;" name="row_id"
-					class="btn btn-danger btn-sm glyphicon glyphicon-trash"
-					value="' . $item['rowid'] . '"></button>';
-				echo form_close();
-				echo '</td>';
-				$i++;
+					echo '<tr>';
+					echo '<th scope="row">' . $i . '</th>';
+					echo '<td>' . $item['name'] . '</td>';	
+					//echo '<td><span style="float:right;">' . $item['price'] . '</span></td>';
+					echo '<td><span style="float:right;">' . currency_format($item['price']) . '</span></td>';
+					echo '<td><p>&nbsp; &nbsp; &nbsp; &nbsp;</p></td>';
+					echo form_open('orders/update_item/');
+					echo '<td><input id="input_' . $item['id'] . '" type="number" name="qty" min="1" max="100" value="' . $item['qty'] . '"></td>';
+					echo '<td>';
+					echo '<button type=submit name="row_id"
+						class="btn btn-primary btn-sm "
+						value="' . $item['rowid'] . '"> Update</button>';
+					echo '</td>';
+					echo form_close();
+					echo '<td>';
+					echo form_open('orders/remove_item');
+					echo '<button type=submit style="width:50px;" name="row_id"
+						class="btn btn-danger btn-sm glyphicon glyphicon-trash"
+						value="' . $item['rowid'] . '"></button>';
+					echo form_close();
+					echo '</td>';
+					$i++;
 				}
 			?>		      
 		   </tbody>
@@ -69,15 +69,14 @@
 		    		</tr>
 		    		<tr>
 		    			<td style="width:50%; text-align:right;">Total:</td>
-		    			<td style="width:50%; text-align:right;"><?php echo $this->cart->total();?></td>
-		    			//<td style="width:50%; text-align:right;"><?php echo money_format($this->cart->total());?></td>
+		    			<td style="width:50%; text-align:right;"><?php echo currency_format($this->cart->total());?></td>
 		    		</tr>
-		    		<tr>
+		    		<!--  <tr>
 		    			<td style="width:50%; text-align:right;">Tax rate:</td>
 		    			<td style="width:50%; text-align:right;">
 						<?php 
 						$rate = 7.5;
-						echo $rate . '%';
+						//echo $rate . '%';
 						?>
 						</td>
 		    		</tr>
@@ -86,17 +85,18 @@
 		    			<td style="width:50%; text-align:right;">
 						<?php 
 						$tax = $this->cart->total() * $rate / 100;
-						echo $tax;
+						//echo $tax;
 						//echo money_format($tax);
 						?>
-						</td>
+						</td>-->
 		    		</tr> 
 		    		<tr><td><hr></td><td><hr></td></tr>
 		    		<tr>
 		    			<td style="width:50%; text-align:right;"><strong>Amount due:</strong></td>
 		    			<td style="width:50%; text-align:right;"><strong><u><?php 
-		    			echo $tax + $this->cart->total();
-		    			//echo money_format($tax + $this->cart->total());?></u></strong></td>
+		    			//echo currency_format($tax + $this->cart->total());
+		    			echo currency_format($this->cart->total());
+		    			?></u></strong></td>
 		    		</tr>   		
 	    		</tbody>
     		</table>

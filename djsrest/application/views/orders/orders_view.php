@@ -17,8 +17,8 @@
 			<div id="panel_<?php echo $item['menu_id'];?>" class="panel panel-default">
 			   <div class="panel-heading">
 			      <h4 style="padding-left: 15px;"><?php echo $item['item_name'];?><span style="float:right; padding-right: 15px;"><?php 
-			      echo $item['price'];
-			      //echo money_format($item['PRICE']);?>
+			      //echo $item['price'];
+			      echo currency_format($item['price']);?>
 			      </span></h4>
 			   </div>
 			   <div class="panel-body">
@@ -114,6 +114,7 @@ function getCart() {
 		data += itemId + " " + cart[itemId] + ","
 	}
 	$(".cart-data").attr("value", data);
+	//alert("data: " + data);
 }
 
 $( "input[type='number']" ).change(function() {

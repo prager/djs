@@ -7,7 +7,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  */
 class Orders extends CI_Controller {
 	
-	/*
+	/**
 	 * Constructor for the controller
 	 *
 	 */
@@ -16,16 +16,15 @@ class Orders extends CI_Controller {
 		$this->load->library('cart');
 	}
 	
-	/*
+	/**
 	 * Loads the menu
 	 *
 	 */
-	public function index()
-	{
+	public function index() {
 		$this->load_menu();
 	}	
 	
-	/*
+	/**
 	 * Loads the takeout page
 	 *
 	 */
@@ -42,7 +41,7 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * Loads the shopping cart
 	 *
 	 */
@@ -54,6 +53,9 @@ class Orders extends CI_Controller {
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
+		//$data['alert'] = "test";
+		//$data['message'] = "ok";
+		//$this->load->view('success_view', $data);
 		$this->load->view('orders/cart_view', $data);
 		$this->load->view('template/footer');
 	}
@@ -110,7 +112,10 @@ class Orders extends CI_Controller {
 		$this->load->model('Menu_model');
 		
 		$cartInput = $this->input->post('cartInput');
+		//$cartInput = "3 1,5 2";
  		$lines = explode(',', $cartInput);
+ 		//$data['message'] = "lines: " . $lines[0] . " " . $lines[1] . " " . $lines[2];
+ 		//$this->load->view('success_view', $data);
 		foreach ($lines as $line) {
 			if (!empty($line)) {
 				$itemLine = preg_split("/[\s]+/", $line, 2);			
@@ -136,7 +141,7 @@ class Orders extends CI_Controller {
 		$this->load_cart();
 	}
 	
-	/*
+	/**
 	 * Process the order
 	 *
 	 */
@@ -180,7 +185,7 @@ class Orders extends CI_Controller {
 				$pickupData['cc_id'] = $this->Card_model->get_card_insert_id();
 			}
 		} elseif ($pickup == 'No') {
-			$this->save_billing_info($billingData);
+			//$this->save_billing_info($billingData);
 			$pickupData['cc_id'] = $this->Card_model->get_card_insert_id();
 		}
 		if ($this->save_pickup_info($pickupData) && $this->save_order_items($this->Order_model->get_order_insert_id())) {
@@ -192,7 +197,7 @@ class Orders extends CI_Controller {
 		}		
 	}
 	
-	/*
+	/**
 	 * Save order items to the database
 	 *
 	 * $param string $orderId order id
@@ -204,7 +209,7 @@ class Orders extends CI_Controller {
 		return $this->Order_model->insert_order_items($orderId);
 	}
 	
-	/*
+	/**
 	 * Save the billing information to the database
 	 * 
 	 * @param array $data billing information
@@ -216,7 +221,7 @@ class Orders extends CI_Controller {
 		return $this->Card_model->insert_card($data);
 	}
 	
-	/*
+	/**
 	 * Save the pickup information to the database
 	 *
 	 * @param array $data billing information
@@ -228,7 +233,7 @@ class Orders extends CI_Controller {
 		return $this->Order_model->insert_order($data);
 	}
 	
-	/*
+	/**
 	 * Get item's row id in cart
 	 *
 	 * @param string $itemId food item id
@@ -248,7 +253,7 @@ class Orders extends CI_Controller {
 		}
 	}
 	
-	/* 
+	/** 
 	 * Removes item from the cart and refresh the page
 	 *
 	 */
@@ -261,7 +266,7 @@ class Orders extends CI_Controller {
 		$this->load_cart();
 	}
 	
-	/*
+	/**
 	 * Updates an item in the cart and refresh the page
 	 *
 	 */
@@ -274,8 +279,8 @@ class Orders extends CI_Controller {
 		$this->load_cart();
 	}
 	
-	/*
-	 * Distroy the cart and refresh the page
+	/**
+	 * Destroy the cart and refresh the page
 	 *
 	 */
 	public function distroy_cart() {
