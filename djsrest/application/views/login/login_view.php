@@ -42,7 +42,8 @@
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
-        <a id="registration_tab" role="button" data-toggle="collapse" data-parent="#accordion" href="#registration_form_tab" aria-expanded="false" aria-controls="registration_form_tab">
+        <a id="registration_tab" role="button" data-toggle="collapse" data-parent="#accordion" 
+        href="#registration_form_tab" aria-expanded="false" aria-controls="registration_form_tab">
           Create Account
         </a>
       </h4>
@@ -68,13 +69,9 @@
 				    	<input type="text" value="<?php echo set_value('lastName'); ?>" class="form-control input_long" id="lastName" name="lastName" placeholder="Last Name">
 				  	</div>
 				  	<div class="form-group">
-				    	<label for="address1">Address Line 1</label>
-				    	<span style="color: red;"><?php echo form_error('address1'); ?></span>
-				    	<input type="text" value="<?php echo set_value('address1'); ?>" class="form-control input_long" id="address1" name="address1" placeholder="Address Line 1">
-				  	</div>
-				  	<div class="form-group">
-				    	<label for="address2">Address Line 2</label>
-				    	<input type="text" value="<?php echo set_value('address2'); ?>" class="form-control input_long" id="address2" name="address2" placeholder="Address Line 2">
+				    	<label for="street">Street</label>
+				    	<span style="color: red;"><?php echo form_error('street'); ?></span>
+				    	<input type="text" value="<?php echo set_value('street'); ?>" class="form-control input_long" id="street" name="street" placeholder="Street Address">
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="city">City</label>

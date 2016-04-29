@@ -73,23 +73,22 @@ class Admin extends CI_Controller {
 		$crud->set_table('user_tbl');
 		$crud->set_subject('User');
 		
-		$crud->add_fields('first_nm', 'last_nm', 'street_num', 'street_nm',  'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');
+		$crud->add_fields('first_nm', 'last_nm', 'street',  'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');
 		$crud->field_type('state_cd','dropdown', get_states_array());
-		$crud->required_fields('first_nm', 'last_nm', 'street_num', 'street_nm', 'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');			
+		$crud->required_fields('first_nm', 'last_nm', 'street', 'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');			
 		$crud->set_rules('first_nm', 'First Name', 'trim|required|alpha');
 		$crud->set_rules('last_nm', 'First Name', 'trim|required|alpha');
 		$crud->set_rules('email_addr', 'Email', 'trim|required|valid_email|is_unique[user_tbl.email_addr]');
 		//$crud->set_rules('email_addr', 'Email', 'trim|required|valid_email');
 		//$crud->set_rules('email_addr', 'Email', 'trim|required');
 		
-		$crud->columns('first_nm', 'last_nm', 'street_num', 'street_nm',  'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');
+		$crud->columns('first_nm', 'last_nm', 'street',  'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');
 		$crud->set_relation('user_type_cd', 'user_type_ref', 'user_type_desc');
 		$crud
 			->display_as('user_id','Id')
 			->display_as('first_nm','First Name')
 			->display_as('last_nm','Last Name')
-			->display_as('street_num','Street Number')
-			->display_as('street_nm','Street Name')
+			->display_as('street','Street')
 			->display_as('state_cd','State')
 			->display_as('zip_cd','Zip Code')
 			->display_as('email_addr','Email')

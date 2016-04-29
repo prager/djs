@@ -139,7 +139,7 @@ class Login extends CI_Controller {
 	
 		$this->form_validation->set_rules('firstName', 'First Name', 'trim|required|alpha');
 		$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|alpha');
-		$this->form_validation->set_rules('address1', 'Address line', 'trim|required');
+		$this->form_validation->set_rules('street', 'Street', 'trim|required');
 		$this->form_validation->set_rules('city', 'City', 'trim|required');
 		$this->form_validation->set_rules('state', 'State', 'trim|required');
 		$this->form_validation->set_rules('zip', 'Zip', 'trim|required');

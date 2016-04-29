@@ -25,8 +25,7 @@ class User_model extends CI_Model {
     			'first_nm' => $this->input->post('firstName'),
     			'last_nm' => $this->input->post('lastName'),
     			'email_addr' => $this->input->post('email'),
-    			'street_num' => $this->input->post('address1'),
-    			'street_nm' => $this->input->post('address2'),
+    			'street' => $this->input->post('street'),
     			'state_cd' => $this->input->post('state'),
     			'zip_cd' => $this->input->post('zip'),
     			'user_type_cd' => $user_type
