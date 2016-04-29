@@ -143,8 +143,8 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('city', 'City', 'trim|required');
 		$this->form_validation->set_rules('state', 'State', 'trim|required');
 		$this->form_validation->set_rules('zip', 'Zip', 'trim|required');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[32]|is_unique[LOGIN.username]');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.email_addr]');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[32]|is_unique[login.username]');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user_tbl.email_addr]');
 		$this->form_validation->set_rules('emailConf', 'Email Conformation', 'trim|required|matches[email]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		$this->form_validation->set_rules('passwordConf', 'Password Conformation', 'trim|required|matches[passwordConf]');
