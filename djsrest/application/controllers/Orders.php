@@ -104,7 +104,7 @@ class Orders extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * Insert food item to the card
 	 *
 	 */
@@ -112,10 +112,7 @@ class Orders extends CI_Controller {
 		$this->load->model('Menu_model');
 		
 		$cartInput = $this->input->post('cartInput');
-		//$cartInput = "3 1,5 2";
  		$lines = explode(',', $cartInput);
- 		//$data['message'] = "lines: " . $lines[0] . " " . $lines[1] . " " . $lines[2];
- 		//$this->load->view('success_view', $data);
 		foreach ($lines as $line) {
 			if (!empty($line)) {
 				$itemLine = preg_split("/[\s]+/", $line, 2);			
@@ -189,10 +186,10 @@ class Orders extends CI_Controller {
 			$pickupData['cc_id'] = $this->Card_model->get_card_insert_id();
 		}
 		if ($this->save_pickup_info($pickupData) && $this->save_order_items($this->Order_model->get_order_insert_id())) {
-			$this->distroy_cart();
+			$this->destroy_cart();
 			$this->load_success();
 		} else {
-			$this->distroy_cart();
+			$this->destroy_cart();
 			$this->load_error();
 		}		
 	}
@@ -283,7 +280,7 @@ class Orders extends CI_Controller {
 	 * Destroy the cart and refresh the page
 	 *
 	 */
-	public function distroy_cart() {
+	public function destroy_cart() {
 		$this->cart->destroy();
 		$this->load_menu();
 	}

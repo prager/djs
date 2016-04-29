@@ -79,8 +79,12 @@ class Table_reservation_model extends CI_Model {
     		$this->email->subject($subject);
     		$this->email->message($message);
     		$this->email->send();*/
+    		
+	    	//$headers = 'From: jan@kulisek.org' . "\r\n" . 'Reply-To: jan@kulisek.org' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
 	    	
-	    	//mail($recipient, $subject, $message);
+	    	//mail($recipient, $subject, $message, $headers);
+    		
+    		mail($recipient, $subject, $message);
 	  		
 	  		$reserv = array(
 	  			'reservation_tm' => $data['time'],

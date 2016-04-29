@@ -35,7 +35,7 @@ class Admin extends CI_Controller {
 		$this->load->library('grocery_CRUD');
 	}
 
-	/*
+	/**
 	 * Render output to the view
 	 *
 	 * @param string $page_title title of the page
@@ -46,11 +46,11 @@ class Admin extends CI_Controller {
 	public function render_output($page_title, $view_path, $output = null) {
 		$data['title'] = $page_title;
 		$this->load->view('admin/admin_header', $data);
-		$this->load->view($view_path,$output);
+		$this->load->view($view_path, $output);
 		$this->load->view('admin/admin_footer');
 	}
 	
-	/*
+	/**
 	 * Loads the user management page as the index page of the controller
 	 *
 	 * @param string $page_title title of the page
@@ -62,11 +62,11 @@ class Admin extends CI_Controller {
 		$this->user_management();
 	}
 	
-	/*
+	/**
 	 * Loads the user management page
 	 *
 	 */
-	public function user_management() {
+	/*public function user_management() {
 		$crud = new grocery_CRUD();		
 		$crud->set_theme('bootstrap');
 		
@@ -74,12 +74,13 @@ class Admin extends CI_Controller {
 		$crud->set_subject('User');
 		
 		$crud->add_fields('first_nm', 'last_nm', 'street_num', 'street_nm',  'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');
-		$crud->field_type('state_cd','dropdown',get_states_array());
+		$crud->field_type('state_cd','dropdown', get_states_array());
 		$crud->required_fields('first_nm', 'last_nm', 'street_num', 'street_nm', 'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');			
 		$crud->set_rules('first_nm', 'First Name', 'trim|required|alpha');
 		$crud->set_rules('last_nm', 'First Name', 'trim|required|alpha');
-		//$crud->set_rules('EMAIL_ADDR', 'Email', 'trim|required|valid_email|is_unique[USER_TBL.EMAIL_ADDR]');
-		$crud->set_rules('email_addr', 'Email', 'trim|required|valid_email');
+		//$crud->set_rules('email_addr', 'Email', 'trim|required|valid_email|is_unique[user_tbl.email_addr]');
+		//$crud->set_rules('email_addr', 'Email', 'trim|required|valid_email');
+		$crud->set_rules('email_addr', 'Email', 'trim|required');
 		
 		$crud->columns('first_nm', 'last_nm', 'street_num', 'street_nm',  'state_cd', 'zip_cd', 'email_addr', 'user_type_cd');
 		$crud->set_relation('user_type_cd', 'user_type_ref', 'user_type_desc');
@@ -98,9 +99,34 @@ class Admin extends CI_Controller {
 		
 		$output = $crud->render();
 		$this->render_output('User Management', 'admin/user_management', $output);
+	}*/
+	
+	public function user_management() {
+		$crud = new grocery_CRUD();
+		$crud->set_theme('bootstrap');
+	
+		$crud->set_table('user_tbl');
+		$crud->set_subject('User');
+	
+		$crud->add_fields('first_nm', 'last_nm', 'street_num', 'street_nm',  'state_cd', 'zip_cd');
+		
+	
+		$crud->columns('first_nm', 'last_nm', 'street_num', 'street_nm',  'state_cd', 'zip_cd');
+		$crud
+		->display_as('first_nm','First Name')
+		->display_as('last_nm','Last Name')
+			->display_as('street_num','Street Number')
+			->display_as('street_nm','Street Name')
+			->display_as('state_cd','State')
+			->display_as('zip_cd','Zip Code');
+	
+		$crud->callback_before_delete(array($this,'delete_records'));
+	
+		$output = $crud->render();
+		$this->render_output('User Management', 'admin/user_management', $output);
 	}
 
-	/*
+	/**
 	 * Loads the employee management page
 	 *
 	 */
@@ -140,7 +166,7 @@ class Admin extends CI_Controller {
 		$this->render_output('Employee Management', 'admin/employee_management', $output);
 	}
 
-	/*
+	/**
 	 * Loads the customer management page
 	 *
 	 */

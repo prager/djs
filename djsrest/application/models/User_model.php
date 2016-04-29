@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This the model for the user
+ * This is the model for the user
  *
  */
 class User_model extends CI_Model {
