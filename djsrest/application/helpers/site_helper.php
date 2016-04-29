@@ -54,10 +54,10 @@ function user_types_dropdown($elementId, $defaultVal) {
 	$output .= '<option value="" disabled selected>Select User Type</option>';
 
 	foreach($types as $type){
-		if ($defaultVal == $type['USER_TYPE_CD']) {
-			$output .= '<option selected="selected" value="' . $type['USER_TYPE_CD'] . '">' . $type['USER_TYPE_DESC'] . '</option>';
+		if ($defaultVal == $type['user_type_cd']) {
+			$output .= '<option selected="selected" value="' . $type['user_type_cd'] . '">' . $type['user_type_desc'] . '</option>';
 		} else {
-			$output .= '<option value="' . $type['USER_TYPE_CD'] . '">' . $type['USER_TYPE_DESC'] . '</option>';
+			$output .= '<option value="' . $type['user_type_cd'] . '">' . $type['user_type_desc'] . '</option>';
 		}
 	}
 

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 class User extends CI_Controller {
-	/*
+	/**
 	 * Constructor for the controller
 	 *
 	 */
@@ -24,7 +24,7 @@ class User extends CI_Controller {
 		$this->load->helper('site_helper');
 	}
 	
-	/*
+	/**
 	 * loads the user profile when the controller is called
 	 *
 	 */
@@ -33,7 +33,7 @@ class User extends CI_Controller {
 		$this->load_profile();
 	}
 	
-	/*
+	/**
 	 * Loads the user profile
 	 *
 	 */
@@ -50,7 +50,7 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * Loads the page for edit contact information
 	 *
 	 */
@@ -70,7 +70,7 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * Loads the page for edit login information
 	 *
 	 */
@@ -90,7 +90,7 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * Loads the error page
 	 *
 	 */
@@ -104,7 +104,7 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * Loads the success page
 	 *
 	 */
@@ -118,7 +118,7 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 	
-	/*
+	/**
 	 * Validates the contact information
 	 * 
 	 * @return boolean true if information is valid and false if not
@@ -142,7 +142,7 @@ class User extends CI_Controller {
 		return $this->form_validation->run();		
 	}
 	
-	/*
+	/**
 	 * Validates the login information
 	 *
 	 * @return boolean true if information is valid and false if not
@@ -158,7 +158,7 @@ class User extends CI_Controller {
 		return $this->form_validation->run();
 	}
 	
-	/*
+	/**
 	 * Updates the login information and load the profil page
 	 *
 	 */
@@ -187,7 +187,7 @@ class User extends CI_Controller {
 	
 	}
 	
-	/*
+	/**
 	 * Updates the contact information and load the profil page
 	 *
 	 */
