@@ -4,10 +4,9 @@
 	<h2 id="sec0">Success!</h2>
 	<hr class="col-md-12">
 	
-	<!-- carousel starts here -->
-	
 	<p></p>				
-	<?php echo $message . "; " . $alert; ?>			
+	<?php echo $message;
+			echo  $alert; ?>			
 	<p>&nbsp;</p>
 </div>
 		

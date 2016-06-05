@@ -59,9 +59,9 @@ class Load_reservation extends CI_Controller {
 		$this->load->helper('email');
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');		
-		
+		$this->load->view('template/leftNavigation');
 		$data['message'] = 'Thank you for your table reservation!';
-		$data['alert'] = 'alert!';
+		$data['alert'] = '';
 		$this->load->view('success_view', $data);
 		$this->load->view('template/footer');
 	}

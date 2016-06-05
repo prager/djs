@@ -1,7 +1,7 @@
 <!-- content of the body -->
 <div class="col-md-9" id="mainCol"><br>
 <!---------------------------------Form------------------------------>
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<d iv class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">

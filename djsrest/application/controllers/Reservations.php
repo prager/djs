@@ -6,7 +6,6 @@ class Reservations extends CI_Controller {
 	public function index()
 	{
 		$this->load->helper('form');
-		
 		$data['title'] = 'Reservations';
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
