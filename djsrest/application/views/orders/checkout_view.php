@@ -39,7 +39,7 @@
 				<label for="payment_method">Method of payment</label>
 				<span id="payment_method" class="form-control" style="height: 60px;">
 					<input type="radio" id="pickup_radio" name="payment_method" checked="checked"> Pay at pickup</input><br>
-					<input type="radio" id="now_radio" name="payment_method"> Pay now</input>
+					<input type="hidden" id="now_radio" name="payment_method" > </input>
 				</span>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 			<span style="float: right; padding-right: 15px;">
 				<a
 					class="btn btn-danger btn-sm"
-					href="<?php echo site_url('orders/distroy_cart');?>" 
+					href="<?php echo site_url('orders/destroy_cart');?>" 
 					value="">Start-over
 				</a>
 			</span>
@@ -167,7 +167,7 @@
 			<span style="float: right; padding-right: 15px;">
 				<a
 					class="btn btn-danger btn-sm"
-					href="<?php echo site_url('orders/distroy_cart');?>">Start-over
+					href="<?php echo site_url('orders/destroy_cart');?>">Start-over
 				</a>
 			</span>
 		</div>
