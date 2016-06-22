@@ -30,19 +30,19 @@ class Order_model extends CI_Model {
      * @return boolean returns true if inserted successfully
      */
     function insert_order_items($orderId) {
-    	//$data = array();
+    	$data = array();
     	$retval = TRUE;
     	foreach ($this->cart->contents() as $item) {
-    		/*array_push($data, array(
-    				'order_id' => $orderId,
-    				'menu_id' => $item['id'],
-    				'qty' => $item['qty']
-    		));*/
     		$data = array(
     			'order_id' => $orderId,
     			'menu_id' => $item['id'],
     			'qty' => $item['qty']
     		);
+    		array_push($data, array(
+    				'order_id' => $orderId,
+    				'menu_id' => $item['id'],
+    				'qty' => $item['qty']
+    		));
     		if (!$this->db->insert('takeout_to_menu_tbl', $data)) {
     			$retval = FALSE;
     			break;

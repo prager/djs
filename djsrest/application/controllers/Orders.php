@@ -86,7 +86,9 @@ class Orders extends CI_Controller {
 		$this->load->view('template/header', $data);
 		$this->load->view('template/navigation');
 		$this->load->view('template/leftNavigation');
-		$this->load->view('orders/success_view', $data);
+		$data['alert'] = '';
+		$data['message'] = "Your order was processed. Thank you!";
+		$this->load->view('success_view', $data);
 		$this->load->view('template/footer');
 	}
 	
@@ -144,7 +146,7 @@ class Orders extends CI_Controller {
 	 */
 	function process_order() {
 		$this->load->model('Order_model');
-		$this->load->model('Card_model');
+		//$this->load->model('Card_model');
 		$pickupData = array(
 				'user_id' => null,
 				'cus_name' => $this->input->post('customer_name'),
@@ -153,7 +155,7 @@ class Orders extends CI_Controller {
 				'cc_id' => null
 		);
 		
-		$billingData = array(
+		/*$billingData = array(
 				'cc_type' => $this->input->post('cardType'),
 				'user_id' => null,
 				'cc_num' => $this->input->post('cardNum'),
@@ -163,16 +165,16 @@ class Orders extends CI_Controller {
 				'street_nm' => $this->input->post('apt_num'),
 				'state_cd' => $this->input->post('state'),
 				'zip_cd' => $this->input->post('zip')
-		);
+		);*/
 		
-		$logged_in = $this->Login_model->is_logged_in();
-		if ($logged_in) {
-			$pickupData['user_id'] = $this->session->userdata('user_id');
-			$billingData['user_id'] = $this->session->userdata('user_id');
-		}
+		//$logged_in = $this->Login_model->is_logged_in();
+		//if ($logged_in) {
+			//$pickupData['user_id'] = $this->session->userdata('user_id');
+			//$billingData['user_id'] = $this->session->userdata('user_id');
+		//}
 		
-		$pickup = $this->input->post('method') == 'pickup' ? 'Yes' : 'No';			
-		if ($logged_in && $pickup == 'No') {
+		//$pickup = $this->input->post('method') == 'pickup' ? 'Yes' : 'No';			
+		/*if ($logged_in && $pickup == 'No') {
 			$userId = $this->session->userdata('user_id');
 			$card = $this->Card_model->get_card($this->input->post('cardNum'), $userId);
 			if(!empty($card)) {
@@ -184,7 +186,7 @@ class Orders extends CI_Controller {
 		} elseif ($pickup == 'No') {
 			//$this->save_billing_info($billingData);
 			$pickupData['cc_id'] = $this->Card_model->get_card_insert_id();
-		}
+		}*/
 		if ($this->save_pickup_info($pickupData) && $this->save_order_items($this->Order_model->get_order_insert_id())) {
 			$this->destroy_cart();
 			$this->load_success();
@@ -282,6 +284,7 @@ class Orders extends CI_Controller {
 	 */
 	public function destroy_cart() {
 		$this->cart->destroy();
-		$this->load_menu();
+		//$this->load_menu();
 	}
+	
 }

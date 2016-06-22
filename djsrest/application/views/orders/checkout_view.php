@@ -74,53 +74,53 @@
 			</span>
 		</div>
 	</div>
-	<div id="billing_info" style="display: none;"
-		class="panel panel-default">
+	<!-- <div id="billing_info" style="display: none;"
+		class="panel panel-default"> -->
 		<!-- Default panel contents -->
-		<div class="panel-heading">Billing Information</div>
+		<!--<div class="panel-heading">Billing Information</div>
 		<div class="panel-body">
 			<div class="form-group">
-				<label for="bill_firstName">First Name</label> <span style="color: red;"><?php echo form_error('bill_firstName'); ?></span>
-				<input type="text" value="<?php echo set_value('bill_firstName'); ?>"
+				<label for="bill_firstName">First Name</label> <span style="color: red;"><?php //echo form_error('bill_firstName'); ?></span>
+				<input type="text" value="<?php //echo set_value('bill_firstName'); ?>"
 					class="form-control input_long" id="bill_firstName" name="bill_firstName"
 					placeholder="First Name">
 			</div>
 			<div class="form-group">
-				<label for="bill_lastName">Last Name</label> <span style="color: red;"><?php echo form_error('bill_lastName'); ?></span>
-				<input type="text" value="<?php echo set_value('bill_lastName'); ?>"
+				<label for="bill_lastName">Last Name</label> <span style="color: red;"><?php //echo form_error('bill_lastName'); ?></span>
+				<input type="text" value="<?php //echo set_value('bill_lastName'); ?>"
 					class="form-control input_long" id="bill_lastName" name="bill_lastName"
 					placeholder="Last Name">
 			</div>
 			<div class="form-group">
 				<label for="address">Billing Address</label> <span
-					style="color: red;"><?php echo form_error('address'); ?></span> 
+					style="color: red;"><?php //echo form_error('address'); ?></span> 
 				<input
-					type="text" value="<?php echo set_value('address'); ?>"
+					type="text" value="<?php //echo set_value('address'); ?>"
 					class="form-control input_long" id="address" name="address"
 					placeholder="Address">
 			</div>
 			<div class="form-group">
 				<label for="apt_num">Apt #</label> <span
-					style="color: red;"><?php echo form_error('apt_num'); ?></span> 
+					style="color: red;"><?php //echo form_error('apt_num'); ?></span> 
 				<input
-					type="text" value="<?php echo set_value('apt_num'); ?>"
+					type="text" value="<?php //echo set_value('apt_num'); ?>"
 					class="form-control input_long" id="apt_num" name="apt_num"
 					placeholder="Apt #">
 			</div>
 			<div class="form-group">
 				  		<label for="state_dropdown">State</label>
-					  	<?php echo states_dropdown('state_dropdown', set_value('state')); ?>
+					  	<?php //echo states_dropdown('state_dropdown', set_value('state')); ?>
 				    </div>
 			<div class="form-group">
 				<label for="zip">Zip</label> <span
-					style="color: red;"><?php echo form_error('zip'); ?></span> 
+					style="color: red;"><?php //echo form_error('zip'); ?></span> 
 				<input
-					type="text" value="<?php echo set_value('zip'); ?>"
+					type="text" value="<?php //echo set_value('zip'); ?>"
 					class="form-control input_long" id="zip" name="zip"
 					placeholder="Zip code">
 			</div>
 			<div class="form-group">
-				<label for="cardType">Card Type</label> <span style="color: red;"><?php echo form_error('cardType'); ?></span>
+				<label for="cardType">Card Type</label> <span style="color: red;"><?php //echo form_error('cardType'); ?></span>
 				<select id="cardType" name="cardType" style="width: 150px;" class="form-control">
 					<option value="visa">Visa</option>
 					<option value="master">Master</option>
@@ -129,25 +129,25 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="cardNum">Card Number</label> <span style="color: red;"><?php echo form_error('cardNum'); ?></span>
-				<input type="text" value="<?php echo set_value('cardNum'); ?>"
+				<label for="cardNum">Card Number</label> <span style="color: red;"><?php //echo form_error('cardNum'); ?></span>
+				<input type="text" value="<?php //echo set_value('cardNum'); ?>"
 					class="form-control input_long" id="cardNum" name="cardNum"
 					placeholder="Card Number">
 			</div>
 			<div class="form-group">
-				<label for="secCode">Security Code</label> <span style="color: red;"><?php echo form_error('secCode'); ?></span>
-				<input type="text" value="<?php echo set_value('secCode'); ?>"
+				<label for="secCode">Security Code</label> <span style="color: red;"><?php //echo form_error('secCode'); ?></span>
+				<input type="text" value="<?php //echo set_value('secCode'); ?>"
 					class="form-control input_long" id="secCode" name="secCode"
 					placeholder="Security Code">
 			</div>
 			<div class="form-group">
-				<label for="expDate">Expire Date</label> <span style="color: red;"><?php echo form_error('expDate'); ?></span>
-				<span style="color: red;"><?php echo form_error('expDate'); ?></span> 
+				<label for="expDate">Expire Date</label> <span style="color: red;"><?php //echo form_error('expDate'); ?></span>
+				<span style="color: red;"><?php //echo form_error('expDate'); ?></span> 
           		<input style="width: 125px;" type="tel" class="form-control" id="expDate" name="expDate" placeholder="MM/DD/YYY" value="<?php echo form_error('expDate'); ?>">
       		</div>
 			<div class="form-group">
-				<label for="bill_email">Email</label> <span style="color: red;"><?php echo form_error('bill_email'); ?></span>
-				<input type="email" value="<?php echo set_value('bill_email'); ?>"
+				<label for="bill_email">Email</label> <span style="color: red;"><?php //echo form_error('bill_email'); ?></span>
+				<input type="email" value="<?php //echo set_value('bill_email'); ?>"
 					class="form-control input_long" id="bill_email" name="bill_email"
 					placeholder="Email">
 			</div>
@@ -167,12 +167,12 @@
 			<span style="float: right; padding-right: 15px;">
 				<a
 					class="btn btn-danger btn-sm"
-					href="<?php echo site_url('orders/destroy_cart');?>">Start-over
+					href="<?php //echo site_url('orders/destroy_cart');?>">Start-over
 				</a>
 			</span>
 		</div>
-	</div>
-	<?php echo form_close()?>
+	</div>-->
+	<?php //echo form_close()?>
 </div>
 
 <script>
